@@ -692,6 +692,7 @@ class GboardPortProductCatalogContractTest {
             "simple_calculator" to "version-sensitive",
             "swipeable_custom_top_row" to "version-sensitive",
             "use_bluetooth_microphone" to "version-sensitive",
+            "voice_mode_toggle" to "version-sensitive",
             "web_clipboard" to "version-sensitive",
             "zhuyin_bottom_row_key_sizes" to "version-sensitive",
             "zhuyin_quick_traditional_simplified_toggle" to "version-sensitive",

@@ -40,6 +40,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MORPHE_PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
         run: ./gradlew :patches:buildAndroid
 
+      - name: Upload patch bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: patches-mpp
+          path: patches/build/libs/*.mpp
+          if-no-files-found: error
+
       - name: Run tests
         env:
           GITHUB_ACTOR: ${{ github.repository_owner }}
