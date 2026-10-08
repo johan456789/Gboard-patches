@@ -1500,6 +1500,34 @@
       ]
     },
     {
+      "feature_id": "voice_mode_toggle",
+      "public_patch_name": "Voice Mode Toggle",
+      "feature_marker": "dev.jason.gboardpatches.feature.voice_mode_toggle",
+      "target_family_ids": [
+        "accesspoint.1803"
+      ],
+      "migration_scope": "version-sensitive",
+      "consumer_files": [
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/features/voicemodetoggle/GboardVoiceModeToggleFeatureMarkerPatch.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/registry/GboardPatchRegistry.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/shared/accesspoint/GboardAccessPointContributions1803Patch.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/shared/accesspoint/GboardAccessPointContributions1803Targets.kt"
+      ],
+      "contributions": [
+        {
+          "contribution_id": "voice_mode_toggle.access_point",
+          "anchor_family_id": "dedicated_bytecode",
+          "phase": "dedicated",
+          "order": 1255,
+          "required_bindings": [],
+          "runtime_calls": [
+            "ACCESS_POINT_CONTRIBUTIONS_1803_AFTER_CONTROLLER_CREATED",
+            "ACCESS_POINT_CONTRIBUTIONS_1803_INCLUDE_ORDER_CATALOG"
+          ]
+        }
+      ]
+    },
+    {
       "feature_id": "web_clipboard",
       "public_patch_name": "Web Clipboard",
       "feature_marker": "dev.jason.gboardpatches.feature.web_clipboard",

@@ -85,6 +85,8 @@ public final class GboardPatchesFeatureAvailability {
             "dev.jason.gboardpatches.feature.custom_theme";
     public static final String FEATURE_FROSTED_GLASS =
             "dev.jason.gboardpatches.feature.frosted_glass";
+    public static final String FEATURE_VOICE_MODE_TOGGLE =
+            "dev.jason.gboardpatches.feature.voice_mode_toggle";
 
     private static final String TAG = "GboardPatches";
 

@@ -4,8 +4,13 @@ import android.content.Context;
 
 import java.lang.reflect.Method;
 
+import dev.jason.gboardpatches.extension.settings.GboardPatchesSettings;
+
 /** Keeps Agentic capability exposure aligned with Gboard's official selector. */
 public final class GboardRambler1803OfficialSelectionRuntime {
+    /** Persistent user toggle that inverts the effective voice backend. */
+    public static final String PREF_KEY_VOICE_MODE_INVERTED = "pref_voice_mode_inverted";
+
     private static final ThreadLocal<Integer> VOICE_SETTINGS_SCOPE_DEPTH =
             new ThreadLocal<Integer>();
     private static final ThreadLocal<Integer> DEFAULT_SELECTION_SUPPRESSION_DEPTH =
@@ -14,6 +19,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
             new ThreadLocal<Integer>();
 
     private static volatile Boolean officialRamblerSelected;
+    private static volatile Boolean invertedOverride;
 
     private GboardRambler1803OfficialSelectionRuntime() {
     }
@@ -68,15 +74,80 @@ public final class GboardRambler1803OfficialSelectionRuntime {
 
     /**
      * Substitutes the official selector result. Records the stock selection (as the previous
-     * read observer did) and returns the inverted value while the backend inversion scope is
-     * active. Never inverts inside the voice settings UI so the official toggle keeps working.
+     * read observer did) and returns the inverted value while a backend inversion is active.
+     * The inversion is active when either the persistent user toggle is on or the one-invocation
+     * scope is armed; the two compose with XOR. Never inverts inside the voice settings UI so the
+     * official toggle keeps working.
      */
     public static boolean applyOfficialSelectionOverride(boolean stockResult) {
         updateOfficialSelection(stockResult);
         if (isVoiceSettingsScopeActive()) {
             return stockResult;
         }
-        return isBackendInversionScopeActive() ? !stockResult : stockResult;
+        boolean invert = isInvertedOverride() ^ isBackendInversionScopeActive();
+        return invert ? !stockResult : stockResult;
+    }
+
+    /** Whether the persistent user toggle currently inverts the effective voice backend. */
+    public static boolean isInvertedOverride() {
+        Boolean cached = invertedOverride;
+        if (cached != null) {
+            return cached.booleanValue();
+        }
+        boolean value = readInvertedOverrideFromPreferences(resolveApplicationContext());
+        invertedOverride = Boolean.valueOf(value);
+        return value;
+    }
+
+    /** Flips the persistent user toggle, persists it, and returns the new value. */
+    public static boolean toggleInvertedOverride(Context context) {
+        boolean next = !isInvertedOverride();
+        setInvertedOverride(context, next);
+        return next;
+    }
+
+    /** Writes the persistent user toggle and refreshes the in-memory cache. */
+    public static void setInvertedOverride(Context context, boolean inverted) {
+        invertedOverride = Boolean.valueOf(inverted);
+        if (context == null) {
+            return;
+        }
+        try {
+            GboardPatchesSettings.preferences(context)
+                    .edit()
+                    .putBoolean(PREF_KEY_VOICE_MODE_INVERTED, inverted)
+                    .commit();
+        } catch (Throwable ignored) {
+            // Persisting the toggle must never affect the keyboard path.
+        }
+    }
+
+    private static boolean readInvertedOverrideFromPreferences(Context context) {
+        if (context == null) {
+            return false;
+        }
+        try {
+            return GboardPatchesSettings.preferences(context)
+                    .getBoolean(PREF_KEY_VOICE_MODE_INVERTED, false);
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
+    private static Context resolveApplicationContext() {
+        try {
+            Object application = Class.forName("android.app.ActivityThread")
+                    .getMethod("currentApplication")
+                    .invoke(null);
+            if (application instanceof Context) {
+                Context context = (Context) application;
+                Context app = context.getApplicationContext();
+                return app != null ? app : context;
+            }
+        } catch (Throwable ignored) {
+            // Application may not be ready yet.
+        }
+        return null;
     }
 
     private static boolean isVoiceSettingsScopeActive() {
@@ -133,5 +204,6 @@ public final class GboardRambler1803OfficialSelectionRuntime {
         DEFAULT_SELECTION_SUPPRESSION_DEPTH.remove();
         BACKEND_INVERSION_DEPTH.remove();
         officialRamblerSelected = null;
+        invertedOverride = null;
     }
 }

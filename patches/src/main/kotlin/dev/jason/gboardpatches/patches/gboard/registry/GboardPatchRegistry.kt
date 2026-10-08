@@ -48,6 +48,7 @@ import dev.jason.gboardpatches.patches.gboard.features.webclipboard.gboardWebCli
 import dev.jason.gboardpatches.patches.gboard.features.webclipboard.gboardWebClipboardManifestPatch
 import dev.jason.gboardpatches.patches.gboard.features.websearch.gboardFloatingWebSearchFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.websearch.gboardFloatingWebSearchManifestPatch
+import dev.jason.gboardpatches.patches.gboard.features.voicemodetoggle.gboardVoiceModeToggleFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.englishqwerty.gboardEnglishUppercaseToggleFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.featureflags.gboardDeviceIntelligenceFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.featureflags.gboardDeviceIntelligenceFlagValuePatch
@@ -233,6 +234,24 @@ val gboardFloatingWebSearchPatch = gboardPublicResourcePatch(
         gboardPatchesSettingsPatch,
         gboardFloatingWebSearchFeatureMarkerPatch,
         gboardFloatingWebSearchManifestPatch,
+        gboardAccessPointContributions1803Patch,
+    )
+}
+
+@Suppress("unused")
+val gboardVoiceModeTogglePatch = gboardPublicResourcePatch(
+    featureId = "voice_mode_toggle",
+    name = "Voice Mode Toggle",
+    description = "在 Access Point 工具列新增語音模式切換按鈕，可在 Rambler 與標準語音輸入之間切換\n" +
+        "Add an Access Point button that switches the voice typing backend between " +
+        "Rambler (agentic dictation) and standard voice typing.",
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_GBOARD)
+
+    dependsOn(
+        gboardPatchesSettingsPatch,
+        gboardVoiceModeToggleFeatureMarkerPatch,
         gboardAccessPointContributions1803Patch,
     )
 }
@@ -865,6 +884,7 @@ object GboardPublishedPatchCatalog {
         gboardSpacebarLogoPatch,
         gboardManualIncognitoModePatch,
         gboardFloatingWebSearchPatch,
+        gboardVoiceModeTogglePatch,
         gboardEditingAccessPointsPatch,
         gboardSimpleCalculatorPatch,
         gboardAdvancedVoiceTypingPatch,

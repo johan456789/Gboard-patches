@@ -110,4 +110,46 @@ public final class GboardRambler1803OfficialSelectionRuntimeTest {
         Assert.assertTrue(
                 GboardRambler1803OfficialSelectionRuntime.shouldEnableAgenticDictation());
     }
+
+    @Test
+    public void persistentInversionOverrideInvertsOfficialSelection() {
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+
+        GboardRambler1803OfficialSelectionRuntime.setInvertedOverride(null, true);
+        Assert.assertFalse(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+
+        GboardRambler1803OfficialSelectionRuntime.setInvertedOverride(null, false);
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+    }
+
+    @Test
+    public void toggleFlipsThePersistentOverride() {
+        Assert.assertFalse(GboardRambler1803OfficialSelectionRuntime.isInvertedOverride());
+        Assert.assertTrue(GboardRambler1803OfficialSelectionRuntime.toggleInvertedOverride(null));
+        Assert.assertTrue(GboardRambler1803OfficialSelectionRuntime.isInvertedOverride());
+        Assert.assertFalse(GboardRambler1803OfficialSelectionRuntime.toggleInvertedOverride(null));
+    }
+
+    @Test
+    public void persistentOverrideAndScopeComposeWithXor() {
+        GboardRambler1803OfficialSelectionRuntime.setInvertedOverride(null, true);
+        GboardRambler1803OfficialSelectionRuntime.enterBackendInversionScope();
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+        GboardRambler1803OfficialSelectionRuntime.exitBackendInversionScope();
+        Assert.assertFalse(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+    }
+
+    @Test
+    public void voiceSettingsScopeIgnoresPersistentOverride() {
+        GboardRambler1803OfficialSelectionRuntime.setInvertedOverride(null, true);
+        GboardRambler1803OfficialSelectionRuntime.enterVoiceSettingsScope();
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+        GboardRambler1803OfficialSelectionRuntime.exitVoiceSettingsScope();
+    }
 }

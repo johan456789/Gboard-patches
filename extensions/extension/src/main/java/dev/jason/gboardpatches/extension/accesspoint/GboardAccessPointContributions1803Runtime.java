@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 
 import dev.jason.gboardpatches.extension.manualincognito.GboardManualIncognitoRuntime;
 import dev.jason.gboardpatches.extension.settings.GboardPatchesFeatureAvailability;
+import dev.jason.gboardpatches.extension.voicemodetoggle.GboardVoiceModeToggleAccessPoint1803Contribution;
 import dev.jason.gboardpatches.extension.websearch.GboardFloatingWebSearchAccessPoint1803Contribution;
 
 public final class GboardAccessPointContributions1803Runtime {
@@ -43,6 +44,14 @@ public final class GboardAccessPointContributions1803Runtime {
         } catch (Throwable failure) {
             logFailure("Editing buttons catalog contribution failed", failure);
         }
+        try {
+            if (hasFeature(context, GboardPatchesFeatureAvailability.FEATURE_VOICE_MODE_TOGGLE)) {
+                result = GboardVoiceModeToggleAccessPoint1803Contribution.INSTANCE
+                        .extendOrderCatalog(context, result);
+            }
+        } catch (Throwable failure) {
+            logFailure("Voice mode toggle catalog contribution failed", failure);
+        }
         return result;
     }
 
@@ -75,6 +84,14 @@ public final class GboardAccessPointContributions1803Runtime {
             }
         } catch (Throwable failure) {
             logFailure("Editing buttons controller contribution failed", failure);
+        }
+        try {
+            if (hasFeature(context, GboardPatchesFeatureAvailability.FEATURE_VOICE_MODE_TOGGLE)) {
+                GboardVoiceModeToggleAccessPoint1803Contribution.INSTANCE.register(
+                        controller, context);
+            }
+        } catch (Throwable failure) {
+            logFailure("Voice mode toggle controller contribution failed", failure);
         }
     }
 
