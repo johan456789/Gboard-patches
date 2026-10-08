@@ -57,4 +57,57 @@ public final class GboardRambler1803OfficialSelectionRuntimeTest {
         Assert.assertTrue(
                 GboardRambler1803OfficialSelectionRuntime.shouldEnableAgenticDictation());
     }
+
+    @Test
+    public void backendInversionScopeInvertsOfficialSelectionForOneInvocation() {
+        GboardRambler1803OfficialSelectionRuntime.updateOfficialSelection(true);
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+
+        GboardRambler1803OfficialSelectionRuntime.enterBackendInversionScope();
+        Assert.assertFalse(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+
+        GboardRambler1803OfficialSelectionRuntime.exitBackendInversionScope();
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+    }
+
+    @Test
+    public void backendInversionScopeIsNestedAndBalanced() {
+        GboardRambler1803OfficialSelectionRuntime.enterBackendInversionScope();
+        GboardRambler1803OfficialSelectionRuntime.enterBackendInversionScope();
+        Assert.assertFalse(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+        GboardRambler1803OfficialSelectionRuntime.exitBackendInversionScope();
+        Assert.assertFalse(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+        GboardRambler1803OfficialSelectionRuntime.exitBackendInversionScope();
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+    }
+
+    @Test
+    public void voiceSettingsScopeIsNeverInverted() {
+        GboardRambler1803OfficialSelectionRuntime.enterVoiceSettingsScope();
+        GboardRambler1803OfficialSelectionRuntime.enterBackendInversionScope();
+
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+        Assert.assertFalse(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(false));
+
+        GboardRambler1803OfficialSelectionRuntime.exitBackendInversionScope();
+        GboardRambler1803OfficialSelectionRuntime.exitVoiceSettingsScope();
+    }
+
+    @Test
+    public void applyOfficialSelectionOverrideKeepsOfficialCacheInSync() {
+        GboardRambler1803OfficialSelectionRuntime.enterBackendInversionScope();
+        Assert.assertFalse(
+                GboardRambler1803OfficialSelectionRuntime.applyOfficialSelectionOverride(true));
+        GboardRambler1803OfficialSelectionRuntime.exitBackendInversionScope();
+        Assert.assertTrue(
+                GboardRambler1803OfficialSelectionRuntime.shouldEnableAgenticDictation());
+    }
 }

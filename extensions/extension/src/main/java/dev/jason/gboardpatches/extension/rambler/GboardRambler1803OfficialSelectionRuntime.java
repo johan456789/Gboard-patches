@@ -10,6 +10,8 @@ public final class GboardRambler1803OfficialSelectionRuntime {
             new ThreadLocal<Integer>();
     private static final ThreadLocal<Integer> DEFAULT_SELECTION_SUPPRESSION_DEPTH =
             new ThreadLocal<Integer>();
+    private static final ThreadLocal<Integer> BACKEND_INVERSION_DEPTH =
+            new ThreadLocal<Integer>();
 
     private static volatile Boolean officialRamblerSelected;
 
@@ -51,12 +53,42 @@ public final class GboardRambler1803OfficialSelectionRuntime {
         decrement(DEFAULT_SELECTION_SUPPRESSION_DEPTH);
     }
 
+    /**
+     * Arms a single-invocation inversion of the effective voice backend. While this scope is
+     * active, {@link #applyOfficialSelectionOverride(boolean)} returns the inverted official
+     * selection so a mic long-press dictates with the other backend for that invocation.
+     */
+    public static void enterBackendInversionScope() {
+        BACKEND_INVERSION_DEPTH.set(Integer.valueOf(depth(BACKEND_INVERSION_DEPTH) + 1));
+    }
+
+    public static void exitBackendInversionScope() {
+        decrement(BACKEND_INVERSION_DEPTH);
+    }
+
+    /**
+     * Substitutes the official selector result. Records the stock selection (as the previous
+     * read observer did) and returns the inverted value while the backend inversion scope is
+     * active. Never inverts inside the voice settings UI so the official toggle keeps working.
+     */
+    public static boolean applyOfficialSelectionOverride(boolean stockResult) {
+        updateOfficialSelection(stockResult);
+        if (isVoiceSettingsScopeActive()) {
+            return stockResult;
+        }
+        return isBackendInversionScopeActive() ? !stockResult : stockResult;
+    }
+
     private static boolean isVoiceSettingsScopeActive() {
         return depth(VOICE_SETTINGS_SCOPE_DEPTH) > 0;
     }
 
     private static boolean isDefaultSelectionSuppressed() {
         return depth(DEFAULT_SELECTION_SUPPRESSION_DEPTH) > 0;
+    }
+
+    private static boolean isBackendInversionScopeActive() {
+        return depth(BACKEND_INVERSION_DEPTH) > 0;
     }
 
     private static int depth(ThreadLocal<Integer> scope) {
@@ -99,6 +131,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
     static void resetForTests() {
         VOICE_SETTINGS_SCOPE_DEPTH.remove();
         DEFAULT_SELECTION_SUPPRESSION_DEPTH.remove();
+        BACKEND_INVERSION_DEPTH.remove();
         officialRamblerSelected = null;
     }
 }

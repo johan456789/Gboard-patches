@@ -114,7 +114,7 @@ private fun MutableMethod.applySelectionWriteObserver() {
 }
 
 private fun MutableMethod.applySelectionReadObserver() {
-    val call = RuntimeCallId.RAMBLER_RUNTIME_UPDATE_OFFICIAL_SELECTION
+    val call = RuntimeCallId.RAMBLER_RUNTIME_APPLY_OFFICIAL_SELECTION
     val reference = RuntimeAbiCatalog.abi(call).reference
     val instructions = implementation?.instructions ?: error("No selection reader implementation")
     val returns = returnInstructionIndices()
@@ -127,6 +127,12 @@ private fun MutableMethod.applySelectionReadObserver() {
         val resultRegister = (instructions[returnIndex] as? OneRegisterInstruction)?.registerA
             ?: error("Rambler selection return does not expose registerA")
         check(resultRegister <= 15) { "Rambler selection result register is not invoke-35c safe" }
-        addInstructions(returnIndex, RuntimeCallEmitter.invoke(call, "v$resultRegister"))
+        addInstructions(
+            returnIndex,
+            buildString {
+                append(RuntimeCallEmitter.invoke(call, "v$resultRegister"))
+                append("\n\nmove-result v$resultRegister")
+            },
+        )
     }
 }
