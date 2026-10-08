@@ -17,6 +17,7 @@ import dev.jason.gboardpatches.extension.settings.GboardFeatureGroup;
 import dev.jason.gboardpatches.extension.settings.GboardPatchesSettingsContract;
 import dev.jason.gboardpatches.extension.settings.GboardSettingsText;
 import dev.jason.gboardpatches.extension.toprowswipe.GboardTopRowSwipeSettingsFeature;
+import dev.jason.gboardpatches.extension.voicemodetoggle.GboardVoiceModeToggleSettingsFeature;
 import dev.jason.gboardpatches.extension.websearch.GboardFloatingWebSearchSettingsFeature;
 
 public final class GboardKeyboardToolsSettingsGroupFeature
@@ -45,6 +46,7 @@ public final class GboardKeyboardToolsSettingsGroupFeature
                         new GboardOcrSettingsFeature(context),
                         new GboardQuickInsertSettingsFeature(context),
                         new GboardFloatingWebSearchSettingsFeature(context),
+                        new GboardVoiceModeToggleSettingsFeature(context),
                         new GboardCalculatorSettingsFeature(context)));
     }
 

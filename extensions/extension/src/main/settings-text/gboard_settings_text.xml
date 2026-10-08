@@ -2134,6 +2134,18 @@
         <translation locale="en">Long-press the space bar to open a trackpad for moving the cursor freely through your text, with a lock mode for easier control.</translation>
         <translation locale="zh-Hant">長按空白鍵即可開啟觸控板，在文字中自由移動游標，並提供鎖定模式以便控制。</translation>
     </string>
+    <string name="gboard_patches_voice_mode_toggle_title">
+        <translation locale="en">Voice mode toggle</translation>
+        <translation locale="zh-Hant">語音模式切換</translation>
+    </string>
+    <string name="gboard_patches_voice_mode_toggle_summary">
+        <translation locale="en">Adds an Access Point button that switches the voice typing backend between Rambler (agentic dictation) and standard voice typing.</translation>
+        <translation locale="zh-Hant">在 Access Point 工具列新增按鈕，切換 Rambler（代理聽寫）與標準語音輸入。</translation>
+    </string>
+    <string name="gboard_patches_voice_mode_toggle_toggle_title">
+        <translation locale="en">Invert voice typing backend</translation>
+        <translation locale="zh-Hant">反轉語音輸入後端</translation>
+    </string>
     <string name="gboard_patches_access_points_menu_title">
         <translation locale="en">Access Points menu style</translation>
         <translation locale="zh-Hant">Access Points 選單樣式</translation>

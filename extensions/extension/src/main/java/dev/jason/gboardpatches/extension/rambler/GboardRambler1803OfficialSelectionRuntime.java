@@ -1,6 +1,7 @@
 package dev.jason.gboardpatches.extension.rambler;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.lang.reflect.Method;
 
@@ -115,6 +116,21 @@ public final class GboardRambler1803OfficialSelectionRuntime {
         try {
             GboardPatchesSettings.preferences(context)
                     .edit()
+                    .putBoolean(PREF_KEY_VOICE_MODE_INVERTED, inverted)
+                    .commit();
+        } catch (Throwable ignored) {
+            // Persisting the toggle must never affect the keyboard path.
+        }
+    }
+
+    /** Writes the persistent user toggle into the supplied preferences and refreshes the cache. */
+    public static void setInvertedOverride(SharedPreferences preferences, boolean inverted) {
+        invertedOverride = Boolean.valueOf(inverted);
+        if (preferences == null) {
+            return;
+        }
+        try {
+            preferences.edit()
                     .putBoolean(PREF_KEY_VOICE_MODE_INVERTED, inverted)
                     .commit();
         } catch (Throwable ignored) {
