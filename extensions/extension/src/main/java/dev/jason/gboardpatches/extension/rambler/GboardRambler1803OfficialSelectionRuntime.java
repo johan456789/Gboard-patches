@@ -124,7 +124,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
     }
 
     /** Writes the persistent user toggle into the supplied preferences and refreshes the cache. */
-    public static void setInvertedOverride(SharedPreferences preferences, boolean inverted) {
+    public static void writeInvertedOverride(SharedPreferences preferences, boolean inverted) {
         invertedOverride = Boolean.valueOf(inverted);
         if (preferences == null) {
             return;

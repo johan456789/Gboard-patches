@@ -43,7 +43,7 @@ public final class GboardVoiceModeToggleSettingsFeature
                     public boolean writeEnabled(
                             SharedPreferences preferences,
                             boolean enabled) {
-                        GboardRambler1803OfficialSelectionRuntime.setInvertedOverride(
+                        GboardRambler1803OfficialSelectionRuntime.writeInvertedOverride(
                                 preferences, enabled);
                         return true;
                     }
