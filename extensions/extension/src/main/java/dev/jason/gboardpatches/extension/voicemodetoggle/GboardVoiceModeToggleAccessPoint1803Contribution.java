@@ -6,7 +6,6 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -26,8 +25,6 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             new GboardVoiceModeToggleAccessPoint1803Contribution();
     public static final String TOKEN = "voice_mode_toggle";
     static final int MIC_DRAWABLE_ID = 0x7f0805ee;
-    private static final String SHOWING_ORDER_KEY = "pref_key_access_points_showing_order";
-    private static final String ADDED_FLAG_KEY = "pref_voice_mode_toolbar_added";
     /** R.string id Gboard uses as the key for the persistent access-point order (mjz). */
     private static final int ORDER_RES_ID = 0x7f1409b0;
 
@@ -57,8 +54,6 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
 
     public void register(Object controller, Context context) {
         try {
-            Log.i("GboardPatches", "[voice-mode] register called available="
-                    + isAvailable(context) + " controller=" + (controller != null));
             if (controller == null || context == null || !isAvailable(context)) {
                 return;
             }
@@ -111,7 +106,7 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             appendTokens(desired, defaults);
             String updated = String.join(";", desired);
             if (updated.equals(current)) {
-                Log.i("GboardPatches", "[voice-mode] persistent order already correct");
+                // Order already contains the token in first position; nothing to write.
                 return;
             }
             write.invoke(qhy, ORDER_RES_ID, updated);
@@ -212,8 +207,6 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
         }
 
         private static void showToast(Context context, String message) {
-            Log.i("GboardPatches", "[voice-mode] toast requested: " + message
-                    + " ctx=" + (context == null ? "null" : context.getClass().getName()));
             if (context == null) {
                 return;
             }
@@ -221,7 +214,6 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
                 new Handler(Looper.getMainLooper()).post(() -> {
                     try {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                        Log.i("GboardPatches", "[voice-mode] toast shown: " + message);
                     } catch (Throwable throwable) {
                         Log.i("GboardPatches", "[voice-mode] toast failed: " + throwable);
                     }
