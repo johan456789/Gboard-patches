@@ -16,6 +16,8 @@ public final class GboardRambler1803OfficialSelectionRuntime {
     /** R.string id of Gboard's own agentic-dictation selection pref (the store behind mqk.a). */
     private static final int AGENTIC_SELECTION_RES_ID = 0x7f140a0d;
     private static final AtomicInteger HOOK_LOG_COUNT = new AtomicInteger();
+    /** Voice-icon state bit that rebuilds the mic for agentic dictation instead of standard. */
+    private static final int VOICE_ICON_AGENTIC_BIT = 64;
 
     private static final ThreadLocal<Integer> VOICE_SETTINGS_SCOPE_DEPTH =
             new ThreadLocal<Integer>();
@@ -240,7 +242,28 @@ public final class GboardRambler1803OfficialSelectionRuntime {
         writeAgenticSelection(context, next);
         officialRamblerSelected = Boolean.valueOf(next);
         invertedOverride = Boolean.FALSE;
+        postVoiceIconState(next);
         return next;
+    }
+
+    /**
+     * Flips Gboard's voice-icon state bit 64. With it set the mic is rebuilt as an agentic button
+     * (action -10217, LAUNCH_JETSON_IME, sparkle icon); cleared it falls back to the standard mic
+     * (action -10042, LAUNCH_VOICE_IME). This is what actually switches which backend a tap runs —
+     * mqk.a is never consulted on the mic path.
+     */
+    public static void postVoiceIconState(boolean agentic) {
+        try {
+            Context context = resolveApplicationContext();
+            if (context == null) {
+                return;
+            }
+            Class<?> rqvClass = Class.forName("rqv", false, context.getClassLoader());
+            rqvClass.getMethod("a", int.class, boolean.class)
+                    .invoke(null, Integer.valueOf(VOICE_ICON_AGENTIC_BIT), Boolean.valueOf(agentic));
+        } catch (Throwable ignored) {
+            // Switching backends must never affect the keyboard path.
+        }
     }
 
     private static int depth(ThreadLocal<Integer> scope) {
