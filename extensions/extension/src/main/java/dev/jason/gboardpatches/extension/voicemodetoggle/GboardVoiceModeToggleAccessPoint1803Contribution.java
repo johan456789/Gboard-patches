@@ -82,7 +82,7 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
      * Adds the Voice mode token to Gboard's toolbar showing order once, so the button is visible
      * without the user having to drag it in. A one-time flag means removing it stays removed.
      */
-    static void ensureShownInToolbar(Context context) {
+    public static void ensureShownInToolbar(Context context) {
         if (context == null) {
             return;
         }
@@ -92,13 +92,7 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             Object qhy = qhyClass.getMethod("I", Context.class).invoke(null, context);
             Method readString = qhyClass.getMethod("d", String.class, String.class);
             Method writeString = qhyClass.getMethod("i", String.class, String.class);
-            Method readBoolean = qhyClass.getMethod(
-                    "am", String.class, boolean.class, boolean.class);
-            Method writeBoolean = qhyClass.getMethod("k", String.class, boolean.class);
 
-            if (Boolean.TRUE.equals(readBoolean.invoke(qhy, ADDED_FLAG_KEY, false, false))) {
-                return;
-            }
             Object raw = readString.invoke(qhy, SHOWING_ORDER_KEY, null);
             String current = raw instanceof String ? (String) raw : "";
             boolean present = false;
@@ -112,10 +106,7 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
                 String updated = current.isEmpty() ? TOKEN : TOKEN + ";" + current;
                 writeString.invoke(qhy, SHOWING_ORDER_KEY, updated);
                 Log.i("GboardPatches", "[voice-mode] showing order updated: " + updated);
-            } else {
-                Log.i("GboardPatches", "[voice-mode] token already in showing order");
             }
-            writeBoolean.invoke(qhy, ADDED_FLAG_KEY, Boolean.TRUE);
         } catch (Throwable ignored) {
             // Best effort: the user can still add the button from the toolbar editor.
         }
