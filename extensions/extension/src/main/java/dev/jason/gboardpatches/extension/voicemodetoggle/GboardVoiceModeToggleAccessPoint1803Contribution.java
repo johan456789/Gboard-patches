@@ -28,6 +28,8 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
     static final int MIC_DRAWABLE_ID = 0x7f0805ee;
     private static final String SHOWING_ORDER_KEY = "pref_key_access_points_showing_order";
     private static final String ADDED_FLAG_KEY = "pref_voice_mode_toolbar_added";
+    /** R.string id Gboard uses as the key for the persistent access-point order (mjz). */
+    private static final int ORDER_RES_ID = 0x7f1409b0;
 
     private static volatile Handles handles;
 
@@ -90,10 +92,10 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             ClassLoader loader = context.getClassLoader();
             Class<?> qhyClass = Class.forName("qhy", false, loader);
             Object qhy = qhyClass.getMethod("I", Context.class).invoke(null, context);
-            Method readString = qhyClass.getMethod("d", String.class, String.class);
-            Method writeString = qhyClass.getMethod("i", String.class, String.class);
+            Method read = qhyClass.getMethod("o", int.class, String.class);
+            Method write = qhyClass.getMethod("T", int.class, Object.class);
 
-            Object raw = readString.invoke(qhy, SHOWING_ORDER_KEY, null);
+            Object raw = read.invoke(qhy, ORDER_RES_ID, "");
             String current = raw instanceof String ? (String) raw : "";
             boolean present = false;
             for (String part : current.split(";")) {
@@ -104,11 +106,13 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             }
             if (!present) {
                 String updated = current.isEmpty() ? TOKEN : TOKEN + ";" + current;
-                writeString.invoke(qhy, SHOWING_ORDER_KEY, updated);
-                Log.i("GboardPatches", "[voice-mode] showing order updated: " + updated);
+                write.invoke(qhy, ORDER_RES_ID, updated);
+                Log.i("GboardPatches", "[voice-mode] persistent order updated: " + updated);
+            } else {
+                Log.i("GboardPatches", "[voice-mode] token already in persistent order");
             }
-        } catch (Throwable ignored) {
-            // Best effort: the user can still add the button from the toolbar editor.
+        } catch (Throwable throwable) {
+            Log.i("GboardPatches", "[voice-mode] ensureShownInToolbar failed: " + throwable);
         }
     }
 
