@@ -67,7 +67,6 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             Handles active = handles(controller.getClass().getClassLoader());
             active.controllerRegisterMethod.invoke(
                     controller, buildDescriptor(controller, safeContext), false);
-            ensureShownInToolbar(safeContext);
         } catch (Throwable ignored) {
             // A synthetic Access Point must fail closed.
         }
