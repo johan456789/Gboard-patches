@@ -181,6 +181,7 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             } catch (Throwable ignored) {
                 inverted = GboardRambler1803OfficialSelectionRuntime.isInvertedOverride();
             }
+            Log.i("GboardPatches", "[voice-mode] toggle tapped inverted=" + inverted);
             showToast(context, modeLabel(inverted));
         }
 
