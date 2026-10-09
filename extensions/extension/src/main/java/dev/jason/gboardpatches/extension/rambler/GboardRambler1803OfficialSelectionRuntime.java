@@ -11,6 +11,8 @@ import dev.jason.gboardpatches.extension.settings.GboardPatchesSettings;
 public final class GboardRambler1803OfficialSelectionRuntime {
     /** Persistent user toggle that inverts the effective voice backend. */
     public static final String PREF_KEY_VOICE_MODE_INVERTED = "pref_voice_mode_inverted";
+    /** R.string id of Gboard's own agentic-dictation selection pref (the store behind mqk.a). */
+    private static final int AGENTIC_SELECTION_RES_ID = 0x7f140a0d;
 
     private static final ThreadLocal<Integer> VOICE_SETTINGS_SCOPE_DEPTH =
             new ThreadLocal<Integer>();
@@ -176,6 +178,54 @@ public final class GboardRambler1803OfficialSelectionRuntime {
 
     private static boolean isBackendInversionScopeActive() {
         return depth(BACKEND_INVERSION_DEPTH) > 0;
+    }
+
+    /**
+     * Reads Gboard's own agentic-dictation selection pref (the store behind mqk.a). Writing it is
+     * what actually switches the backend: Gboard's preference listeners re-route voice typing and
+     * flip the mic icon, whereas inverting only the mqk.a return value notifies nobody.
+     */
+    public static boolean readAgenticSelection(Context context) {
+        if (context == null) {
+            return false;
+        }
+        try {
+            Class<?> qhyClass = Class.forName("qhy", false, context.getClassLoader());
+            Object qhy = qhyClass.getMethod("I", Context.class).invoke(null, context);
+            Object value = qhyClass.getMethod("x", int.class, boolean.class)
+                    .invoke(qhy, AGENTIC_SELECTION_RES_ID, Boolean.FALSE);
+            return Boolean.TRUE.equals(value);
+        } catch (Throwable throwable) {
+            return false;
+        }
+    }
+
+    /** Persists Gboard's agentic-dictation selection so its preference listeners fire. */
+    public static void writeAgenticSelection(Context context, boolean value) {
+        if (context == null) {
+            return;
+        }
+        try {
+            Class<?> qhyClass = Class.forName("qhy", false, context.getClassLoader());
+            Object qhy = qhyClass.getMethod("I", Context.class).invoke(null, context);
+            qhyClass.getMethod("q", int.class, boolean.class)
+                    .invoke(qhy, AGENTIC_SELECTION_RES_ID, value);
+        } catch (Throwable ignored) {
+            // Switching backends must never affect the keyboard path.
+        }
+    }
+
+    /**
+     * Flips the voice backend. Returns true when agentic dictation (Rambler) is now selected.
+     * The selection override is cleared so the mqk.a read hook passes the stored value through and
+     * both mechanisms agree.
+     */
+    public static boolean toggleVoiceBackend(Context context) {
+        boolean next = !readAgenticSelection(context);
+        writeAgenticSelection(context, next);
+        officialRamblerSelected = Boolean.valueOf(next);
+        invertedOverride = Boolean.FALSE;
+        return next;
     }
 
     private static int depth(ThreadLocal<Integer> scope) {

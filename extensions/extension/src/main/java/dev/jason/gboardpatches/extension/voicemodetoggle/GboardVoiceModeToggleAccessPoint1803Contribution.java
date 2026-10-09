@@ -24,7 +24,12 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
     public static final GboardVoiceModeToggleAccessPoint1803Contribution INSTANCE =
             new GboardVoiceModeToggleAccessPoint1803Contribution();
     public static final String TOKEN = "voice_mode_toggle";
-    static final int MIC_DRAWABLE_ID = 0x7f0805ee;
+    /** Mic icon for standard voice typing. */
+    static final int STANDARD_MIC_DRAWABLE_ID = 0x7f0805ee;
+    /** Mic-with-sparkle icon Gboard uses when agentic dictation (Rambler) is selected. */
+    static final int RAMBLER_MIC_DRAWABLE_ID = 0x7f080620;
+    private static volatile Object activeController;
+    private static volatile Context activeContext;
     /** R.string id Gboard uses as the key for the persistent access-point order (mjz). */
     private static final int ORDER_RES_ID = 0x7f1409b0;
 
@@ -59,19 +64,51 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             }
             Context application = context.getApplicationContext();
             Context safeContext = application != null ? application : context;
+            activeController = controller;
+            activeContext = safeContext;
             Handles active = handles(controller.getClass().getClassLoader());
-            Object builder = active.descriptorBuilderFactory.invoke(null);
-            active.builderTokenMethod.invoke(builder, TOKEN);
-            active.builderIconResourceMethod.invoke(builder, MIC_DRAWABLE_ID);
-            active.builderLabelTextField.set(builder, "Voice mode");
-            active.builderContentDescriptionTextField.set(
-                    builder, "Toggle voice typing mode");
-            active.builderRunnableMethod.invoke(builder, new ToggleAction(safeContext));
-            Object descriptor = active.builderBuildMethod.invoke(builder);
-            active.controllerRegisterMethod.invoke(controller, descriptor, false);
+            active.controllerRegisterMethod.invoke(
+                    controller, buildDescriptor(controller, safeContext), false);
             ensureShownInToolbar(safeContext);
         } catch (Throwable ignored) {
             // A synthetic Access Point must fail closed.
+        }
+    }
+
+    private static Object buildDescriptor(Object controller, Context context) throws Throwable {
+        Handles active = handles(controller.getClass().getClassLoader());
+        Object builder = active.descriptorBuilderFactory.invoke(null);
+        active.builderTokenMethod.invoke(builder, TOKEN);
+        active.builderIconResourceMethod.invoke(builder, iconFor(context));
+        active.builderLabelTextField.set(builder, "Voice mode");
+        active.builderContentDescriptionTextField.set(builder, "Toggle voice typing mode");
+        active.builderRunnableMethod.invoke(builder, new ToggleAction(context));
+        return active.builderBuildMethod.invoke(builder);
+    }
+
+    /** Icon reflects the active backend: plain mic for standard, sparkle mic for Rambler. */
+    static int iconFor(Context context) {
+        return GboardRambler1803OfficialSelectionRuntime.readAgenticSelection(context)
+                ? RAMBLER_MIC_DRAWABLE_ID
+                : STANDARD_MIC_DRAWABLE_ID;
+    }
+
+    /**
+     * Re-registers the button so Gboard rebuilds the access point with the icon for the backend
+     * that is now active (mlh.g() refreshes the list when the descriptor changes).
+     */
+    static void refreshIcon() {
+        Object controller = activeController;
+        Context context = activeContext;
+        if (controller == null || context == null) {
+            return;
+        }
+        try {
+            Handles active = handles(controller.getClass().getClassLoader());
+            active.controllerRegisterMethod.invoke(
+                    controller, buildDescriptor(controller, context), false);
+        } catch (Throwable ignored) {
+            // Icon refresh is best effort; the button still toggles.
         }
     }
 
@@ -195,15 +232,17 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
         @Override
         public void run() {
             Context context = this.context;
-            boolean inverted;
+            boolean ramblerActive;
             try {
-                inverted = GboardRambler1803OfficialSelectionRuntime
-                        .toggleInvertedOverride(context);
+                ramblerActive = GboardRambler1803OfficialSelectionRuntime
+                        .toggleVoiceBackend(context);
             } catch (Throwable ignored) {
-                inverted = GboardRambler1803OfficialSelectionRuntime.isInvertedOverride();
+                ramblerActive = GboardRambler1803OfficialSelectionRuntime
+                        .readAgenticSelection(context);
             }
-            Log.i("GboardPatches", "[voice-mode] toggle tapped inverted=" + inverted);
-            showToast(context, modeLabel(inverted));
+            Log.i("GboardPatches", "[voice-mode] toggle tapped rambler=" + ramblerActive);
+            refreshIcon();
+            showToast(context, modeLabel(!ramblerActive));
         }
 
         private static void showToast(Context context, String message) {
