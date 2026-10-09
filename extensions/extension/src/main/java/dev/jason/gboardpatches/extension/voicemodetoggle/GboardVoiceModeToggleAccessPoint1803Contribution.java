@@ -190,15 +190,16 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
     }
 
     private static final class ToggleAction implements Runnable {
-        private final WeakReference<Context> contextReference;
+        /** Strong ref: the application context is a process singleton and never leaks. */
+        private final Context context;
 
         ToggleAction(Context context) {
-            contextReference = new WeakReference<>(context);
+            this.context = context;
         }
 
         @Override
         public void run() {
-            Context context = contextReference.get();
+            Context context = this.context;
             boolean inverted;
             try {
                 inverted = GboardRambler1803OfficialSelectionRuntime
@@ -211,6 +212,8 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
         }
 
         private static void showToast(Context context, String message) {
+            Log.i("GboardPatches", "[voice-mode] toast requested: " + message
+                    + " ctx=" + (context == null ? "null" : context.getClass().getName()));
             if (context == null) {
                 return;
             }
@@ -218,12 +221,13 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
                 new Handler(Looper.getMainLooper()).post(() -> {
                     try {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                    } catch (Throwable ignored) {
-                        // Toast is best effort.
+                        Log.i("GboardPatches", "[voice-mode] toast shown: " + message);
+                    } catch (Throwable throwable) {
+                        Log.i("GboardPatches", "[voice-mode] toast failed: " + throwable);
                     }
                 });
-            } catch (Throwable ignored) {
-                // Toast is best effort.
+            } catch (Throwable throwable) {
+                Log.i("GboardPatches", "[voice-mode] toast post failed: " + throwable);
             }
         }
     }
