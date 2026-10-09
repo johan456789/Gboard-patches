@@ -20,13 +20,6 @@ public final class GboardAccessPointContributions1803Runtime {
     public static Object includeOrderCatalog(Context context, Object original) {
         Object result = original;
         try {
-            if (hasFeature(context, GboardPatchesFeatureAvailability.FEATURE_VOICE_MODE_TOGGLE)) {
-                GboardVoiceModeToggleAccessPoint1803Contribution.ensureShownInToolbar(context);
-            }
-        } catch (Throwable failure) {
-            logFailure("Voice mode toggle showing order contribution failed", failure);
-        }
-        try {
             if (hasFeature(context, GboardPatchesFeatureAvailability.FEATURE_MANUAL_INCOGNITO)) {
                 result = GboardManualIncognitoRuntime.includeAccessPointInOrderCatalog(
                         context, result);
