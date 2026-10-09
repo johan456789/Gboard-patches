@@ -25,6 +25,8 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             new GboardVoiceModeToggleAccessPoint1803Contribution();
     public static final String TOKEN = "voice_mode_toggle";
     static final int MIC_DRAWABLE_ID = 0x7f0805ee;
+    private static final String SHOWING_ORDER_KEY = "pref_key_access_points_showing_order";
+    private static final String ADDED_FLAG_KEY = "pref_voice_mode_toolbar_added";
 
     private static volatile Handles handles;
 
@@ -67,8 +69,49 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             active.builderRunnableMethod.invoke(builder, new ToggleAction(safeContext));
             Object descriptor = active.builderBuildMethod.invoke(builder);
             active.controllerRegisterMethod.invoke(controller, descriptor, false);
+            ensureShownInToolbar(safeContext);
         } catch (Throwable ignored) {
             // A synthetic Access Point must fail closed.
+        }
+    }
+
+    /**
+     * Adds the Voice mode token to Gboard's toolbar showing order once, so the button is visible
+     * without the user having to drag it in. A one-time flag means removing it stays removed.
+     */
+    static void ensureShownInToolbar(Context context) {
+        if (context == null) {
+            return;
+        }
+        try {
+            ClassLoader loader = context.getClassLoader();
+            Class<?> qhyClass = Class.forName("qhy", false, loader);
+            Object qhy = qhyClass.getMethod("I", Context.class).invoke(null, context);
+            Method readString = qhyClass.getMethod("d", String.class, String.class);
+            Method writeString = qhyClass.getMethod("i", String.class, String.class);
+            Method readBoolean = qhyClass.getMethod(
+                    "am", String.class, boolean.class, boolean.class);
+            Method writeBoolean = qhyClass.getMethod("k", String.class, boolean.class);
+
+            if (Boolean.TRUE.equals(readBoolean.invoke(qhy, ADDED_FLAG_KEY, false, false))) {
+                return;
+            }
+            Object raw = readString.invoke(qhy, SHOWING_ORDER_KEY, null);
+            String current = raw instanceof String ? (String) raw : "";
+            boolean present = false;
+            for (String part : current.split(";")) {
+                if (TOKEN.equals(part)) {
+                    present = true;
+                    break;
+                }
+            }
+            if (!present) {
+                String updated = current.isEmpty() ? TOKEN : TOKEN + ";" + current;
+                writeString.invoke(qhy, SHOWING_ORDER_KEY, updated);
+            }
+            writeBoolean.invoke(qhy, ADDED_FLAG_KEY, Boolean.TRUE);
+        } catch (Throwable ignored) {
+            // Best effort: the user can still add the button from the toolbar editor.
         }
     }
 
