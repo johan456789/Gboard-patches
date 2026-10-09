@@ -3,6 +3,7 @@ package dev.jason.gboardpatches.extension.voicemodetoggle;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
@@ -54,6 +55,8 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
 
     public void register(Object controller, Context context) {
         try {
+            Log.i("GboardPatches", "[voice-mode] register called available="
+                    + isAvailable(context) + " controller=" + (controller != null));
             if (controller == null || context == null || !isAvailable(context)) {
                 return;
             }
@@ -108,6 +111,9 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             if (!present) {
                 String updated = current.isEmpty() ? TOKEN : TOKEN + ";" + current;
                 writeString.invoke(qhy, SHOWING_ORDER_KEY, updated);
+                Log.i("GboardPatches", "[voice-mode] showing order updated: " + updated);
+            } else {
+                Log.i("GboardPatches", "[voice-mode] token already in showing order");
             }
             writeBoolean.invoke(qhy, ADDED_FLAG_KEY, Boolean.TRUE);
         } catch (Throwable ignored) {
