@@ -2,8 +2,10 @@ package dev.jason.gboardpatches.extension.rambler;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.lang.reflect.Method;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import dev.jason.gboardpatches.extension.settings.GboardPatchesSettings;
 
@@ -13,6 +15,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
     public static final String PREF_KEY_VOICE_MODE_INVERTED = "pref_voice_mode_inverted";
     /** R.string id of Gboard's own agentic-dictation selection pref (the store behind mqk.a). */
     private static final int AGENTIC_SELECTION_RES_ID = 0x7f140a0d;
+    private static final AtomicInteger HOOK_LOG_COUNT = new AtomicInteger();
 
     private static final ThreadLocal<Integer> VOICE_SETTINGS_SCOPE_DEPTH =
             new ThreadLocal<Integer>();
@@ -84,11 +87,23 @@ public final class GboardRambler1803OfficialSelectionRuntime {
      */
     public static boolean applyOfficialSelectionOverride(boolean stockResult) {
         updateOfficialSelection(stockResult);
+        boolean result;
         if (isVoiceSettingsScopeActive()) {
-            return stockResult;
+            result = stockResult;
+        } else {
+            result = (isInvertedOverride() ^ isBackendInversionScopeActive())
+                    ? !stockResult
+                    : stockResult;
         }
-        boolean invert = isInvertedOverride() ^ isBackendInversionScopeActive();
-        return invert ? !stockResult : stockResult;
+        if (HOOK_LOG_COUNT.getAndIncrement() < 40) {
+            Log.i("GboardPatches",
+                    "[voice-mode] mqk.a stock=" + stockResult
+                            + " persisted=" + readAgenticSelection(resolveApplicationContext())
+                            + " scope=" + isVoiceSettingsScopeActive()
+                            + " inv=" + isInvertedOverride()
+                            + " -> " + result);
+        }
+        return result;
     }
 
     /** Whether the persistent user toggle currently inverts the effective voice backend. */
