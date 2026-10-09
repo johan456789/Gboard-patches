@@ -84,6 +84,13 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
      * Adds the Voice mode token to Gboard's toolbar showing order once, so the button is visible
      * without the user having to drag it in. A one-time flag means removing it stays removed.
      */
+    /**
+     * Writes the persistent access-point order so the Voice mode button is visible. Gboard merges
+     * the default order into the stored order by inserting each missing default before the first
+     * stored entry it has not seen yet, which would push a lone token past the visible slots.
+     * Prepending the token to the full default list means every default is already present, so
+     * nothing is inserted and the token stays first.
+     */
     public static void ensureShownInToolbar(Context context) {
         if (context == null) {
             return;
@@ -97,22 +104,45 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
 
             Object raw = read.invoke(qhy, ORDER_RES_ID, "");
             String current = raw instanceof String ? (String) raw : "";
-            boolean present = false;
-            for (String part : current.split(";")) {
-                if (TOKEN.equals(part)) {
-                    present = true;
-                    break;
-                }
+            String defaults = defaultOrder(loader);
+            List<String> desired = new ArrayList<>();
+            desired.add(TOKEN);
+            appendTokens(desired, current);
+            appendTokens(desired, defaults);
+            String updated = String.join(";", desired);
+            if (updated.equals(current)) {
+                Log.i("GboardPatches", "[voice-mode] persistent order already correct");
+                return;
             }
-            if (!present) {
-                String updated = current.isEmpty() ? TOKEN : TOKEN + ";" + current;
-                write.invoke(qhy, ORDER_RES_ID, updated);
-                Log.i("GboardPatches", "[voice-mode] persistent order updated: " + updated);
-            } else {
-                Log.i("GboardPatches", "[voice-mode] token already in persistent order");
-            }
+            write.invoke(qhy, ORDER_RES_ID, updated);
+            Log.i("GboardPatches", "[voice-mode] persistent order updated: " + updated);
         } catch (Throwable throwable) {
             Log.i("GboardPatches", "[voice-mode] ensureShownInToolbar failed: " + throwable);
+        }
+    }
+
+    private static void appendTokens(List<String> target, String order) {
+        if (order == null || order.isEmpty()) {
+            return;
+        }
+        for (String part : order.split(";")) {
+            if (!part.isEmpty() && !target.contains(part)) {
+                target.add(part);
+            }
+        }
+    }
+
+    /** Reads Gboard's default access-point order flag (mid.a -> access_points_order). */
+    private static String defaultOrder(ClassLoader loader) {
+        try {
+            Class<?> midClass = Class.forName("mid", false, loader);
+            java.lang.reflect.Field flagField = midClass.getDeclaredField("a");
+            flagField.setAccessible(true);
+            Object flag = flagField.get(null);
+            Object value = flag.getClass().getMethod("g").invoke(flag);
+            return value instanceof String ? (String) value : "";
+        } catch (Throwable throwable) {
+            return "";
         }
     }
 
