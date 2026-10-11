@@ -84,13 +84,13 @@ class GboardFlypySettingsResourcePatchTest {
             ?.use { it.readBytes() }
             ?: error("flyPY token dictionary asset not found")
         assertEquals(9312, bytes.size)
-        assertEquals("ForwardTokenDictionary", String(bytes, 4, 23, StandardCharsets.US_ASCII))
+        assertEquals("ForwardTokenDictionary", String(bytes, 4, 22, StandardCharsets.US_ASCII))
     }
 
     private fun parse(xml: String): Document = DocumentBuilderFactory.newInstance()
         .apply { isNamespaceAware = true }
         .newDocumentBuilder()
-        .parse(ByteArrayInputStream(xml.toByteArray(StandardCharsets.UTF_8)))
+        .parse(ByteArrayInputStream(xml.trim().toByteArray(StandardCharsets.UTF_8)))
 
     private fun androidAttribute(element: Element, localName: String): String {
         element.getAttributeNS(ANDROID_NS, localName).takeIf(String::isNotEmpty)?.let { return it }
