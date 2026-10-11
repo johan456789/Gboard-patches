@@ -886,6 +886,37 @@
       ]
     },
     {
+      "feature_id": "flypy_traditional_chinese",
+      "public_patch_name": "Double Pinyin - flyPY (Traditional Chinese)",
+      "feature_marker": null,
+      "target_family_ids": [
+        "flypy.engine"
+      ],
+      "migration_scope": "version-sensitive",
+      "consumer_files": [
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/features/flypy/GboardFlypy1803Targets.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/features/flypy/GboardFlypyAssetsPatch.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/features/flypy/GboardFlypyEnginePatch.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/features/flypy/GboardFlypySettingsResourcePatch.kt",
+        "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/registry/GboardPatchRegistry.kt",
+        "patches/src/main/resources/flypy-assets/tokens_shuangpin_flypy"
+      ],
+      "contributions": [
+        {
+          "contribution_id": "flypy_traditional_chinese.bytecode",
+          "anchor_family_id": "dedicated_bytecode",
+          "phase": "dedicated",
+          "order": 2100,
+          "required_bindings": [],
+          "runtime_calls": [
+            "FLYPY_RUNTIME_ENSURE_DICTIONARY_ENROLLED",
+            "FLYPY_RUNTIME_MAYBE_SELECT_TOKEN_DICTIONARY",
+            "FLYPY_RUNTIME_SEED_APPLICATION_CONTEXT"
+          ]
+        }
+      ]
+    },
+    {
       "feature_id": "frosted_glass",
       "public_patch_name": "Frosted Glass",
       "feature_marker": "dev.jason.gboardpatches.feature.frosted_glass",

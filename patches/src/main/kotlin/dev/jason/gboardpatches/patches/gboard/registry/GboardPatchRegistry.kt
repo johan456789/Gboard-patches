@@ -57,6 +57,9 @@ import dev.jason.gboardpatches.patches.gboard.features.featureflags.gboardGramma
 import dev.jason.gboardpatches.patches.gboard.features.featureflags.gboardInlineSuggestionsFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.featureflags.gboardInlineSuggestionsFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.featureflags.gboardKeyShapeSelectionFeatureMarkerPatch
+import dev.jason.gboardpatches.patches.gboard.features.flypy.gboardFlypyAssetsPatch
+import dev.jason.gboardpatches.patches.gboard.features.flypy.gboardFlypyEnginePatch
+import dev.jason.gboardpatches.patches.gboard.features.flypy.gboardFlypySettingsResourcePatch
 import dev.jason.gboardpatches.patches.gboard.features.featureflags.gboardKeyShapeSelectionFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.flowmode.gboardFlowModeFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.lanftp.gboardLanFtpFeatureMarkerPatch
@@ -821,8 +824,25 @@ val gboardZhuyinBottomRowWeightPatch = gboardPublicResourcePatch(
 }
 
 @Suppress("unused")
-val gboardPackageRenamePatch = gboardPublicResourcePatch(
-    featureId = "package_rename",
+val gboardFlypyTraditionalChinesePatch = gboardPublicResourcePatch(
+    featureId = "flypy_traditional_chinese",
+    name = "Double Pinyin - flyPY (Traditional Chinese)",
+    description = "在繁體中文（台灣）拼音鍵盤加入「拼音方案」設定，可切換全拼與雙拼 - flyPY\n" +
+        "Add a Pinyin scheme setting to the Traditional Chinese (Taiwan) pinyin keyboard, " +
+        "switching between full pinyin and double pinyin - flyPY.",
+    default = true
+) {
+    compatibleWith(COMPATIBILITY_GBOARD)
+
+    dependsOn(
+        gboardFlypySettingsResourcePatch,
+        gboardFlypyAssetsPatch,
+        gboardFlypyEnginePatch,
+    )
+}
+
+@Suppress("unused")
+val gboardPackageRenamePatch = gboardPublicResourcePatch(    featureId = "package_rename",
     name = "Package Rename",
     description = "將套件名稱改成 dev.thyu.com.google.android.inputmethod.latin，並可自訂 App 名稱，以便共存安裝\n" +
         "Rename the package to dev.thyu.com.google.android.inputmethod.latin and allow " +
@@ -920,6 +940,7 @@ object GboardPublishedPatchCatalog {
         gboardSettingsHomepagePatch,
         gboardLatinGlobeKeyIgnoreIntervalPatch,
         gboardZhuyinBottomRowWeightPatch,
+        gboardFlypyTraditionalChinesePatch,
         gboardPackageRenamePatch,
         gboardSignatureBypassPatch,
     ).filterTo(linkedSetOf()) { patch -> patch.name != null }
