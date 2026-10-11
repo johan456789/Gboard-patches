@@ -4,6 +4,7 @@ import app.morphe.patcher.patch.ResourcePatchContext
 import app.morphe.patcher.patch.resourcePatch
 import dev.jason.gboardpatches.patches.gboard.shared.ANDROID_NS
 import dev.jason.gboardpatches.patches.gboard.shared.childElements
+import dev.jason.gboardpatches.patches.gboard.shared.elements
 import dev.jason.gboardpatches.patches.shared.Constants.COMPATIBILITY_GBOARD
 import org.w3c.dom.Document
 import org.w3c.dom.Element
@@ -36,10 +37,10 @@ private fun applyGboardFlypySchemeArrays() = with(context) {
 
 internal fun applyGboardFlypySettings(document: Document) {
     val screen = document.documentElement
-    if (screen.childElements().any { element ->
-            element.androidAttribute("key") == PINYIN_SCHEME_KEY_REF
-        }
-    ) {
+    val alreadyPresent = screen.getElementsByTagName("ListPreference").elements().any { element ->
+        element.androidAttribute("key") == PINYIN_SCHEME_KEY_REF
+    }
+    if (alreadyPresent) {
         return
     }
 

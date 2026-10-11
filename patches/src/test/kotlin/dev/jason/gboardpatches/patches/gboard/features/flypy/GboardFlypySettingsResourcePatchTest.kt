@@ -60,7 +60,7 @@ class GboardFlypySettingsResourcePatchTest {
         applyGboardFlypySchemeArrays(document)
 
         val arrays = document.documentElement.childElements("array").toList()
-        assertEquals(2, arrays.size)
+        assertEquals(3, arrays.size)
 
         val entries = arrays.single { it.getAttribute("name") == "gboard_flypy_pinyin_scheme_entries" }
         assertEquals(
