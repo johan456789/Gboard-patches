@@ -65,7 +65,7 @@ class GboardFlypySettingsResourcePatchTest {
         val entries = arrays.single { it.getAttribute("name") == "gboard_flypy_pinyin_scheme_entries" }
         assertEquals(
             listOf(FULL_PINYIN_REF, DOUBLE_PINYIN_FLYPY_REF),
-            entries.childElements("item").map { it.textContent },
+            entries.childElements("item").map { it.textContent }.toList(),
         )
 
         val values = arrays.single {
@@ -73,7 +73,7 @@ class GboardFlypySettingsResourcePatchTest {
         }
         assertEquals(
             listOf(QUANPIN_VALUE_REF, FLYPY_VALUE_REF),
-            values.childElements("item").map { it.textContent },
+            values.childElements("item").map { it.textContent }.toList(),
         )
     }
 
