@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.Map;
@@ -30,12 +29,33 @@ public final class GboardFlypy1803Runtime {
     private GboardFlypy1803Runtime() {
     }
 
-    public static void seedApplicationContext(Context context) {
-        if (context == null) {
+    public static void onEngineFactoryCreated(Object engineFactory) {
+        if (engineFactory == null) {
             return;
         }
-        Context application = context.getApplicationContext();
-        applicationContext = application != null ? application : context;
+        try {
+            GboardFlypy1803RuntimeSupport handles = handles(
+                    engineFactory.getClass().getClassLoader());
+            seedApplicationContext(handles.applicationContext(engineFactory));
+            handles.registerPinyinSchemeListener(engineFactory);
+        } catch (Throwable ignored) {
+            // A failed registration must not disturb the stock engine factory.
+        }
+    }
+
+    public static void onEngineFactoryInitialized(Object engineFactory) {
+        if (engineFactory == null) {
+            return;
+        }
+        try {
+            GboardFlypy1803RuntimeSupport handles = handles(
+                    engineFactory.getClass().getClassLoader());
+            Context context = handles.applicationContext(engineFactory);
+            seedApplicationContext(context);
+            ensureDictionaryEnrolled(context, handles.dataManager(engineFactory));
+        } catch (Throwable ignored) {
+            // Enrollment failure keeps the keyboard on the stock full-pinyin dictionary.
+        }
     }
 
     public static void maybeSelectTokenDictionary(Object xvyBuilder, int engineIndex) {
@@ -59,7 +79,15 @@ public final class GboardFlypy1803Runtime {
         }
     }
 
-    public static void ensureDictionaryEnrolled(Context context, Object dataManager) {
+    private static void seedApplicationContext(Context context) {
+        if (context == null) {
+            return;
+        }
+        Context application = context.getApplicationContext();
+        applicationContext = application != null ? application : context;
+    }
+
+    private static void ensureDictionaryEnrolled(Context context, Object dataManager) {
         if (context == null || dataManager == null) {
             return;
         }

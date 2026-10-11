@@ -74,39 +74,27 @@ private fun MutableMethod.applyEntryDelegate(matchReference: String, instruction
     addInstructions(0, instruction)
 }
 
-private fun setupHelperBody(): String = """
-    iget-object v0, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY_BASE}->j:Landroid/app/Application;
+private fun setupHelperBody(): String {
+    val invoke = RuntimeCallEmitter.invoke(
+        RuntimeCallId.FLYPY_RUNTIME_ON_ENGINE_FACTORY_CREATED,
+        "p0",
+    )
+    return """
+        $invoke
+        return-void
+    """.trimIndent()
+}
 
-    ${RuntimeCallEmitter.invoke(
-        RuntimeCallId.FLYPY_RUNTIME_SEED_APPLICATION_CONTEXT,
-        "v0",
-    )}
+private fun enrollHelperBody(): String {
+    val invoke = RuntimeCallEmitter.invoke(
+        RuntimeCallId.FLYPY_RUNTIME_ON_ENGINE_FACTORY_INITIALIZED,
+        "p0",
+    )
+    return """
+        $invoke
+        return-void
+    """.trimIndent()
+}
 
-    iget-object v0, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY_BASE}->g:${GboardFlypy1803Targets.PREFERENCE_MANAGER};
-
-    iget-object v1, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY}->t:${GboardFlypy1803Targets.PREFERENCE_LISTENER};
-
-    const v2, ${GboardFlypy1803Targets.PINYIN_SCHEME_PREF_RES_ID}
-
-    invoke-virtual {v0, v1, v2}, ${GboardFlypy1803Targets.PREFERENCE_MANAGER}->Z(${GboardFlypy1803Targets.PREFERENCE_LISTENER};I)V
-
-    return-void
-""".trimIndent()
-
-private fun enrollHelperBody(): String = """
-    iget-object v0, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY_BASE}->j:Landroid/app/Application;
-
-    invoke-virtual {p0}, ${GboardFlypy1803Targets.ENGINE_FACTORY_BASE}->M()Lcom/google/android/apps/inputmethod/libs/hmm/DataManagerImpl;
-
-    move-result-object v1
-
-    ${RuntimeCallEmitter.invoke(
-        RuntimeCallId.FLYPY_RUNTIME_ENSURE_DICTIONARY_ENROLLED,
-        "v0, v1",
-    )}
-
-    return-void
-""".trimIndent()
-
-private const val SETUP_HELPER_REGISTER_COUNT = 4
-private const val ENROLL_HELPER_REGISTER_COUNT = 3
+private const val SETUP_HELPER_REGISTER_COUNT = 1
+private const val ENROLL_HELPER_REGISTER_COUNT = 1

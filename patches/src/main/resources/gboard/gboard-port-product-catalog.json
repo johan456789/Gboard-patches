@@ -909,9 +909,9 @@
           "order": 2100,
           "required_bindings": [],
           "runtime_calls": [
-            "FLYPY_RUNTIME_ENSURE_DICTIONARY_ENROLLED",
             "FLYPY_RUNTIME_MAYBE_SELECT_TOKEN_DICTIONARY",
-            "FLYPY_RUNTIME_SEED_APPLICATION_CONTEXT"
+            "FLYPY_RUNTIME_ON_ENGINE_FACTORY_CREATED",
+            "FLYPY_RUNTIME_ON_ENGINE_FACTORY_INITIALIZED"
           ]
         }
       ]
