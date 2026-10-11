@@ -7,11 +7,11 @@ import java.lang.reflect.Method;
 import java.util.Collections;
 
 final class GboardFlypy1803RuntimeSupport {
-    private static final String ZTA_CLASS = "defpackage.zta";
-    private static final String XVY_CLASS = "defpackage.xvy";
-    private static final String XVZ_CLASS = "defpackage.xvz";
-    private static final String QHY_CLASS = "defpackage.qhy";
-    private static final String CDL_CLASS = "defpackage.cdl";
+    private static final String ZTA_CLASS = "zta";
+    private static final String XVY_CLASS = "xvy";
+    private static final String XVZ_CLASS = "xvz";
+    private static final String QHY_CLASS = "qhy";
+    private static final String CDL_CLASS = "cdl";
 
     private static final int XVY_DICTIONARY_FIELD_PRESENT_BIT = 2;
 

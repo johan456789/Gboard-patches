@@ -3,10 +3,10 @@ package dev.jason.gboardpatches.patches.gboard.features.flypy
 import dev.jason.gboardpatches.patches.gboard.shared.GboardMethodTarget
 
 internal object GboardFlypy1803Targets {
-    const val ENGINE_FACTORY = "Ldefpackage/kkb;"
-    const val PREFERENCE_MANAGER = "Ldefpackage/qhy;"
-    const val PREFERENCE_LISTENER = "Ldefpackage/qhx;"
-    const val ENGINE_FACTORY_BASE = "Ldefpackage/hbd;"
+    const val ENGINE_FACTORY = "Lkkb;"
+    const val PREFERENCE_MANAGER = "Lqhy;"
+    const val PREFERENCE_LISTENER = "Lqhx;"
+    const val ENGINE_FACTORY_BASE = "Lhbd;"
 
     const val SETUP_HELPER_NAME = "gboardPatchesFlypySetup"
     const val ENROLL_HELPER_NAME = "gboardPatchesFlypyEnroll"
@@ -29,7 +29,7 @@ internal object GboardFlypy1803Targets {
     val engineFactoryApplySettingScheme = GboardMethodTarget(
         classType = ENGINE_FACTORY,
         name = "q",
-        parameterTypes = listOf("I", "Ldefpackage/zta;"),
+        parameterTypes = listOf("I", "Lzta;"),
         returnType = "V",
     )
 }

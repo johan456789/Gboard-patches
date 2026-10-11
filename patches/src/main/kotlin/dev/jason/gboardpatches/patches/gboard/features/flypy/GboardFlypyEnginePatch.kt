@@ -82,9 +82,9 @@ private fun setupHelperBody(): String = """
         "v0",
     )}
 
-    iget-object v0, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY_BASE}->g:Ldefpackage/qhy;
+    iget-object v0, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY_BASE}->g:${GboardFlypy1803Targets.PREFERENCE_MANAGER};
 
-    iget-object v1, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY}->t:Ldefpackage/qhx;
+    iget-object v1, p0, ${GboardFlypy1803Targets.ENGINE_FACTORY}->t:${GboardFlypy1803Targets.PREFERENCE_LISTENER};
 
     const v2, ${GboardFlypy1803Targets.PINYIN_SCHEME_PREF_RES_ID}
 
