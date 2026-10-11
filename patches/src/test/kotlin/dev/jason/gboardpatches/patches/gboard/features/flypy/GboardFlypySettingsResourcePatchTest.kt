@@ -45,7 +45,9 @@ class GboardFlypySettingsResourcePatchTest {
         assertEquals(
             1,
             children.count { element ->
-                element.childElements().any { it.androidAttribute("key") == PINYIN_SCHEME_KEY_REF }
+                element.childElements().any { child ->
+                    androidAttribute(child, "key") == PINYIN_SCHEME_KEY_REF
+                }
             },
         )
     }
