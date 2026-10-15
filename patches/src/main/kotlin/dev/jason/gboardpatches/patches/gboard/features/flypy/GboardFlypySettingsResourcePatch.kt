@@ -22,12 +22,18 @@ internal val gboardFlypySettingsResourcePatch = resourcePatch(
 
 context(context: ResourcePatchContext)
 private fun applyGboardFlypySettingsXml() = with(context) {
-    val path = FLYPY_SETTINGS_XML_CANDIDATES.firstOrNull { candidate -> this[candidate, false].exists() }
-        ?: error(
+    // Gboard swaps in the second XML when a physical QWERTY keyboard is attached
+    // (<if physical_keyboard="qwerty"> in the zh-TW ime definitions), so patch both.
+    val paths = FLYPY_SETTINGS_XML_CANDIDATES.mapNotNull { names ->
+        names.firstOrNull { candidate -> this[candidate, false].exists() }
+    }
+    if (paths.isEmpty()) {
+        error(
             "Could not find the Traditional Chinese pinyin settings XML; tried " +
                 FLYPY_SETTINGS_XML_CANDIDATES,
         )
-    document(path).use { document -> applyGboardFlypySettings(document) }
+    }
+    paths.forEach { path -> document(path).use { document -> applyGboardFlypySettings(document) } }
 }
 
 context(context: ResourcePatchContext)
@@ -122,6 +128,12 @@ private val ENTRY_STRING_REFS = listOf(FULL_PINYIN_REF, DOUBLE_PINYIN_FLYPY_REF)
 private val ENTRY_VALUE_STRING_REFS = listOf(QUANPIN_VALUE_REF, FLYPY_VALUE_REF)
 
 private val FLYPY_SETTINGS_XML_CANDIDATES = listOf(
-    "res/xml/xml_0x7f171296.xml",
-    "res/xml/_0_resource_name_obfuscated_res_0x7f171296.xml",
+    listOf(
+        "res/xml/xml_0x7f171296.xml",
+        "res/xml/_0_resource_name_obfuscated_res_0x7f171296.xml",
+    ),
+    listOf(
+        "res/xml/xml_0x7f171297.xml",
+        "res/xml/_0_resource_name_obfuscated_res_0x7f171297.xml",
+    ),
 )
