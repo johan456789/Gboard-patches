@@ -83,7 +83,7 @@ class GboardFlypySettingsResourcePatchTest {
             .getResourceAsStream("flypy-assets/tokens_shuangpin_flypy")
             ?.use { it.readBytes() }
             ?: error("flyPY token dictionary asset not found")
-        assertEquals(9312, bytes.size)
+        assertEquals(8264, bytes.size)
         assertEquals("ForwardTokenDictionary", String(bytes, 4, 22, StandardCharsets.US_ASCII))
     }
 
