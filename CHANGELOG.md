@@ -1,3 +1,13 @@
+## [3.12.0.1](https://github.com/johan456789/Gboard-patches/compare/v3.12.0...v3.12.0.1) (2026-10-16)
+
+### ✨ New Features
+
+* **Gboard:** add the `Double Pinyin - flyPY (Traditional Chinese)` patch, adding a `Pinyin scheme` setting (Full pinyin / Double Pinyin - flyPY) to the 繁體中文（台灣）pinyin keyboard and a bundled Traditional Chinese flyPY dictionary.
+
+### ✨ 新功能
+
+* **Gboard:** 新增 `Double Pinyin - flyPY (Traditional Chinese)` Patch，於繁體中文（台灣）拼音鍵盤加入「拼音方案」設定（全拼 / 小鶴雙拼），並內建繁體中文小鶴雙拼字典。
+
 ## [3.12.0](https://github.com/jasonwu1994/Gboard-patches/compare/v3.11.0...v3.12.0) (2026-10-04)
 
 ### ✨ New Features

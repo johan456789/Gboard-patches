@@ -1,7 +1,7 @@
 {
-    "created_at":  "2026-10-04T16:21:27",
-    "description":  "### ✨ New Features\n\n* **Gboard:** add the `Frosted Glass` patch, bringing real-time background blur and customizable theme transparency to the keyboard. 👀\n\n### ✨ 新功能\n\n* **Gboard:** 新增 `Frosted Glass` Patch，為鍵盤加入即時背景模糊效果，並支援自訂主題透明度。👀",
-    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0/patches-3.12.0.mpp",
+    "created_at":  "2026-10-16T15:21:28",
+    "description":  "### ✨ New Features\n\n* **Gboard:** add the `Double Pinyin - flyPY (Traditional Chinese)` patch, adding a `Pinyin scheme` setting (Full pinyin / Double Pinyin - flyPY) to the 繁體中文（台灣）pinyin keyboard and a bundled Traditional Chinese flyPY dictionary.\n\n### ✨ 新功能\n\n* **Gboard:** 新增 `Double Pinyin - flyPY (Traditional Chinese)` Patch，於繁體中文（台灣）拼音鍵盤加入「拼音方案」設定（全拼 / 小鶴雙拼），並內建繁體中文小鶴雙拼字典。",
+    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0.1/patches-3.12.0.1.mpp",
     "signature_download_url":  "",
-    "version":  "3.12.0"
+    "version":  "3.12.0.1"
 }
