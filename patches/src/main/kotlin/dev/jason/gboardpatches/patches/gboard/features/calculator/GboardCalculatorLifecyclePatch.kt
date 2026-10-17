@@ -14,7 +14,7 @@ import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallId
 import dev.jason.gboardpatches.patches.shared.Constants.COMPATIBILITY_GBOARD
 
 internal val gboardCalculatorLifecyclePatch = bytecodePatch(
-    description = "在 18.0.3 input session lifecycle 加入 calculator 薄 delegate。",
+    description = "在 18.4.1 input session lifecycle 加入 calculator 薄 delegate。",
 ) {
     compatibleWith(COMPATIBILITY_GBOARD)
     dependsOn(gboardCalculatorExtensionPatch)

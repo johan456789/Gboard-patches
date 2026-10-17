@@ -20,9 +20,9 @@ import dev.jason.gboardpatches.extension.rambler.GboardRambler1803StockPolicy;
 
 public final class GboardAdvancedVoice1803Runtime {
     private static final String TAG = "GboardPatches";
-    private static final String LOG_PREFIX = "[gboard-advanced-voice-18.0.3] ";
-    private static final int ADVANCED_VOICE_PREFERENCE_KEY = 0x7f140971;
-    private static final int AUTO_PUNCTUATION_PREFERENCE_KEY = 0x7f140972;
+    private static final String LOG_PREFIX = "[gboard-advanced-voice-18.4.1] ";
+    private static final int ADVANCED_VOICE_PREFERENCE_KEY = 0x7f1408b0;
+    private static final int AUTO_PUNCTUATION_PREFERENCE_KEY = 0x7f1408b1;
 
     private static final AtomicBoolean ZH_TW_MDD_REQUESTED = new AtomicBoolean(false);
     private static final AtomicInteger INFO_LOG_COUNT = new AtomicInteger();
@@ -135,7 +135,7 @@ public final class GboardAdvancedVoice1803Runtime {
     }
 
     /**
-     * Reconciles Gboard 18.0.3's install-time feature-split check with a Morphe fused APK.
+     * Reconciles Gboard 18.4.1's install-time feature-split check with a Morphe fused APK.
      * The readiness bit is promoted only when the stock NativeLibHelper can really load the
      * dictation JNI library that was merged into the base APK.
      */
@@ -155,7 +155,7 @@ public final class GboardAdvancedVoice1803Runtime {
             }
             return promoted;
         } catch (Throwable failure) {
-            logError("18.0.3 native split readiness check failed", failure);
+            logError("18.4.1 native split readiness check failed", failure);
             return stockResult;
         }
     }
@@ -275,7 +275,7 @@ public final class GboardAdvancedVoice1803Runtime {
             Object future = coroutineLaunchMethod.invoke(
                     null,
                     scope,
-                    null,
+                    Integer.valueOf(0),
                     request,
                     3);
             if (future == null) {
@@ -494,11 +494,11 @@ public final class GboardAdvancedVoice1803Runtime {
         final Method preferenceCheckedMethod;
 
         Handles(ClassLoader classLoader) throws Exception {
-            nativeReadinessSupplierField = resolve(classLoader, "scn").getDeclaredField("b");
-            nativeReadinessSupplierMethod = resolve(classLoader, "vpu").getDeclaredMethod("iM");
+            nativeReadinessSupplierField = resolve(classLoader, "slc").getDeclaredField("b");
+            nativeReadinessSupplierMethod = resolve(classLoader, "vzq").getDeclaredMethod("iM");
 
-            Class<?> orationContextClass = resolve(classLoader, "enl");
-            Class<?> configurationDataClass = resolve(classLoader, "enf");
+            Class<?> orationContextClass = resolve(classLoader, "eot");
+            Class<?> configurationDataClass = resolve(classLoader, "eon");
             orationConfigurationField = orationContextClass.getDeclaredField("c");
             requireAssignable(
                     configurationDataClass,
@@ -521,24 +521,24 @@ public final class GboardAdvancedVoice1803Runtime {
             preferenceAvailabilityMethod = null;
             preferenceCheckedMethod = null;
 
-            Class<?> mddProviderClass = resolve(classLoader, "rtu");
-            Class<?> mddScopeClass = resolve(classLoader, "absf");
+            Class<?> mddProviderClass = resolve(classLoader, "scj");
+            Class<?> mddScopeClass = resolve(classLoader, "acct");
             mddScopeField = mddProviderClass.getDeclaredField("d");
             requireAssignable(
                     mddScopeClass,
                     mddScopeField.getType(),
                     "rtu.d is not an absf scope");
-            Class<?> mddRequestClass = resolve(classLoader, "rtt");
-            Class<?> continuationClass = resolve(classLoader, "ablu");
+            Class<?> mddRequestClass = resolve(classLoader, "sci");
+            Class<?> continuationClass = resolve(classLoader, "abwh");
             mddRequestDownloadConstructor = mddRequestClass.getDeclaredConstructor(
                     mddProviderClass,
                     Locale.class,
                     continuationClass);
-            mddCoroutineLaunchMethod = resolve(classLoader, "absj").getDeclaredMethod(
-                    "L",
+            mddCoroutineLaunchMethod = resolve(classLoader, "abyy").getDeclaredMethod(
+                    "be",
                     mddScopeClass,
-                    resolve(classLoader, "absg"),
-                    resolve(classLoader, "abnt"),
+                    int.class,
+                    resolve(classLoader, "abyg"),
                     int.class);
 
             setAccessible(

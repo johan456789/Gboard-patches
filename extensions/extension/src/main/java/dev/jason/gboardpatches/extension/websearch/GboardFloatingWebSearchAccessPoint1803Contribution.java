@@ -13,7 +13,7 @@ public final class GboardFloatingWebSearchAccessPoint1803Contribution {
     public static final GboardFloatingWebSearchAccessPoint1803Contribution INSTANCE =
             new GboardFloatingWebSearchAccessPoint1803Contribution();
     public static final String TOKEN = "web_search";
-    static final int GOOGLE_G_DRAWABLE_ID = 0x7f08048b;
+    static final int GOOGLE_G_DRAWABLE_ID = 0x7f080457;
 
     private static volatile Handles handles;
 
@@ -31,7 +31,7 @@ public final class GboardFloatingWebSearchAccessPoint1803Contribution {
                 values.add(TOKEN);
             }
             Class<?> immutableCollection = Class.forName(
-                    "vxe", false, original.getClass().getClassLoader());
+                    "wgz", false, original.getClass().getClassLoader());
             Method copy = immutableCollection.getDeclaredMethod("n", Collection.class);
             copy.setAccessible(true);
             return copy.invoke(null, values);
@@ -53,7 +53,9 @@ public final class GboardFloatingWebSearchAccessPoint1803Contribution {
             active.builderTokenMethod.invoke(builder, TOKEN);
             active.builderIconResourceMethod.invoke(builder, GOOGLE_G_DRAWABLE_ID);
             active.builderLabelTextField.set(builder, "Web Search");
-            active.builderContentDescriptionTextField.set(builder, "Web Search");
+            if (active.builderContentDescriptionTextField != null) {
+                active.builderContentDescriptionTextField.set(builder, "Web Search");
+            }
             active.builderRunnableMethod.invoke(builder, new OpenAction(safeContext));
             Object descriptor = active.builderBuildMethod.invoke(builder);
             active.controllerRegisterMethod.invoke(controller, descriptor, false);
@@ -136,16 +138,17 @@ public final class GboardFloatingWebSearchAccessPoint1803Contribution {
         }
 
         static Handles resolve(ClassLoader classLoader) throws Throwable {
-            Class<?> descriptor = Class.forName("mic", false, classLoader);
-            Class<?> builder = Class.forName("mhx", false, classLoader);
-            Class<?> controller = Class.forName("mlh", false, classLoader);
+            Class<?> descriptor = Class.forName("mng", false, classLoader);
+            Class<?> builder = Class.forName("mnb", false, classLoader);
+            Class<?> controller = Class.forName("mqk", false, classLoader);
             Method descriptorBuilderFactory = descriptor.getDeclaredMethod("c");
             Method builderTokenMethod = builder.getDeclaredMethod("l", String.class);
             Method builderRunnableMethod = builder.getDeclaredMethod("q", Runnable.class);
             Method builderBuildMethod = builder.getDeclaredMethod("a");
             Method builderIconResourceMethod = builder.getDeclaredMethod("i", int.class);
             Field builderLabelTextField = builder.getDeclaredField("d");
-            Field builderContentDescriptionTextField = builder.getDeclaredField("e");
+            // 18.4.1 access point descriptors no longer carry a content description.
+            Field builderContentDescriptionTextField = null;
             Method controllerRegisterMethod = controller.getDeclaredMethod(
                     "g", descriptor, boolean.class);
             descriptorBuilderFactory.setAccessible(true);
@@ -154,7 +157,6 @@ public final class GboardFloatingWebSearchAccessPoint1803Contribution {
             builderBuildMethod.setAccessible(true);
             builderIconResourceMethod.setAccessible(true);
             builderLabelTextField.setAccessible(true);
-            builderContentDescriptionTextField.setAccessible(true);
             controllerRegisterMethod.setAccessible(true);
             return new Handles(classLoader, descriptorBuilderFactory, builderTokenMethod,
                     builderRunnableMethod, builderBuildMethod, builderIconResourceMethod,

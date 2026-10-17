@@ -46,6 +46,8 @@ internal fun MutableMethod.applySplitKeyboardAccessPointStateDelegate() {
         """
             iget-object v0, p0, ${GboardSplitKeyboard1803Targets.accessPointName.reference}
 
+            check-cast v0, Ljava/lang/String;
+
             ${RuntimeCallEmitter.invoke(
                 RuntimeCallId.SPLIT_KEYBOARD_RUNTIME_APPLY_ACCESS_POINT_STATE,
                 "v0, p1",

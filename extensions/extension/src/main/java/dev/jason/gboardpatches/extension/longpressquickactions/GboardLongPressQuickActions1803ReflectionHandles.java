@@ -16,18 +16,18 @@ public final class GboardLongPressQuickActions1803ReflectionHandles {
             "com.google.android.libraries.inputmethod.widgets.SoftKeyView";
     private static final String ACTION_SET_CLASS =
             "com.google.android.libraries.inputmethod.metadata.SoftKeyDef";
-    private static final String ACTION_TYPE_CLASS = "pmy";
+    private static final String ACTION_TYPE_CLASS = "pti";
     private static final String ACTION_DEF_CLASS =
             "com.google.android.libraries.inputmethod.metadata.ActionDef";
-    private static final String ACTION_ENTRY_CLASS = "pnu";
-    private static final String ACTION_BUILDER_CLASS = "pmz";
-    private static final String METADATA_BUILDER_CLASS = "ppo";
-    private static final String INTENTION_CLASS = "pnt";
-    private static final String EVENT_CLASS = "nur";
-    private static final String INPUT_METHOD_SERVICE_CLASS = "oup";
-    private static final String POINTER_TRACKER_CLASS = "pvi";
+    private static final String ACTION_ENTRY_CLASS = "pue";
+    private static final String ACTION_BUILDER_CLASS = "ptj";
+    private static final String METADATA_BUILDER_CLASS = "pvz";
+    private static final String INTENTION_CLASS = "pud";
+    private static final String EVENT_CLASS = "oas";
+    private static final String INPUT_METHOD_SERVICE_CLASS = "pbb";
+    private static final String POINTER_TRACKER_CLASS = "qbp";
 
-    private static final int SINGLE_ICON_POPUP_LAYOUT_ATTR_ID = 0x7f040288;
+    private static final int SINGLE_ICON_POPUP_LAYOUT_ATTR_ID = 0x7f040271;
 
     public final Method softKeyBindMethod;
     public final Method inputEventMethod;
@@ -80,7 +80,7 @@ public final class GboardLongPressQuickActions1803ReflectionHandles {
 
         softKeyBindMethod = softKeyViewClass.getDeclaredMethod(
                 "r", actionSetClass, long.class);
-        inputEventMethod = inputMethodServiceClass.getDeclaredMethod("au", eventClass);
+        inputEventMethod = inputMethodServiceClass.getDeclaredMethod("aw", eventClass);
         pointerOwnerMethod = pointerTrackerClass.getDeclaredMethod(
                 "B", softKeyViewClass, float.class, float.class, long.class, int.class);
         validateInputEventBinding(inputMethodServiceClass, inputEventMethod);
@@ -89,7 +89,7 @@ public final class GboardLongPressQuickActions1803ReflectionHandles {
         keyIdField = actionSetClass.getDeclaredField("d");
         actionSetClass.getDeclaredField("f").setAccessible(true);
         actionSetClass.getDeclaredField("g").setAccessible(true);
-        exactActionLookupMethod = actionSetClass.getDeclaredMethod("h", actionTypeClass);
+        exactActionLookupMethod = actionSetClass.getDeclaredMethod("g", actionTypeClass);
 
         actionDefClass.getDeclaredField("c").setAccessible(true);
         actionEntriesField = actionDefClass.getDeclaredField("d");
@@ -112,8 +112,8 @@ public final class GboardLongPressQuickActions1803ReflectionHandles {
         scheduleLongPressMethod = pointerTrackerClass.getDeclaredMethod("y");
 
         metadataBuilderConstructor = metadataBuilderClass.getDeclaredConstructor();
-        copyMetadataMethod = metadataBuilderClass.getDeclaredMethod("j", actionSetClass);
-        putActionMethod = metadataBuilderClass.getDeclaredMethod("t", actionDefClass);
+        copyMetadataMethod = metadataBuilderClass.getDeclaredMethod("k", actionSetClass);
+        putActionMethod = metadataBuilderClass.getDeclaredMethod("u", actionDefClass);
         buildMetadataMethod = metadataBuilderClass.getDeclaredMethod("d");
 
         eventActionTypeField = eventClass.getDeclaredField("a");
@@ -358,7 +358,7 @@ public final class GboardLongPressQuickActions1803ReflectionHandles {
                 try {
                     cached = owner.getDeclaredField("A");
                     if (!Future.class.isAssignableFrom(cached.getType())) {
-                        throw new NoSuchFieldException("18.0.3 long-press future type drift");
+                        throw new NoSuchFieldException("18.4.1 long-press future type drift");
                     }
                     cached.setAccessible(true);
                     longPressFutureField = cached;
@@ -381,7 +381,7 @@ public final class GboardLongPressQuickActions1803ReflectionHandles {
                 try {
                     cached = owner.getDeclaredField("w");
                     if (cached.getType() != int.class) {
-                        throw new NoSuchFieldException("18.0.3 event subtype type drift");
+                        throw new NoSuchFieldException("18.4.1 event subtype type drift");
                     }
                     cached.setAccessible(true);
                     eventSubtypeField = cached;

@@ -2,7 +2,7 @@ package dev.jason.gboardpatches.extension.longpressquickactions;
 
 import android.view.View;
 
-/** All 18.0.3 private names and event carriers used by globe drag. */
+/** All 18.4.1 private names and event carriers used by globe drag. */
 final class GboardGlobeDrag1803Adapter implements GboardGlobeDragPort {
     private static final String GLOBE_VIEW_NAME = "key_pos_qwerty_globe";
     private static final String NEXT_LANGUAGE_VIEW_NAME = "key_pos_switch_to_next_language";
@@ -20,7 +20,7 @@ final class GboardGlobeDrag1803Adapter implements GboardGlobeDragPort {
     GboardGlobeDrag1803Adapter(
             GboardLongPressQuickActions1803ReflectionHandles handles) {
         if (handles == null) {
-            throw new IllegalArgumentException("18.0.3 globe adapter requires handles");
+            throw new IllegalArgumentException("18.4.1 globe adapter requires handles");
         }
         this.handles = handles;
     }

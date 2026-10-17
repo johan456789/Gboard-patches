@@ -13,10 +13,10 @@ import dev.jason.gboardpatches.patches.gboard.shared.generated.GboardVersionBind
 import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallEmitter
 import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallId
 
-private const val PROVIDER_RECEIVER_WRAPPER_CLASS = "Loyc;"
-private const val METRICS_UTILS_CLASS = "Lhyx;"
-private const val FOOTER_TAB_CLICK_CONSUMER_CLASS = "Lgrm;"
-private const val KEYBOARD_WRAPPER_CLASS = "Loow;"
+private const val PROVIDER_RECEIVER_WRAPPER_CLASS = "Lpep;"
+private const val METRICS_UTILS_CLASS = "Lice;"
+private const val FOOTER_TAB_CLICK_CONSUMER_CLASS = "Lgtz;"
+private const val KEYBOARD_WRAPPER_CLASS = "Lovj;"
 private const val SCROLLABLE_NAVIGATION_VIEW_CLASS =
     "Lcom/google/android/apps/inputmethod/libs/expression/navbar/ScrollableNavigationView;"
 private val providerRequestKeyboardType: String
@@ -60,8 +60,8 @@ private fun patchProviderWrapper() = with(context) {
         name = "a",
         returnType = "V",
         parameterTypes = listOf(
-            "Lppa;",
-            "Loxu;",
+            "Lpvl;",
+            "Lpeh;",
             "Lcom/google/android/libraries/inputmethod/metadata/KeyboardDef;",
         )
     )
@@ -70,9 +70,9 @@ private fun patchProviderWrapper() = with(context) {
     val onBeforeKeyboardCreated = findMutableMethodOrThrow(
         classType = PROVIDER_RECEIVER_WRAPPER_CLASS,
         name = "b",
-        returnType = "Loxu;",
+        returnType = "Lpeh;",
         parameterTypes = listOf(
-            "Lppa;",
+            "Lpvl;",
             "Lcom/google/android/libraries/inputmethod/metadata/KeyboardDef;",
         )
     )
@@ -82,7 +82,7 @@ private fun patchProviderWrapper() = with(context) {
         classType = PROVIDER_RECEIVER_WRAPPER_CLASS,
         name = "c",
         returnType = "Z",
-        parameterTypes = listOf("Lppa;")
+        parameterTypes = listOf("Lpvl;")
     )
     canHandle.addInstructions(0, PROVIDER_WRAPPER_TYPE_DELEGATE)
 }
@@ -92,8 +92,8 @@ private fun patchMetricsAlias() = with(context) {
     val mutableMethod = findMutableMethodOrThrow(
         classType = METRICS_UTILS_CLASS,
         name = "b",
-        returnType = "Lwpd;",
-        parameterTypes = listOf("Lppa;")
+        returnType = "Lwyq;",
+        parameterTypes = listOf("Lpvl;")
     )
     mutableMethod.addInstructions(0, METRICS_ALIAS_DELEGATE)
 }
@@ -106,7 +106,7 @@ private fun patchNavigationIdentity() = with(context) {
         returnType = "V",
         parameterTypes = listOf(
             "Landroid/view/inputmethod/EditorInfo;",
-            "Lppa;",
+            "Lpvl;",
             "Z",
             "Ljava/util/function/Consumer;",
             "Landroid/os/Parcelable;",
@@ -137,9 +137,9 @@ private fun patchKeyboardReady() = with(context) {
         name = "a",
         returnType = "V",
         parameterTypes = listOf(
-            "Loxu;",
+            "Lpeh;",
             "Lcom/google/android/libraries/inputmethod/metadata/KeyboardDef;",
-            "Lppa;",
+            "Lpvl;",
         )
     )
     mutableMethod.addInstructions(0, KEYBOARD_READY_DELEGATE)
@@ -170,7 +170,7 @@ private val PROVIDER_WRAPPER_TYPE_DELEGATE = """
 
     move-result-object p1
 
-    check-cast p1, Lppa;
+    check-cast p1, Lpvl;
 """.trimIndent()
 
 private val METRICS_ALIAS_DELEGATE = """
@@ -178,7 +178,7 @@ private val METRICS_ALIAS_DELEGATE = """
 
     move-result-object p0
 
-    check-cast p0, Lppa;
+    check-cast p0, Lpvl;
 """.trimIndent()
 
 private val NAVIGATION_IDENTITY_DELEGATE = """
@@ -186,7 +186,7 @@ private val NAVIGATION_IDENTITY_DELEGATE = """
 
     move-result-object p2
 
-    check-cast p2, Lppa;
+    check-cast p2, Lpvl;
 """.trimIndent()
 
 private val FOOTER_TAB_CLICK_DELEGATE = """

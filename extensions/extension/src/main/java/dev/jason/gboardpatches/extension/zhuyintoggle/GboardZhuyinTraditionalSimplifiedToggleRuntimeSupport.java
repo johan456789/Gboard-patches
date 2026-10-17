@@ -12,19 +12,19 @@ final class GboardZhuyinTraditionalSimplifiedToggleRuntimeSupport {
             "com.google.android.libraries.inputmethod.widgets.SoftKeyView";
     private static final String ACTION_SET_CLASS =
             "com.google.android.libraries.inputmethod.metadata.SoftKeyDef";
-    private static final String ACTION_TYPE_CLASS = "pmy";
+    private static final String ACTION_TYPE_CLASS = "pti";
     private static final String ACTION_DEF_CLASS =
             "com.google.android.libraries.inputmethod.metadata.ActionDef";
-    private static final String ACTION_ENTRY_CLASS = "pnu";
-    private static final String ACTION_BUILDER_CLASS = "pmz";
-    private static final String METADATA_BUILDER_CLASS = "ppo";
-    private static final String INTENTION_CLASS = "pnt";
-    private static final String GESTURE_DISPATCHER_CLASS = "pvf";
-    private static final String PREFERENCE_CLASS = "qhy";
-    private static final String PREFERENCE_BASE_CLASS = "cdl";
+    private static final String ACTION_ENTRY_CLASS = "pue";
+    private static final String ACTION_BUILDER_CLASS = "ptj";
+    private static final String METADATA_BUILDER_CLASS = "pvz";
+    private static final String INTENTION_CLASS = "pud";
+    private static final String GESTURE_DISPATCHER_CLASS = "qbn";
+    private static final String PREFERENCE_CLASS = "qou";
+    private static final String PREFERENCE_BASE_CLASS = "cdx";
 
     private static final int PLAIN_TEXT_KEYCODE = -0x2719;
-    public static final int PREFERENCE_KEY_RES_ID = 0x7f140a1b;
+    public static final int PREFERENCE_KEY_RES_ID = 0x7f140962;
     private static final String PREFERENCE_KEY = "enable_sc_tc_conversion_zh_tw";
 
     private final Method softKeyBindMethod;
@@ -83,8 +83,8 @@ final class GboardZhuyinTraditionalSimplifiedToggleRuntimeSupport {
         buildActionMethod = actionBuilderClass.getDeclaredMethod("c");
 
         metadataBuilderConstructor = metadataBuilderClass.getDeclaredConstructor();
-        copyMetadataMethod = metadataBuilderClass.getDeclaredMethod("j", actionSetClass);
-        putActionMethod = metadataBuilderClass.getDeclaredMethod("t", actionDefClass);
+        copyMetadataMethod = metadataBuilderClass.getDeclaredMethod("k", actionSetClass);
+        putActionMethod = metadataBuilderClass.getDeclaredMethod("u", actionDefClass);
         buildMetadataMethod = metadataBuilderClass.getDeclaredMethod("d");
 
         dispatcherContextField = gestureDispatcherClass.getDeclaredField("b");

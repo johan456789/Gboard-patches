@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 final class GboardTopRowSwipeRuntimeSupport {
-    static final int PRIMARY_LABEL_VIEW_ID = 0x7f0b0651;
+    static final int PRIMARY_LABEL_VIEW_ID = 0x7f0b05f3;
     static final int PLAIN_TEXT_KEYCODE = -0x2719;
     static final String[] TOP_ROW_SLOT_VIEW_NAMES = {
             "E01", "E02", "E03", "E04", "E05",
@@ -31,17 +31,17 @@ final class GboardTopRowSwipeRuntimeSupport {
 
     private static final String SOFT_KEY_VIEW_CLASS =
             "com.google.android.libraries.inputmethod.widgets.SoftKeyView";
-    private static final String ACTION_TYPE_CLASS = "pmy";
+    private static final String ACTION_TYPE_CLASS = "pti";
     private static final String ACTION_SET_CLASS =
             "com.google.android.libraries.inputmethod.metadata.SoftKeyDef";
     private static final String ACTION_DEF_CLASS =
             "com.google.android.libraries.inputmethod.metadata.ActionDef";
-    private static final String ACTION_DATA_CLASS = "pnu";
-    private static final String ACTION_DEF_BUILDER_CLASS = "pmz";
-    private static final String ACTION_SET_BUILDER_CLASS = "ppo";
-    private static final String INTENTION_CLASS = "pnt";
-    private static final String POINTER_TRACKER_CLASS = "pvi";
-    private static final String GESTURE_DISPATCHER_CLASS = "pvf";
+    private static final String ACTION_DATA_CLASS = "pue";
+    private static final String ACTION_DEF_BUILDER_CLASS = "ptj";
+    private static final String ACTION_SET_BUILDER_CLASS = "pvz";
+    private static final String INTENTION_CLASS = "pud";
+    private static final String POINTER_TRACKER_CLASS = "qbp";
+    private static final String GESTURE_DISPATCHER_CLASS = "qbn";
 
     private static final String ACTION_NAME_PRESS = "PRESS";
     private static final String ACTION_NAME_LONG_PRESS = "LONG_PRESS";
@@ -404,7 +404,7 @@ final class GboardTopRowSwipeRuntimeSupport {
             keyLabelIdsField = actionSetClass.getDeclaredField("h");
             keyLabelIdsField.setAccessible(true);
 
-            exactActionLookupMethod = actionSetClass.getDeclaredMethod("h", actionTypeClass);
+            exactActionLookupMethod = actionSetClass.getDeclaredMethod("g", actionTypeClass);
             exactActionLookupMethod.setAccessible(true);
 
             actionDefTypeField = actionDefClass.getDeclaredField("c");
@@ -436,16 +436,16 @@ final class GboardTopRowSwipeRuntimeSupport {
             keyMetadataBuilderConstructor = actionSetBuilderClass.getDeclaredConstructor();
             keyMetadataBuilderConstructor.setAccessible(true);
 
-            copyKeyMetadataMethod = actionSetBuilderClass.getDeclaredMethod("j", actionSetClass);
+            copyKeyMetadataMethod = actionSetBuilderClass.getDeclaredMethod("k", actionSetClass);
             copyKeyMetadataMethod.setAccessible(true);
 
             buildKeyMetadataMethod = actionSetBuilderClass.getDeclaredMethod("d");
             buildKeyMetadataMethod.setAccessible(true);
 
-            putActionMethod = actionSetBuilderClass.getDeclaredMethod("t", actionDefClass);
+            putActionMethod = actionSetBuilderClass.getDeclaredMethod("u", actionDefClass);
             putActionMethod.setAccessible(true);
 
-            setKeyLabelTextsMethod = actionSetBuilderClass.getDeclaredMethod("v", int[].class,
+            setKeyLabelTextsMethod = actionSetBuilderClass.getDeclaredMethod("w", int[].class,
                     CharSequence[].class);
             setKeyLabelTextsMethod.setAccessible(true);
 

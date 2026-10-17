@@ -8,7 +8,7 @@ import dev.jason.gboardpatches.patches.gboard.shared.mutableClass
 
 /** Reviewed target shape. No editor policy belongs in this version adapter. */
 internal object GboardEditingAccessPoints1803Targets {
-    private const val OWNER = "Loup;"
+    private const val OWNER = "Lpbb;"
     val startView = lifecycle("onStartInputView", "Landroid/view/inputmethod/EditorInfo;", "Z")
     val resetMethods = listOf(
         startView,
@@ -22,13 +22,13 @@ internal object GboardEditingAccessPoints1803Targets {
         GboardMethodTarget(OWNER, name, parameters.toList(), "V")
 
     private val descriptorMethods = listOf(
-        GboardMethodTarget("Lmic;", "c", emptyList(), "Lmhx;") to true,
-        GboardMethodTarget("Lmhx;", "l", listOf("Ljava/lang/String;"), "V") to false,
-        GboardMethodTarget("Lmhx;", "i", listOf("I"), "V") to false,
-        GboardMethodTarget("Lmhx;", "q", listOf("Ljava/lang/Runnable;"), "V") to false,
-        GboardMethodTarget("Lmhx;", "a", emptyList(), "Lmic;") to false,
-        GboardMethodTarget("Lmlh;", "g", listOf("Lmic;", "Z"), "V") to false,
-        GboardMethodTarget("Lvxe;", "n", listOf("Ljava/util/Collection;"), "Lvxe;") to true,
+        GboardMethodTarget("Lmng;", "c", emptyList(), "Lmnb;") to true,
+        GboardMethodTarget("Lmnb;", "l", listOf("Ljava/lang/String;"), "V") to false,
+        GboardMethodTarget("Lmnb;", "i", listOf("I"), "V") to false,
+        GboardMethodTarget("Lmnb;", "q", listOf("Ljava/lang/Runnable;"), "V") to false,
+        GboardMethodTarget("Lmnb;", "a", emptyList(), "Lmng;") to false,
+        GboardMethodTarget("Lmqk;", "g", listOf("Lmng;", "Z"), "V") to false,
+        GboardMethodTarget("Lwgz;", "n", listOf("Ljava/util/Collection;"), "Lwgz;") to true,
     )
 
     fun validate(context: BytecodePatchContext) {
@@ -49,7 +49,7 @@ internal object GboardEditingAccessPoints1803Targets {
             check(method.implementation != null) { "Missing body: ${target.reference}" }
         }
         listOf("d", "e").forEach { name ->
-            val field = GboardFieldTarget("Lmhx;", name, "Ljava/lang/String;").resolve(context)
+            val field = GboardFieldTarget("Lmnb;", name, "Ljava/lang/String;").resolve(context)
             check(!AccessFlags.STATIC.isSet(field.accessFlags)) { "Unexpected builder field: $name" }
         }
     }

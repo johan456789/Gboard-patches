@@ -53,7 +53,7 @@ private val LONG_PRESS_QUICK_ACTIONS_INPUT_EVENT_BRANCH = """
 """.trimIndent()
 
 internal val gboardLongPressQuickActionsInputEventPatch = bytecodePatch(
-    description = "在 18.0.3 Gboard input event dispatcher 前處理 exact editing shortcuts。",
+    description = "在 18.4.1 Gboard input event dispatcher 前處理 exact editing shortcuts。",
 ) {
     compatibleWith(COMPATIBILITY_GBOARD)
     dependsOn(gboardPatchesExtensionCarrierPatch)

@@ -38,7 +38,7 @@ private val gboardZhuyinSlidePointerAnchorSpec = GboardPointerOwnerFeatureSpec(
 )
 
 internal val gboardZhuyinSlidePointerAnchorPatch = gboardPointerOwnerFeaturePatch(
-    description = "在 18.0.3 pvi reset 前固定普通注音滑動的起始 key。",
+    description = "在 18.4.1 pvi reset 前固定普通注音滑動的起始 key。",
     spec = gboardZhuyinSlidePointerAnchorSpec,
 )
 

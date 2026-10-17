@@ -7,14 +7,14 @@ import java.lang.reflect.Method;
 import java.util.Collections;
 
 final class GboardFlypy1803RuntimeSupport {
-    private static final String ZTA_CLASS = "zta";
-    private static final String XVY_CLASS = "xvy";
-    private static final String XVZ_CLASS = "xvz";
-    private static final String QHY_CLASS = "qhy";
-    private static final String QHX_CLASS = "qhx";
-    private static final String CDL_CLASS = "cdl";
-    private static final String HBD_CLASS = "hbd";
-    private static final String KKB_CLASS = "kkb";
+    private static final String ZTA_CLASS = "aacp";
+    private static final String XVY_CLASS = "yfd";
+    private static final String XVZ_CLASS = "yfe";
+    private static final String QHY_CLASS = "qou";
+    private static final String QHX_CLASS = "qot";
+    private static final String CDL_CLASS = "cdx";
+    private static final String HBD_CLASS = "hds";
+    private static final String KKB_CLASS = "kpf";
 
     private static final int XVY_DICTIONARY_FIELD_PRESENT_BIT = 2;
 
@@ -53,8 +53,8 @@ final class GboardFlypy1803RuntimeSupport {
         xvyBitField = xvyClass.getField("b");
         ztaMessageField = ztaClass.getField("b");
         xvzNewBuilderMethod = xvzClass.getMethod("l");
-        ztaSetIterableMethod = ztaClass.getMethod("bf", Iterable.class);
-        ztaBuildMethod = ztaClass.getMethod("q");
+        ztaSetIterableMethod = ztaClass.getMethod("bg", Iterable.class);
+        ztaBuildMethod = ztaClass.getMethod("p");
         xvzDefaultInstance = xvzClass.getField("a").get(null);
         preferenceFactoryMethod = qhyClass.getMethod("I", Context.class);
         preferenceReadStringMethod = cdlClass.getMethod("o", int.class, String.class);

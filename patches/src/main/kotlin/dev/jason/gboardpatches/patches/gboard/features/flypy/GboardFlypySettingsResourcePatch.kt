@@ -116,24 +116,24 @@ private const val ENTRY_VALUES_ARRAY_NAME = "gboard_flypy_pinyin_scheme_entry_va
 private const val ENTRIES_REF = "@array/$ENTRIES_ARRAY_NAME"
 private const val ENTRY_VALUES_REF = "@array/$ENTRY_VALUES_ARRAY_NAME"
 
-private const val PINYIN_SETTINGS_TITLE_REF = "@string/string_0x7f140d41"
-private const val PINYIN_SCHEME_TITLE_REF = "@string/string_0x7f140d40"
-private const val PINYIN_SCHEME_KEY_REF = "@string/string_0x7f140b2e"
-private const val FULL_PINYIN_REF = "@string/string_0x7f140bc4"
-private const val DOUBLE_PINYIN_FLYPY_REF = "@string/string_0x7f140dff"
-private const val QUANPIN_VALUE_REF = "@string/string_0x7f1409a4"
-private const val FLYPY_VALUE_REF = "@string/string_0x7f1409a7"
+private const val PINYIN_SETTINGS_TITLE_REF = "@string/string_0x7f140c43"
+private const val PINYIN_SCHEME_TITLE_REF = "@string/string_0x7f140c42"
+private const val PINYIN_SCHEME_KEY_REF = "@string/string_0x7f140a4a"
+private const val FULL_PINYIN_REF = "@string/string_0x7f140ae0"
+private const val DOUBLE_PINYIN_FLYPY_REF = "@string/string_0x7f140cfc"
+private const val QUANPIN_VALUE_REF = "@string/string_0x7f1408e5"
+private const val FLYPY_VALUE_REF = "@string/string_0x7f1408e8"
 
 private val ENTRY_STRING_REFS = listOf(FULL_PINYIN_REF, DOUBLE_PINYIN_FLYPY_REF)
 private val ENTRY_VALUE_STRING_REFS = listOf(QUANPIN_VALUE_REF, FLYPY_VALUE_REF)
 
 private val FLYPY_SETTINGS_XML_CANDIDATES = listOf(
     listOf(
-        "res/xml/xml_0x7f171296.xml",
-        "res/xml/_0_resource_name_obfuscated_res_0x7f171296.xml",
+        "res/xml/xml_0x7f17124a.xml",
+        "res/xml/_0_resource_name_obfuscated_res_0x7f17124a.xml",
     ),
     listOf(
-        "res/xml/xml_0x7f171297.xml",
-        "res/xml/_0_resource_name_obfuscated_res_0x7f171297.xml",
+        "res/xml/xml_0x7f17124b.xml",
+        "res/xml/_0_resource_name_obfuscated_res_0x7f17124b.xml",
     ),
 )

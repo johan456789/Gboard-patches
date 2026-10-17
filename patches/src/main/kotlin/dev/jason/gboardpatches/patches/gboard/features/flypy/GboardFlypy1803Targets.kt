@@ -3,7 +3,7 @@ package dev.jason.gboardpatches.patches.gboard.features.flypy
 import dev.jason.gboardpatches.patches.gboard.shared.GboardMethodTarget
 
 internal object GboardFlypy1803Targets {
-    const val ENGINE_FACTORY = "Lkkb;"
+    const val ENGINE_FACTORY = "Lkpf;"
 
     const val SETUP_HELPER_NAME = "gboardPatchesFlypySetup"
     const val ENROLL_HELPER_NAME = "gboardPatchesFlypyEnroll"
@@ -25,7 +25,7 @@ internal object GboardFlypy1803Targets {
     val engineFactoryApplySettingScheme = GboardMethodTarget(
         classType = ENGINE_FACTORY,
         name = "q",
-        parameterTypes = listOf("I", "Lzta;"),
+        parameterTypes = listOf("I", "Laacp;"),
         returnType = "V",
     )
 }

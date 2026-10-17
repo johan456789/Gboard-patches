@@ -13,8 +13,8 @@ import org.w3c.dom.Document
 import org.w3c.dom.Element
 
 private const val ABOUT_XML = "res/xml/setting_about.xml"
-private const val ABOUT_VERSION_KEY_REF = "@string/APKTOOL_RENAMED_0x7f140c23"
-private const val ABOUT_VERSION_SANITIZED_KEY_REF = "@string/string_0x7f140c23"
+private const val ABOUT_VERSION_KEY_REF = "@string/APKTOOL_RENAMED_0x7f140b2d"
+private const val ABOUT_VERSION_SANITIZED_KEY_REF = "@string/string_0x7f140b2d"
 private const val ABOUT_PREFERENCE_CLASS =
     "com.google.android.libraries.inputmethod.settings.widget.ExtendedPreference"
 
@@ -55,7 +55,7 @@ internal fun applyGboardAboutPagePatch(aboutDocument: Document) {
                 "title=${child.androidAttribute("title")}]"
         }
         error(
-            "Could not find the 18.0.3 version preference in $ABOUT_XML; " +
+            "Could not find the 18.4.1 version preference in $ABOUT_XML; " +
                 "observed=$observed",
         )
     }

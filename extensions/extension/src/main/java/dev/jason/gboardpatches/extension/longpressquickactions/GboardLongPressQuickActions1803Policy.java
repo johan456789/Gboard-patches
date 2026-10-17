@@ -2,17 +2,17 @@ package dev.jason.gboardpatches.extension.longpressquickactions;
 
 public final class GboardLongPressQuickActions1803Policy {
     private static final QuickAction SELECT_ALL = new QuickAction(
-            -0x2766, 0x7f0804e3, GboardEditingShortcutPolicy.Shortcut.SELECT_ALL, true);
+            -0x2766, 0x7f0804b1, GboardEditingShortcutPolicy.Shortcut.SELECT_ALL, true);
     private static final QuickAction UNDO = new QuickAction(
-            -0x273d, 0x7f08051f, GboardEditingShortcutPolicy.Shortcut.UNDO, false);
+            -0x273d, 0x7f0804ed, GboardEditingShortcutPolicy.Shortcut.UNDO, false);
     private static final QuickAction COPY = new QuickAction(
-            -0x2767, 0x7f08044f, GboardEditingShortcutPolicy.Shortcut.COPY, true);
+            -0x2767, 0x7f08041b, GboardEditingShortcutPolicy.Shortcut.COPY, true);
     private static final QuickAction CUT = new QuickAction(
-            -0x2769, 0x7f080450, GboardEditingShortcutPolicy.Shortcut.CUT, true);
+            -0x2769, 0x7f08041c, GboardEditingShortcutPolicy.Shortcut.CUT, true);
     private static final QuickAction PASTE = new QuickAction(
-            -0x2768, 0x7f080452, GboardEditingShortcutPolicy.Shortcut.PASTE, true);
+            -0x2768, 0x7f08041e, GboardEditingShortcutPolicy.Shortcut.PASTE, true);
     private static final QuickAction REDO = new QuickAction(
-            -0x27a3, 0x7f0804df, GboardEditingShortcutPolicy.Shortcut.REDO, false);
+            -0x27a3, 0x7f0804ad, GboardEditingShortcutPolicy.Shortcut.REDO, false);
 
     private GboardLongPressQuickActions1803Policy() {
     }
@@ -81,7 +81,7 @@ public final class GboardLongPressQuickActions1803Policy {
     }
 
     public static boolean isZhuyinKeyId(int keyId) {
-        return keyId >= 0x7f0b295e && keyId <= 0x7f0b298a;
+        return keyId >= 0x7f0b28b7 && keyId <= 0x7f0b28e3;
     }
 
     private static QuickAction resolve(int keyId, String pressText) {
@@ -89,24 +89,24 @@ public final class GboardLongPressQuickActions1803Policy {
             return null;
         }
         return switch (keyId) {
-            case 0x7f0b1990 -> "a".equals(pressText) ? SELECT_ALL : null;
-            case 0x7f0b18b2 -> "A".equals(pressText) ? SELECT_ALL : null;
-            case 0x7f0b1ac9 -> "z".equals(pressText) ? UNDO : null;
-            case 0x7f0b1969 -> "Z".equals(pressText) ? UNDO : null;
-            case 0x7f0b19a5 -> "c".equals(pressText) ? COPY : null;
-            case 0x7f0b18c3 -> "C".equals(pressText) ? COPY : null;
-            case 0x7f0b1abf -> "x".equals(pressText) ? CUT : null;
-            case 0x7f0b1964 -> "X".equals(pressText) ? CUT : null;
-            case 0x7f0b1ab7 -> "v".equals(pressText) ? PASTE : null;
-            case 0x7f0b195f -> "V".equals(pressText) ? PASTE : null;
-            case 0x7f0b1ac2 -> "y".equals(pressText) ? REDO : null;
-            case 0x7f0b1965 -> "Y".equals(pressText) ? REDO : null;
-            case 0x7f0b2976 -> "a".equals(pressText) ? SELECT_ALL : null;
-            case 0x7f0b296d -> "z".equals(pressText) ? UNDO : null;
-            case 0x7f0b2970 -> "c".equals(pressText) ? COPY : null;
-            case 0x7f0b2975 -> "x".equals(pressText) ? CUT : null;
-            case 0x7f0b2987 -> "v".equals(pressText) ? PASTE : null;
-            case 0x7f0b2989 -> "y".equals(pressText) ? REDO : null;
+            case 0x7f0b18d2 -> "a".equals(pressText) ? SELECT_ALL : null;
+            case 0x7f0b17f5 -> "A".equals(pressText) ? SELECT_ALL : null;
+            case 0x7f0b1a0b -> "z".equals(pressText) ? UNDO : null;
+            case 0x7f0b18ab -> "Z".equals(pressText) ? UNDO : null;
+            case 0x7f0b18e7 -> "c".equals(pressText) ? COPY : null;
+            case 0x7f0b1806 -> "C".equals(pressText) ? COPY : null;
+            case 0x7f0b1a01 -> "x".equals(pressText) ? CUT : null;
+            case 0x7f0b18a6 -> "X".equals(pressText) ? CUT : null;
+            case 0x7f0b19f9 -> "v".equals(pressText) ? PASTE : null;
+            case 0x7f0b18a1 -> "V".equals(pressText) ? PASTE : null;
+            case 0x7f0b1a04 -> "y".equals(pressText) ? REDO : null;
+            case 0x7f0b18a7 -> "Y".equals(pressText) ? REDO : null;
+            case 0x7f0b28cf -> "a".equals(pressText) ? SELECT_ALL : null;
+            case 0x7f0b28c6 -> "z".equals(pressText) ? UNDO : null;
+            case 0x7f0b28c9 -> "c".equals(pressText) ? COPY : null;
+            case 0x7f0b28ce -> "x".equals(pressText) ? CUT : null;
+            case 0x7f0b28e0 -> "v".equals(pressText) ? PASTE : null;
+            case 0x7f0b28e2 -> "y".equals(pressText) ? REDO : null;
             default -> null;
         };
     }

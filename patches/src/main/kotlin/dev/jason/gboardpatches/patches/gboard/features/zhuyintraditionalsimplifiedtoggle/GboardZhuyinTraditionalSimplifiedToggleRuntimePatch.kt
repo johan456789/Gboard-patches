@@ -28,7 +28,7 @@ private const val GBOARD_18_0_3_POPUP_STOCK_FINGERPRINT =
 private val POPUP_TARGET_ACCESS_FLAGS = AccessFlags.PUBLIC.value
 
 internal val gboardZhuyinTraditionalSimplifiedTogglePopupPatch = bytecodePatch(
-    description = "修改 18.0.3 注音繁簡切換 popup action。",
+    description = "修改 18.4.1 注音繁簡切換 popup action。",
 ) {
     compatibleWith(COMPATIBILITY_GBOARD)
 
@@ -113,7 +113,7 @@ private fun MutableMethod.hasAnyPopupRuntimeState(): Boolean =
 private fun MutableMethod.requireExact1803PopupStockFingerprint() {
     val actual = gboardStructuralFingerprint()
     check(actual == GBOARD_18_0_3_POPUP_STOCK_FINGERPRINT) {
-        "18.0.3 popup stock body drift in $definingClass->$name: $actual"
+        "18.4.1 popup stock body drift in $definingClass->$name: $actual"
     }
 }
 

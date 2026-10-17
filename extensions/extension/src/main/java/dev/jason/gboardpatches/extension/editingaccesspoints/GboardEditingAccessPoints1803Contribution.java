@@ -23,7 +23,7 @@ public final class GboardEditingAccessPoints1803Contribution {
             prepare(context.getClassLoader());
             List<String> result = extend(stock,
                     action -> GboardEditingAccessPointsRuntime.enabled(context, action));
-            Class<?> catalog = Class.forName("vxe", false, original.getClass().getClassLoader());
+            Class<?> catalog = Class.forName("wgz", false, original.getClass().getClassLoader());
             Method copy = catalog.getDeclaredMethod("n", Collection.class);
             copy.setAccessible(true);
             return copy.invoke(null, result);
@@ -67,10 +67,10 @@ public final class GboardEditingAccessPoints1803Contribution {
 
     static int icon(EditorAction action) {
         return switch (action) {
-            case SELECT_ALL -> 0x7f0804e3;
-            case COPY -> 0x7f08044f;
-            case CUT -> 0x7f080450;
-            case PASTE -> 0x7f080452;
+            case SELECT_ALL -> 0x7f0804b1;
+            case COPY -> 0x7f08041b;
+            case CUT -> 0x7f08041c;
+            case PASTE -> 0x7f08041e;
         };
     }
 
@@ -91,9 +91,9 @@ public final class GboardEditingAccessPoints1803Contribution {
 
         Handles(ClassLoader loader) throws ReflectiveOperationException {
             this.loader = loader;
-            Class<?> descriptor = Class.forName("mic", false, loader);
-            Class<?> builder = Class.forName("mhx", false, loader);
-            Class<?> controller = Class.forName("mlh", false, loader);
+            Class<?> descriptor = Class.forName("mng", false, loader);
+            Class<?> builder = Class.forName("mnb", false, loader);
+            Class<?> controller = Class.forName("mqk", false, loader);
             factory = method(descriptor, "c", builder, true);
             token = method(builder, "l", void.class, false, String.class);
             icon = method(builder, "i", void.class, false, int.class);
@@ -101,7 +101,8 @@ public final class GboardEditingAccessPoints1803Contribution {
             build = method(builder, "a", descriptor, false);
             register = method(controller, "g", void.class, false, descriptor, boolean.class);
             title = field(builder, "d");
-            description = field(builder, "e");
+            // 18.4.1 access point descriptors no longer carry a content description.
+            description = null;
         }
 
         void register(Object controller, EditorAction action, int iconId,
@@ -110,7 +111,9 @@ public final class GboardEditingAccessPoints1803Contribution {
             token.invoke(builder, action.token);
             icon.invoke(builder, iconId);
             title.set(builder, text);
-            description.set(builder, text);
+            if (description != null) {
+                description.set(builder, text);
+            }
             runnable.invoke(builder, callback);
             register.invoke(controller, build.invoke(builder), false);
         }

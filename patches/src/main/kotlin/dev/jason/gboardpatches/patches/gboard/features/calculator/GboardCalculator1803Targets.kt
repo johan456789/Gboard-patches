@@ -5,24 +5,24 @@ import dev.jason.gboardpatches.patches.gboard.shared.GboardMethodTarget
 
 internal object GboardCalculator1803Targets {
     val inputView = GboardFieldTarget(
-        classType = "Loup;",
-        name = "j",
+        classType = "Lpbb;",
+        name = "i",
         type = "Lcom/google/android/libraries/inputmethod/inputview/InputView;",
     )
     val onStartInputView = GboardMethodTarget(
-        classType = "Loup;",
+        classType = "Lpbb;",
         name = "onStartInputView",
         parameterTypes = listOf("Landroid/view/inputmethod/EditorInfo;", "Z"),
         returnType = "V",
     )
     val onUpdateSelection = GboardMethodTarget(
-        classType = "Loup;",
+        classType = "Lpbb;",
         name = "onUpdateSelection",
         parameterTypes = listOf("I", "I", "I", "I", "I", "I"),
         returnType = "V",
     )
     val onWindowHidden = GboardMethodTarget(
-        classType = "Loup;",
+        classType = "Lpbb;",
         name = "onWindowHidden",
         parameterTypes = emptyList(),
         returnType = "V",

@@ -34,7 +34,7 @@ import dev.jason.gboardpatches.patches.shared.Constants.COMPATIBILITY_GBOARD
 
 private const val LATIN_IME_CLASS =
     "Lcom/google/android/apps/inputmethod/libs/latin5/LatinIme;"
-private const val LATIN_RUNTIME_PARAMS_TYPE = "Lyaf;"
+private const val LATIN_RUNTIME_PARAMS_TYPE = "Lyji;"
 private val LATIN_GLOBE_RUNTIME_CALL =
     RuntimeCallId.LATIN_GLOBE_KEY_IGNORE_INTERVAL_RUNTIME_APPLY_OVERRIDE
 private val LATIN_GLOBE_RUNTIME_DESCRIPTOR = RuntimeAbiCatalog.abi(LATIN_GLOBE_RUNTIME_CALL).reference
@@ -43,7 +43,7 @@ private const val TARGET_DESCRIPTOR =
     "$LATIN_IME_CLASS->O()$LATIN_RUNTIME_PARAMS_TYPE"
 private const val STOCK_REGISTER_COUNT = 11
 private const val STOCK_RETURN_REGISTER = 0
-private const val TARGET_INTERVAL_FIELD = "Lyaf;->h:F"
+private const val TARGET_INTERVAL_FIELD = "Lyji;->h:F"
 private val TARGET_ACCESS_FLAGS =
     AccessFlags.PROTECTED.value or AccessFlags.STATIC.value or AccessFlags.FINAL.value
 

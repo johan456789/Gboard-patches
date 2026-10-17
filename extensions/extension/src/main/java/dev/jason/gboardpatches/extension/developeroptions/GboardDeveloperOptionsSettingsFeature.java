@@ -11,7 +11,7 @@ import dev.jason.gboardpatches.extension.settings.GboardSettingsText;
 
 public final class GboardDeveloperOptionsSettingsFeature
         implements GboardPatchesSettingsContract.Feature {
-    private static final int TARGET_1803_HEADER_KEY_RESOURCE_ID = 0x7f140b4b;
+    private static final int TARGET_1803_HEADER_KEY_RESOURCE_ID = 0x7f140a69;
 
     private final String entryTitle;
     private final String entrySummary;
