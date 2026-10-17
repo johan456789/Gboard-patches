@@ -1,3 +1,13 @@
+## [3.12.0.2](https://github.com/johan456789/Gboard-patches/compare/v3.12.0.1...v3.12.0.2) (2026-10-17)
+
+### 🐛 Bug Fixes
+
+* **Gboard:** `Double Pinyin - flyPY (Traditional Chinese)`: accept the v spelling of ju/qu/xu/yu (`jv`, `qv`, `xv`, `yv`, e.g. `qvxn` → 取消), which previously produced no candidates.
+
+### 🐛 修復
+
+* **Gboard:** `Double Pinyin - flyPY (Traditional Chinese)`：支援 ju/qu/xu/yu 的 v 拼法（`jv`、`qv`、`xv`、`yv`，例如 `qvxn` → 取消），修正先前無法出字的問題。
+
 ## [3.12.0.1](https://github.com/johan456789/Gboard-patches/compare/v3.12.0...v3.12.0.1) (2026-10-16)
 
 ### ✨ New Features
