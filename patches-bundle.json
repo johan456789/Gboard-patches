@@ -1,7 +1,7 @@
 {
-    "created_at":  "2026-10-16T15:21:28",
-    "description":  "### ✨ New Features\n\n* **Gboard:** add the `Double Pinyin - flyPY (Traditional Chinese)` patch, adding a `Pinyin scheme` setting (Full pinyin / Double Pinyin - flyPY) to the 繁體中文（台灣）pinyin keyboard and a bundled Traditional Chinese flyPY dictionary.\n\n### ✨ 新功能\n\n* **Gboard:** 新增 `Double Pinyin - flyPY (Traditional Chinese)` Patch，於繁體中文（台灣）拼音鍵盤加入「拼音方案」設定（全拼 / 小鶴雙拼），並內建繁體中文小鶴雙拼字典。",
-    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0.1/patches-3.12.0.1.mpp",
+    "created_at":  "2026-10-17T20:36:42",
+    "description":  "### 🐛 Bug Fixes\n\n* **Gboard:** `Double Pinyin - flyPY (Traditional Chinese)`: accept the v spelling of ju/qu/xu/yu (`jv`, `qv`, `xv`, `yv`, e.g. `qvxn` → 取消), which previously produced no candidates.\n\n### 🐛 修復\n\n* **Gboard:** `Double Pinyin - flyPY (Traditional Chinese)`：支援 ju/qu/xu/yu 的 v 拼法（`jv`、`qv`、`xv`、`yv`，例如 `qvxn` → 取消），修正先前無法出字的問題。",
+    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0.2/patches-3.12.0.2.mpp",
     "signature_download_url":  "",
-    "version":  "3.12.0.1"
+    "version":  "3.12.0.2"
 }
