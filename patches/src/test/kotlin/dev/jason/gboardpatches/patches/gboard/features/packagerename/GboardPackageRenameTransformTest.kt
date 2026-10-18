@@ -139,8 +139,26 @@ class GboardPackageRenameTransformTest {
     fun `standalone package rename removes required split markers but retains split inventory`() {
         val manifest = loadManifest()
         val root = manifest.documentElement
-        val requiredSplitMetadata = elements(manifest, "meta-data").single { element ->
+        val application = elements(manifest, "application").single()
+
+        // The 18.4.1 arm64 artifact APK is a Play-generated standalone APK, so the
+        // stock manifest already carries the sanitized shape. Add the markers a
+        // split base APK would carry to exercise the sanitizer.
+        assertFalse(root.hasAttributeNS(ANDROID_NS, "requiredSplitTypes"))
+        assertFalse(root.hasAttributeNS(ANDROID_NS, "splitTypes"))
+        assertTrue(elements(manifest, "meta-data").none { element ->
             androidAttribute(element, "name") == "com.android.vending.splits.required"
+        })
+        root.setAttributeNS(ANDROID_NS, "android:requiredSplitTypes", "base__density")
+        root.setAttributeNS(ANDROID_NS, "android:splitTypes", "")
+        val requiredSplitMetadata = manifest.createElement("meta-data").also { element ->
+            element.setAttributeNS(
+                ANDROID_NS,
+                "android:name",
+                "com.android.vending.splits.required",
+            )
+            element.setAttributeNS(ANDROID_NS, "android:value", "true")
+            application.appendChild(element)
         }
         val splitInventoryMetadata = elements(manifest, "meta-data").single { element ->
             androidAttribute(element, "name") == "com.android.vending.splits"
@@ -647,12 +665,12 @@ class GboardPackageRenameTransformTest {
         const val SETTINGS_PROVIDER_CLASS =
             "dev.jason.gboardpatches.extension.settings.GboardPatchesSettingsProvider"
         const val MANIFEST_FIXTURE =
-            "/gboard/18.0.3/package-rename/AndroidManifest.normalized.xml"
-        const val SETTINGS_FIXTURE = "/gboard/18.0.3/package-rename/settings.xml"
+            "/gboard/18.4.1/package-rename/AndroidManifest.normalized.xml"
+        const val SETTINGS_FIXTURE = "/gboard/18.4.1/package-rename/settings.xml"
         const val SETTINGS_LEGACY_FIXTURE =
-            "/gboard/18.0.3/package-rename/settings_legacy.xml"
+            "/gboard/18.4.1/package-rename/settings_legacy.xml"
         const val RETAINED_LITERALS_FIXTURE =
-            "/gboard/18.0.3/package-rename/retained-resource-literals.xml"
+            "/gboard/18.4.1/package-rename/retained-resource-literals.xml"
         val COMPONENT_TAGS = listOf("activity", "service", "receiver", "provider")
         val EXPECTED_MAPPINGS = listOf(
             listOf("manifest", "package", SOURCE_PACKAGE, FINAL_PACKAGE),

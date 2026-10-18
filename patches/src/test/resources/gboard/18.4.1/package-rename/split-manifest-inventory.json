@@ -1,0 +1,46 @@
+{
+  "targetVersion": "18.4.1.985164140-release-x86_64",
+  "versionCode": 176027080,
+  "sourcePackage": "com.google.android.inputmethod.latin",
+  "sourceArtifact": "gboard-18.4.1-x86_64.apkm",
+  "extraction": "aapt2 2.20-15087165 dump xmltree <apk> --file AndroidManifest.xml; binaryManifestSha256 is the SHA-256 of the AndroidManifest.xml entry inside each APK",
+  "packageRenameArtifactPolicy": "The resource patch transforms only the decoded base AndroidManifest.xml. A renamed output must be a standalone APK and must not be installed with the original-package split APKs.",
+  "apks": [
+    {
+      "name": "base.apk",
+      "source": "gboard-18.4.1-x86_64.apkm:base.apk",
+      "split": null,
+      "isFeatureSplit": false,
+      "package": "com.google.android.inputmethod.latin",
+      "apkSha256": "738EC545D5311B0BCC4332237F8F128816F0DF1781F60BA0C642867FC3BF1B24",
+      "binaryManifestSha256": "65A28EA2A2EE2FA8B519AB905F5A1E11C4706E618F5CDCB02AD0D951CA48D0F7"
+    },
+    {
+      "name": "split_config.xxhdpi.apk",
+      "source": "gboard-18.4.1-x86_64.apkm:split_config.xxhdpi.apk",
+      "split": "config.xxhdpi",
+      "isFeatureSplit": false,
+      "package": "com.google.android.inputmethod.latin",
+      "apkSha256": "C363A196A0094DDAB91F2119F5C3831CB0F340B58601F9BC29E218448F1D8078",
+      "binaryManifestSha256": "7758EA3153EDC6FA63538978A2935C55BF2F24AD861BF7532E025BC24A0B1D49"
+    },
+    {
+      "name": "split_brella_feature_split.apk",
+      "source": "gboard-18.4.1-x86_64.apkm:split_brella_feature_split.apk",
+      "split": "brella_feature_split",
+      "isFeatureSplit": true,
+      "package": "com.google.android.inputmethod.latin",
+      "apkSha256": "167A979925CEA3ACC92A1F32E84C30F12B9387E133056090A5BDE1DE03D499F8",
+      "binaryManifestSha256": "5C264D94D1ACF097455C021010D84C9EFC2E66937D8A3DCA1D2B2FDAF7412FD2"
+    },
+    {
+      "name": "split_tenoranimation_feature_split.apk",
+      "source": "gboard-18.4.1-x86_64.apkm:split_tenoranimation_feature_split.apk",
+      "split": "tenoranimation_feature_split",
+      "isFeatureSplit": true,
+      "package": "com.google.android.inputmethod.latin",
+      "apkSha256": "32383E568A6470F6E9B5EEC7881EC42EDE5FAF694D3E7B98CC4302CF6558F8EA",
+      "binaryManifestSha256": "D1FC42502F4E941F80E8FC422A414E7B06F64DA79606964DA43987E084C4BF46"
+    }
+  ]
+}
