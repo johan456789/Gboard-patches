@@ -37,7 +37,17 @@ class GboardCompatibilitySourceTest {
                     .containsMatchIn(block)
             }
 
-        assertMatchesPublishedRegistrationCount(publicPatchBlocks.size)
+        val publishedPatchBlocks = publicPatchBlocks.filterNot { block ->
+            UNSUPPORTED_ON_TARGET_PATCH_NAMES.any { patchName ->
+                Regex("val\\s+$patchName\\s*=").containsMatchIn(block)
+            }
+        }
+        assertEquals(
+            UNSUPPORTED_ON_TARGET_PATCH_NAMES.size,
+            publicPatchBlocks.size - publishedPatchBlocks.size,
+        )
+
+        assertMatchesPublishedRegistrationCount(publishedPatchBlocks.size)
         publicPatchBlocks.forEach { block ->
             assertEquals(
                 1,
@@ -73,8 +83,11 @@ class GboardCompatibilitySourceTest {
     }
 
     private companion object {
-        const val TARGET_VERSION = "18.0.3.954559732-release-arm64-v8a"
+        const val TARGET_VERSION = "18.4.1.985164140-release-arm64-v8a"
         const val GBOARD_PACKAGE = "com.google.android.inputmethod.latin"
+        // Gboard 18.4.1 compiles the stock FlowModeDetector out, so Hyperspeed Typing
+        // Animation has no admitted contributions and is not published on this target.
+        val UNSUPPORTED_ON_TARGET_PATCH_NAMES = setOf("gboardFlowModeAnimationPatch")
         val EXPECTED_SIGNATURES = setOf(
             "7ce83c1b71f3d572fed04c8d40c5cb10ff75e6d87d9df6fbd53f0468c2905053",
             "f0fd6c5b410f25cb25c3b53346c8972fae30f8ee7411df910480ad6b2d60db83",

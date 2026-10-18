@@ -42,7 +42,7 @@ class GboardAiWritingToolsFlagValuePatchSourceTest {
         assertFalse(source.contains("injectFeatureFlagReturnOverrides("))
         assertFalse(source.contains("::buildFlagValueDelegate"))
         assertTrue(source.contains("GboardFlagFamilyFeature.AI_WRITING_TOOLS"))
-        assertTrue(source.contains("description = \"將 18.0.3 INTENT_AUTO_FIX"))
+        assertTrue(source.contains("description = \"將 18.4.1 INTENT_AUTO_FIX"))
     }
 
     private fun readSource(fileName: String): String = String(

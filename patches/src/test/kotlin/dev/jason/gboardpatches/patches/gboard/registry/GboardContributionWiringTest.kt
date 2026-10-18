@@ -5,6 +5,7 @@ import dev.jason.gboardpatches.patches.gboard.shared.generated.GboardTargetAdmis
 import java.nio.file.Files
 import java.nio.file.Path
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertThrows
 import org.junit.Test
 
@@ -19,6 +20,7 @@ class GboardContributionWiringTest {
         val expected = catalog.getAsJsonArray("features")
             .map { feature -> feature.asJsonObject }
             .filter { feature -> feature.getAsJsonArray("contributions").size() > 1 }
+            .filter { feature -> feature.get("feature_id").asString !in UNSUPPORTED_FEATURE_IDS }
             .associate { feature ->
                 val featureId = feature.get("feature_id").asString
                 featureId to GboardTargetAdmission.admittedContributionIdsByFeature
@@ -26,6 +28,15 @@ class GboardContributionWiringTest {
             }
 
         assertEquals(expected, GboardContributionWiring.registeredContributionIdsByFeature)
+        UNSUPPORTED_FEATURE_IDS.forEach { featureId ->
+            assertFalse(
+                GboardTargetAdmission.admittedContributionIdsByFeature.containsKey(featureId),
+            )
+            assertFalse(
+                GboardContributionWiring.registeredContributionIdsByFeature
+                    .containsKey(featureId),
+            )
+        }
     }
 
     @Test
@@ -54,5 +65,11 @@ class GboardContributionWiringTest {
                 setOf("swipeable_custom_top_row.soft_key"),
             )
         }
+    }
+
+    private companion object {
+        // Gboard 18.4.1 compiles the stock FlowModeDetector out, so Hyperspeed Typing
+        // Animation is catalogued but never admitted or wired on this target.
+        val UNSUPPORTED_FEATURE_IDS = setOf("flow_mode_animation")
     }
 }

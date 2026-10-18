@@ -88,7 +88,7 @@ class GboardAiWritingToolsPatchRegistrySourceTest {
         assertTrue(writingTools.get("use").asBoolean)
         assertTrue(writingTools.getAsJsonArray("dependencies").isEmpty)
         assertEquals(
-            listOf("18.0.3.954559732-release-arm64-v8a"),
+            listOf("18.4.1.985164140-release-arm64-v8a"),
             writingTools.getAsJsonObject("compatiblePackages")
                 .getAsJsonArray("com.google.android.inputmethod.latin")
                 .map { version -> version.asString },

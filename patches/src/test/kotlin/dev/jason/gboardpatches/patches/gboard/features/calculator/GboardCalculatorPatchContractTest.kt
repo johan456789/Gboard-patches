@@ -18,7 +18,7 @@ class GboardCalculatorPatchContractTest {
         val lifecycle = source("GboardCalculatorLifecyclePatch.kt")
 
         assertTrue(target.contains("classType = \"Lpbb;\""))
-        assertTrue(target.contains("name = \"j\""))
+        assertTrue(target.contains("name = \"i\""))
         assertTrue(target.contains("name = \"onStartInputView\""))
         assertTrue(target.contains("name = \"onUpdateSelection\""))
         assertTrue(target.contains("name = \"onWindowHidden\""))

@@ -16,8 +16,8 @@ class GboardAiWritingTools1803AutoFixRoutePatchSourceTest {
             ),
         )
 
-        assertTrue(source.contains("classType = \"Lsit;\""))
-        assertTrue(source.contains("name = \"v\""))
+        assertTrue(source.contains("classType = \"Lnzq;\""))
+        assertTrue(source.contains("name = \"s\""))
         assertTrue(source.contains("returnType = \"Lwfr;\""))
         assertTrue(source.contains("Laagx;->c:Laagx;"))
         assertTrue(source.contains("Lwfg;-><init>(I)V"))

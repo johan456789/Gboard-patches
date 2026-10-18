@@ -15,7 +15,7 @@ class GboardEnglishQwertyPatchSourceTest {
 
         assertTrue(source.contains("SoftKeyDef;->d:I"))
         assertTrue(source.contains("SoftKeyDef;->g:[Ljava/lang/CharSequence;"))
-        assertTrue(source.contains("SoftKeyDef;->h(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;"))
+        assertTrue(source.contains("SoftKeyDef;->g(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;"))
         assertTrue(source.contains("ActionDef;->d:[Lpue;"))
         assertTrue(source.contains("Lpue;->e:Ljava/lang/Object;"))
         assertTrue(source.contains("Lptj;->a:Lpti;"))
@@ -51,7 +51,7 @@ class GboardEnglishQwertyPatchSourceTest {
         assertTrue(source.contains("sget-object v0, Lpti;->c:Lpti;"))
         assertTrue(source.contains(
             "invoke-virtual {p1, v0}, Lcom/google/android/libraries/inputmethod/metadata/" +
-                "SoftKeyDef;->h(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;"
+                "SoftKeyDef;->g(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;"
         ))
         assertFalse(source.contains("jasondevStripSlideUpAction"))
         assertFalse(source.contains("Ljava/util/EnumMap;->remove"))
@@ -64,7 +64,7 @@ class GboardEnglishQwertyPatchSourceTest {
         val enabledIndex = patchBody.indexOf("ENGLISH_UPPERCASE_TOGGLE_RUNTIME_IS_ENABLED")
         val nativeLookupIndex = patchBody.indexOf(
             "invoke-virtual {p1, v0}, Lcom/google/android/libraries/inputmethod/metadata/" +
-                "SoftKeyDef;->h(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;"
+                "SoftKeyDef;->g(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;"
         )
         val cacheGetIndex = patchBody.indexOf("ENGLISH_UPPERCASE_TOGGLE_RUNTIME_GET_CACHED_PATCHED_METADATA")
         val builderIndex = patchBody.indexOf("new-instance v4, Lpvz;")
