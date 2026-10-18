@@ -2215,7 +2215,7 @@ public final class GboardAddSymbolsRuntime {
             emoticonBodyRecyclerField.setAccessible(true);
             emoticonEmptyStateField = emoticonKeyboardClass.getDeclaredField("q");
             emoticonEmptyStateField.setAccessible(true);
-            emoticonKeyboardContextField = findFieldInHierarchy(emoticonKeyboardClass, "w");
+            emoticonKeyboardContextField = findFieldInHierarchy(emoticonKeyboardClass, "z");
             emoticonKeyboardContextField.setAccessible(true);
 
             consumerAcceptMethod = consumerClass.getDeclaredMethod("accept", Object.class);
