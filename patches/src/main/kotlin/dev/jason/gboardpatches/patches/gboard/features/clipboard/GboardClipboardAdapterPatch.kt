@@ -252,9 +252,9 @@ private val ITEM_BIND_DELEGATE = """
 """.trimIndent()
 
 private val ITEM_BIND_ENTRY = """
-    move-object/from16 v13, p0
-    move-object/from16 v14, p1
-    move/from16 v15, p2
+    move-object/from16 v12, p0
+    move-object/from16 v13, p1
+    move/from16 v14, p2
 
     ${RuntimeCallEmitter.invoke(ITEM_BIND_BEFORE_RUNTIME_CALL, "p0 .. p2")}
 """.trimIndent()
@@ -263,7 +263,7 @@ private val TRIM_METHOD_DESCRIPTOR = RuntimeAbiCatalog.abi(TRIM_RUNTIME_CALL).re
 private val ITEM_BIND_BEFORE_METHOD_DESCRIPTOR =
     RuntimeAbiCatalog.abi(ITEM_BIND_BEFORE_RUNTIME_CALL).reference
 private val ITEM_BIND_METHOD_DESCRIPTOR = RuntimeAbiCatalog.abi(ITEM_BIND_RUNTIME_CALL).reference
-private const val ITEM_BIND_STOCK_REGISTER_COUNT = 16
-private const val ITEM_BIND_EXPANDED_REGISTER_COUNT = 19
-private const val ITEM_BIND_LEGACY_P0_REGISTER = 13
+private const val ITEM_BIND_STOCK_REGISTER_COUNT = 15
+private const val ITEM_BIND_EXPANDED_REGISTER_COUNT = 18
+private const val ITEM_BIND_LEGACY_P0_REGISTER = 12
 private const val ITEM_BIND_RETURN_COUNT = 5

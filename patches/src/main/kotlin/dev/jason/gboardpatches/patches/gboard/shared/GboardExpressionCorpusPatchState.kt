@@ -46,7 +46,7 @@ private const val EXPRESSION_CORPUS_MANAGER_DESCRIPTOR =
     "Lgtv;->a(Landroid/view/inputmethod/EditorInfo;Z)Lwfr;"
 private val EXPECTED_ACCESS_FLAGS = AccessFlags.PUBLIC.value or AccessFlags.FINAL.value
 private const val STOCK_FINGERPRINT =
-    "16e28c427db28420cefee20eb9540514abeb052611f217d573d162b51bd448bd"
+    "086e3ab57b3470afcdc43b3394114d2b8294ca818ca0863612b3524d3b40e89b"
 private const val CUSTOM_ONLY_FINGERPRINT =
     "eb76629f175f17385fbdea910d71428d3146b51c21b8d4a206c2763458374069"
 private const val TAB_ONLY_FINGERPRINT =

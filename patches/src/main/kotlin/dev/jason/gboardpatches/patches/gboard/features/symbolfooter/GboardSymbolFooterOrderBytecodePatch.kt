@@ -246,11 +246,11 @@ private const val FINAL_COLLECT_DESCRIPTOR =
         "(Lj$/util/stream/Collector;)Ljava/lang/Object;"
 private const val RECEIVER_LAST_USE_DESCRIPTOR =
     "Lgtt;-><init>(Lgtv;Landroid/view/inputmethod/EditorInfo;Z)V"
-private const val STOCK_REGISTER_COUNT = 15
-private const val PATCHED_REGISTER_COUNT = 18
-private const val LEGACY_P0_REGISTER = 12
-private const val LEGACY_P1_REGISTER = 13
-private const val LEGACY_P2_REGISTER = 14
-private const val PATCHED_P0_REGISTER = 15
-private const val PATCHED_P1_REGISTER = 16
-private const val PATCHED_P2_REGISTER = 17
+private const val STOCK_REGISTER_COUNT = 14
+private const val PATCHED_REGISTER_COUNT = 17
+private const val LEGACY_P0_REGISTER = 11
+private const val LEGACY_P1_REGISTER = 12
+private const val LEGACY_P2_REGISTER = 13
+private const val PATCHED_P0_REGISTER = 14
+private const val PATCHED_P1_REGISTER = 15
+private const val PATCHED_P2_REGISTER = 16

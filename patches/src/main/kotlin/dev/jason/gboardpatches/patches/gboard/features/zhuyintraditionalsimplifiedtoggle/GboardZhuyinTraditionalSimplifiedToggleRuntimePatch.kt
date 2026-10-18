@@ -24,7 +24,7 @@ private val POPUP_RUNTIME_CALL =
 private val POPUP_RUNTIME_ABI = RuntimeAbiCatalog.abi(POPUP_RUNTIME_CALL)
 private val POPUP_RUNTIME_REFERENCE = POPUP_RUNTIME_ABI.reference
 private const val GBOARD_18_0_3_POPUP_STOCK_FINGERPRINT =
-    "03ef5a453ac6c4657b72f805b603ca29708c4307cf69bc029d2a299692f49942"
+    "a847f644186bfcb892854d9c0a1471430174d5f3e7772081ef73fe09ae087f1e"
 private val POPUP_TARGET_ACCESS_FLAGS = AccessFlags.PUBLIC.value
 
 internal val gboardZhuyinTraditionalSimplifiedTogglePopupPatch = bytecodePatch(
