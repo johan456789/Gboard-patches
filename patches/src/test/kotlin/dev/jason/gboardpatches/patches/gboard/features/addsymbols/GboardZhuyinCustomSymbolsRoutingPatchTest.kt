@@ -90,13 +90,13 @@ class GboardZhuyinCustomSymbolsRoutingPatchTest {
             "\"Lcom/google/android/libraries/inputmethod/metadata/KeyboardDef;\"",
             "\"Lcom/google/android/libraries/inputmethod/metadata/ImeDef;\"",
             "\"Lpvl;\"",
-            "name = \"eL\"",
+            "name = \"eR\"",
             "\"Lcom/google/android/libraries/inputmethod/metadata/KeyboardViewDef;\"",
             "name = \"l\"",
             "name = \"k\"",
             "parameterTypes = listOf(\"Lwfr;\")",
-            "name = \"F\"",
             "name = \"E\"",
+            "name = \"D\"",
             "parameterTypes = listOf(\"Lgkm;\")",
         ).forEach { descriptor ->
             assertTrue("Missing Gboard 18.0.3 state descriptor: $descriptor", state.contains(descriptor))
@@ -118,7 +118,7 @@ class GboardZhuyinCustomSymbolsRoutingPatchTest {
             "private const val EMOTICON_RECYCLER_ADAPTER_CLASS = \"Ljdk;\"",
             "\"Ljed;\"",
             "parameterTypes = listOf(\"Lkr;\", \"I\")",
-            "name = \"gT\"",
+            "name = \"gV\"",
             "returnType = \"Lkr;\"",
             "check-cast v0, Lkr;",
         ).forEach { descriptor ->
@@ -196,7 +196,7 @@ class GboardZhuyinCustomSymbolsRoutingPatchTest {
 
         assertFalse(state.contains("HEADER_CALLBACK_BEFORE_DELEGATE"))
         assertTrue(state.contains("indexOfMethodCallOrThrow("))
-        assertTrue(state.contains("name = \"F\""))
+        assertTrue(state.contains("name = \"E\""))
         assertTrue(state.contains("HEADER_CALLBACK_DELEGATE.format(headerReceiverRegister)"))
         val headerDelegate = state.substringAfter("private val HEADER_CALLBACK_DELEGATE")
             .substringBefore("private val HEADER_START_EDGE_GUARD_DELEGATE")

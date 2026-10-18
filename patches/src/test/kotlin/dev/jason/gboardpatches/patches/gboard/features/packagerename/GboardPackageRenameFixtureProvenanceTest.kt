@@ -102,11 +102,11 @@ class GboardPackageRenameFixtureProvenanceTest {
             resources,
         )
         assertEquals(
-            "38335296A8D56AE8DAD93E0728A33C31666A71476199333FD47914ACDF73467A",
+            "A0145A2424672D0F26B302495372F0FC983179CB244F065AE30A6BC5C60FBA31",
             sha256(normalizeLineEndings(readBytes(SETTINGS_FIXTURE))),
         )
         assertEquals(
-            "C4917C166457BE1D8628E8CE6C23FBE13B77507483D9E7BEB726FA6256588929",
+            "6561F3C0C077FBE7A4A5A231A56899E76FDB1F3F7949534F4B1A8F8C37C9AA6E",
             sha256(normalizeLineEndings(readBytes(SETTINGS_LEGACY_FIXTURE))),
         )
     }
