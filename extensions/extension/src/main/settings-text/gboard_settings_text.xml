@@ -241,8 +241,8 @@
         <translation locale="zh-Hant">按鍵、版面與符號</translation>
     </string>
     <string name="gboard_patches_group_keyboard_layout_summary">
-        <translation locale="en">Hyperspeed typing animation, globe key behavior, English uppercase, Zhuyin bottom row, and emoji, sticker, and GIF tab order.</translation>
-        <translation locale="zh-Hant">高速輸入動畫、地球鍵、英文大小寫、注音底排與表情符號、貼圖及 GIF 分頁排序。</translation>
+        <translation locale="en">Globe key behavior, English uppercase, Zhuyin bottom row, and emoji, sticker, and GIF tab order.</translation>
+        <translation locale="zh-Hant">地球鍵、英文大小寫、注音底排與表情符號、貼圖及 GIF 分頁排序。</translation>
     </string>
     <string name="gboard_patches_group_keyboard_header_summary">
         <translation locale="en"></translation>
