@@ -28,16 +28,16 @@ public final class owd {
     }
 
     public otk a(oth actionType) {
-        return h(actionType);
+        return g(actionType);
     }
 
-    public otk h(oth actionType) {
+    public otk g(oth actionType) {
         return actions.get(actionType);
     }
 
     public otk i(oth actionType) {
-        otk exact = h(actionType);
-        return exact != null ? exact : h(oth.PRESS);
+        otk exact = g(actionType);
+        return exact != null ? exact : g(oth.PRESS);
     }
 
     public EnumMap<oth, otk> copyActions() {
