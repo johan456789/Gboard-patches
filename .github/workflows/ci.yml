@@ -52,3 +52,24 @@ jobs:
           GITHUB_ACTOR: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.MORPHE_PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
         run: ./gradlew :patches:test :extensions:extension:test
+
+      - name: Generate patches list
+        env:
+          GITHUB_ACTOR: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.MORPHE_PACKAGES_TOKEN || secrets.GITHUB_TOKEN }}
+        run: ./gradlew generatePatchesList
+
+      - name: Upload patches list
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: patches-list
+          path: patches-list.json
+          if-no-files-found: error
+
+      - name: Check patches-list.json is committed and up to date
+        run: |
+          if ! git diff --exit-code -- patches-list.json; then
+            echo "::error::patches-list.json is stale; run ./gradlew generatePatchesList and commit it"
+            exit 1
+          fi
