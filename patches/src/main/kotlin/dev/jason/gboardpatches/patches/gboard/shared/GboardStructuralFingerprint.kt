@@ -97,12 +97,5 @@ internal fun MutableMethod.gboardStructuralFingerprint(
     val digest = MessageDigest.getInstance("SHA-256")
         .digest(canonical.toByteArray(StandardCharsets.UTF_8))
         .joinToString("") { byte -> "%02x".format(byte) }
-    // TEMP-PORT-DEBUG: remove before release.
-    if (System.getenv("GBOARD_FP_DUMP") != null) {
-        System.err.println("GBOARD_FP $definingClass->$name start=$startInstructionIndex $digest")
-        if (System.getenv("GBOARD_FP_DUMP") == "$definingClass->$name") {
-            System.err.println("GBOARD_FP_CANONICAL_BEGIN\n$canonical\nGBOARD_FP_CANONICAL_END")
-        }
-    }
     return digest
 }
