@@ -3,6 +3,7 @@
   "versionCode": 176027080,
   "sourcePackage": "com.google.android.inputmethod.latin",
   "sourceArtifact": "gboard-18.4.1-x86_64.apkm",
+  "sourceArtifactType": "split APK bundle (base com.android.stamp.type = STAMP_TYPE_DISTRIBUTION_APK, requiredSplitTypes = base__density)",
   "extraction": "aapt2 2.20-15087165 dump xmltree <apk> --file AndroidManifest.xml; binaryManifestSha256 is the SHA-256 of the AndroidManifest.xml entry inside each APK",
   "packageRenameArtifactPolicy": "The resource patch transforms only the decoded base AndroidManifest.xml. A renamed output must be a standalone APK and must not be installed with the original-package split APKs.",
   "apks": [

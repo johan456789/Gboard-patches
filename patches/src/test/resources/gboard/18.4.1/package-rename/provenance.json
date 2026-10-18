@@ -3,6 +3,7 @@
   "targetVersion": "18.4.1.985164140-release-arm64-v8a",
   "targetApk": "gboard-18.4.1-arm64.apk",
   "targetApkSource": "APKMirror arm64 APK download, Google-signed, versionCode 176027078",
+  "targetApkArtifactType": "standalone APK (com.android.stamp.type = STAMP_TYPE_STANDALONE_APK)",
   "targetApkSha256": "797652F9BF89BB0BF2015A270E715E7BF5F89150891FC74F7AD40C163D3DAC75",
   "extraction": "jadx 1.5.6 -s -d out gboard-18.4.1-arm64.apk",
   "decodedManifest": "resources/AndroidManifest.xml",
@@ -14,10 +15,12 @@
   "settingsSources": [
     {
       "path": "res/xml/settings.xml",
+      "apkEntry": "res/B_o.xml",
       "sha256": "E82ECBD2BC4EC46915F6F82ACE53AA468EE23AD691FC5C470E4A4FCF71413A55"
     },
     {
       "path": "res/xml/settings_legacy.xml",
+      "apkEntry": "res/IeH.xml",
       "sha256": "79A03A1581DF3F216B76289B91A121E9AB4767A8738758D12757E1B63CE6EE95"
     }
   ],
@@ -32,6 +35,7 @@
     },
     {
       "path": "res/xml/_0_resource_name_obfuscated_res_0x7f170022.xml",
+      "apkEntry": "res/jyy.xml",
       "sha256": "EDE5CC6D50476B326A02E4E7DF1FD509AECDE5FE8590919B86490358B5A91845"
     }
   ]
