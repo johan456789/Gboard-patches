@@ -860,7 +860,7 @@ private val ENGLISH_HELPER_METHODS by lazy { setOf(
         listOf(SOFT_KEY_VIEW_TYPE, "F", "F"),
         "Z",
         AccessFlags.PRIVATE.value or AccessFlags.FINAL.value,
-        "376f69ad84e0010204d729ce09f4092848775e875721797b3f6528723cc8b770",
+        "11dc7df31ef83580a07593d5b21d3bab329f5cb0b5628ed9122655cdd883ca45",
     ),
     HelperDescriptor(
         "jasondevClearEnglishAnchor",

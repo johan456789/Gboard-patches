@@ -98,7 +98,7 @@ internal fun MutableMethod.requireStockFingerprintUnlessPatched(
 }
 
 internal const val CUSTOM_THEME_PLUS_1803_FINGERPRINT =
-    "c93fe4d484e830e3d10dc1fda0aaf3d9467152757907723ba141bf9ae77d47aa"
+    "e1f336fae8f07c58dcd5b7c1a4442bc1d62bac08634d04fe70010787ff37abda"
 internal const val CUSTOM_THEME_RESULT_1803_FINGERPRINT =
     "9e1594b994de881acd8e2f42ec66db00a08bcd73a397c32f849d46b2625c8d6e"
 

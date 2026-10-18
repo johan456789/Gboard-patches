@@ -18,12 +18,13 @@ private const val VOICE_SETTINGS =
     "Lcom/google/android/apps/inputmethod/latin/preference/VoiceSettingsFragment;"
 
 private object GboardRambler1803Targets {
-    val layout = method(VOICE_SETTINGS, "aB", emptyList(), "I")
-    val setup = method(VOICE_SETTINGS, "ac", emptyList(), "V")
+    val layout = method(VOICE_SETTINGS, "aC", emptyList(), "I")
+    // 18.4.1 moves the selector setup out of ac() into aJ(), shared by ac() and aD().
+    val setup = method(VOICE_SETTINGS, "aJ", emptyList(), "V")
     val create = method(VOICE_SETTINGS, "f", listOf("Landroid/os/Bundle;"), "V")
     val selectionWrite = method(
         VOICE_SETTINGS,
-        "aD",
+        "aE",
         listOf(
             "Z",
             "Lqou;",

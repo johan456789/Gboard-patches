@@ -38,9 +38,9 @@ private const val LATIN_RUNTIME_PARAMS_TYPE = "Lyji;"
 private val LATIN_GLOBE_RUNTIME_CALL =
     RuntimeCallId.LATIN_GLOBE_KEY_IGNORE_INTERVAL_RUNTIME_APPLY_OVERRIDE
 private val LATIN_GLOBE_RUNTIME_DESCRIPTOR = RuntimeAbiCatalog.abi(LATIN_GLOBE_RUNTIME_CALL).reference
-private const val TARGET_METHOD_NAME = "O"
+private const val TARGET_METHOD_NAME = "K"
 private const val TARGET_DESCRIPTOR =
-    "$LATIN_IME_CLASS->O()$LATIN_RUNTIME_PARAMS_TYPE"
+    "$LATIN_IME_CLASS->K()$LATIN_RUNTIME_PARAMS_TYPE"
 private const val STOCK_REGISTER_COUNT = 11
 private const val STOCK_RETURN_REGISTER = 0
 private const val TARGET_INTERVAL_FIELD = "Lyji;->h:F"

@@ -48,7 +48,8 @@ internal object GboardEditingAccessPoints1803Targets {
             }
             check(method.implementation != null) { "Missing body: ${target.reference}" }
         }
-        listOf("d", "e").forEach { name ->
+        // 18.4.1 builders keep only the label field; the content description was removed.
+        listOf("d").forEach { name ->
             val field = GboardFieldTarget("Lmnb;", name, "Ljava/lang/String;").resolve(context)
             check(!AccessFlags.STATIC.isSet(field.accessFlags)) { "Unexpected builder field: $name" }
         }
