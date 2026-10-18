@@ -1,3 +1,23 @@
+## Unreleased
+
+### 🐛 Bug Fixes
+
+* **Gboard:** retarget all patches to Gboard `18.4.1.985164140-release-arm64-v8a` (versionCode `176027078`), fixing the space-bar cursor swipe glitch introduced in `18.0.3`.
+
+### 🚀 Updated App Support
+
+* **Gboard:** support the official Gboard `18.4.1.985164140-release-arm64-v8a`.
+* **Gboard:** the `Hyperspeed Typing Animation` patch is unavailable on Gboard 18.4.1 because Google compiled out its `FlowModeDetector`.
+
+### 🐛 修復
+
+* **Gboard:** 將所有 Patch 重新對應至 Gboard `18.4.1.985164140-release-arm64-v8a`（versionCode `176027078`），修復 `18.0.3` 引入的空格鍵游標滑動手勢問題。
+
+### 🚀 支援版本更新
+
+* **Gboard:** 支援官方 Gboard `18.4.1.985164140-release-arm64-v8a`。
+* **Gboard:** `Hyperspeed Typing Animation` Patch 在 Gboard 18.4.1 上無法使用，因為 Google 已從該版本移除 `FlowModeDetector`。
+
 ## [3.12.0.2](https://github.com/johan456789/Gboard-patches/compare/v3.12.0.1...v3.12.0.2) (2026-10-17)
 
 ### 🐛 Bug Fixes

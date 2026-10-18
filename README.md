@@ -248,6 +248,8 @@ Enables the Quick Insert panel and toolbar access point.
   <summary><code>Hyperspeed Typing Animation</code></summary>
 
 Shows the animation during sustained fast typing with support for all keyboards.
+
+Not available on Gboard 18.4.1, because Google removed the Flow Mode detector from that build.
 </details>
 
 <details>
