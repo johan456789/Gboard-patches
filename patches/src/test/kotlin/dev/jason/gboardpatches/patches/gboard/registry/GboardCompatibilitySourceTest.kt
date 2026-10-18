@@ -73,7 +73,7 @@ class GboardCompatibilitySourceTest {
     }
 
     private companion object {
-        const val TARGET_VERSION = "18.0.3.954559732-release-arm64-v8a"
+        const val TARGET_VERSION = "18.4.1.985164140-release-arm64-v8a"
         const val GBOARD_PACKAGE = "com.google.android.inputmethod.latin"
         val EXPECTED_SIGNATURES = setOf(
             "7ce83c1b71f3d572fed04c8d40c5cb10ff75e6d87d9df6fbd53f0468c2905053",
