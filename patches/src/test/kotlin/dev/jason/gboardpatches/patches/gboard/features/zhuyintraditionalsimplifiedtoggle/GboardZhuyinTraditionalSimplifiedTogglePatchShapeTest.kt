@@ -17,13 +17,13 @@ class GboardZhuyinTraditionalSimplifiedTogglePatchShapeTest {
             GboardVersionBindings.softKeyBind.reference,
         )
         assertEquals(
-            "Lpvf;->f(Lpvi;Lpmy;Lpnu;" +
+            "Lqbn;->f(Lqbp;Lpti;Lpue;" +
                 "Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;JZZIZJI)V",
             GboardVersionBindings.gestureDispatch.reference,
         )
-        assertEquals("Lpvf;->n:Lpvd;", GboardVersionBindings.gestureStockDelegateField.reference)
+        assertEquals("Lqbn;->n:Lqbl;", GboardVersionBindings.gestureStockDelegateField.reference)
         assertEquals(
-            "Lpvd;->h(Lpvi;Lpmy;Lpnu;" +
+            "Lqbl;->h(Lqbp;Lpti;Lpue;" +
                 "Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;JZZIZJI)V",
             GboardVersionBindings.gestureStockDispatch.reference,
         )
@@ -31,7 +31,7 @@ class GboardZhuyinTraditionalSimplifiedTogglePatchShapeTest {
             "Lcom/google/android/libraries/inputmethod/popup/BasicPopupView;->" +
                 "b(Lcom/google/android/libraries/inputmethod/widgets/SoftKeyboardView;" +
                 "Landroid/view/View;FFLcom/google/android/libraries/inputmethod/metadata/" +
-                "ActionDef;[IZ)Lpnu;",
+                "ActionDef;[IZ)Lpue;",
             GboardVersionBindings.zhuyinTogglePopupAction.reference,
         )
     }
@@ -62,7 +62,7 @@ class GboardZhuyinTraditionalSimplifiedTogglePatchShapeTest {
         assertTrue(source.contains("MutableClass(ownerClass)"))
         assertFalse(source.contains("ZHUYIN_TRADITIONAL_SIMPLIFIED_TOGGLE_RUNTIME_MAYBE_TOGGLE"))
         assertFalse(source.contains("jasondevDispatchOrToggle"))
-        assertFalse(source.contains("Lpvd;->h("))
+        assertFalse(source.contains("Lqbl;->h("))
     }
 
     @Test
@@ -73,7 +73,7 @@ class GboardZhuyinTraditionalSimplifiedTogglePatchShapeTest {
         assertTrue(source.contains("ZHUYIN_TRADITIONAL_SIMPLIFIED_TOGGLE_RUNTIME_PATCH_POPUP_ACTION"))
         assertTrue(source.contains("PopupRegisterLayout.fromBinding()"))
         assertFalse(source.contains("move-result-object p5"))
-        assertFalse(source.contains("check-cast p5, Lotk;"))
+        assertFalse(source.contains("check-cast p5, Lozw;"))
         assertTrue(source.contains("dependsOn(gboardPatchesExtensionCarrierPatch)"))
         assertFalse(source.contains("SoftKeyboardView;->z"))
         assertFalse(source.contains("name = \"z\""))
@@ -92,8 +92,8 @@ class GboardZhuyinTraditionalSimplifiedTogglePatchShapeTest {
         )
 
         listOf(
-            "Loaa;", "Loql;", "Lnzv;", "Lnxj;", "Lnxi;", "Lnye;", "Lnxl;", "Lnyf;",
-            "0x7f0b23fd", "0x7f140969", "Lofi;", "Lofk;"
+            "Lots;", "Loww;", "Lofw;", "Lodl;", "Lodk;", "Loef;", "Lodn;", "Loeg;",
+            "0x7f0b23fd", "0x7f140969", "Lolu;", "Lolw;"
         ).forEach { stale ->
             assertFalse("Found stale toggle token $stale", combined.contains(stale))
         }

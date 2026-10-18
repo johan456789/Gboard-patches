@@ -131,8 +131,8 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Object initialState = new Object();
         FakeContext context = new FakeContext();
         FakePreferences preferences = new FakePreferences();
-        preferences.values.put(0x7f140971, Boolean.TRUE);
-        preferences.values.put(0x7f140972, Boolean.FALSE);
+        preferences.values.put(0x7f1408b0, Boolean.TRUE);
+        preferences.values.put(0x7f1408b1, Boolean.FALSE);
         FakePreferenceFactory.preferences = preferences;
         FakePreferenceController controller = new FakePreferenceController();
 
@@ -148,10 +148,10 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
                 preferenceRead,
                 setAvailable,
                 setChecked));
-        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f140971));
-        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f140972));
-        Assert.assertEquals(Boolean.TRUE, controller.checked.get(0x7f140971));
-        Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f140972));
+        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f1408b0));
+        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f1408b1));
+        Assert.assertEquals(Boolean.TRUE, controller.checked.get(0x7f1408b0));
+        Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f1408b1));
 
         assertInitialVoiceSettingsUnchanged(
                 maybeRestore,
@@ -219,8 +219,8 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Object initialState = new Object();
         FakeContext context = new FakeContext();
         FakePreferences preferences = new FakePreferences();
-        preferences.values.put(0x7f140971, Boolean.TRUE);
-        preferences.values.put(0x7f140972, Boolean.TRUE);
+        preferences.values.put(0x7f1408b0, Boolean.TRUE);
+        preferences.values.put(0x7f1408b1, Boolean.TRUE);
         FakePreferenceFactory.preferences = preferences;
 
         for (int failingCall = 1; failingCall <= 4; failingCall++) {
@@ -239,10 +239,10 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
                     preferenceRead,
                     setAvailable,
                     setChecked));
-            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f140971));
-            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f140972));
-            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f140971));
-            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f140972));
+            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f1408b0));
+            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f1408b1));
+            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f1408b0));
+            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f1408b1));
         }
     }
 
@@ -276,8 +276,8 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Object initialState = new Object();
         FakeContext context = new FakeContext();
         FakePreferences preferences = new FakePreferences();
-        preferences.values.put(0x7f140971, Boolean.TRUE);
-        preferences.values.put(0x7f140972, Boolean.TRUE);
+        preferences.values.put(0x7f1408b0, Boolean.TRUE);
+        preferences.values.put(0x7f1408b1, Boolean.TRUE);
         FakePreferenceFactory.preferences = preferences;
         FakePreferenceController controller = new FakePreferenceController(1, 2);
 

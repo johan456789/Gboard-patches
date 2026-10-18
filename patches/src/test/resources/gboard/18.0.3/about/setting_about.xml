@@ -10,5 +10,5 @@
     <Preference android:persistent="false" android:title="@string/APKTOOL_RENAMED_0x7f140d17" android:key="@string/APKTOOL_RENAMED_0x7f140b27" android:summary="@string/APKTOOL_RENAMED_0x7f140d16">
         <intent android:targetPackage="" android:action="android.intent.action.MAIN" android:targetClass="com.google.android.libraries.social.licenses.LicenseMenuActivity" />
     </Preference>
-    <com.google.android.libraries.inputmethod.settings.widget.ExtendedPreference android:persistent="false" android:focusable="false" android:maxLines="100" android:title="@string/APKTOOL_RENAMED_0x7f140c2d" android:selectable="false" android:key="@string/APKTOOL_RENAMED_0x7f140c23" />
+    <com.google.android.libraries.inputmethod.settings.widget.ExtendedPreference android:persistent="false" android:focusable="false" android:maxLines="100" android:title="@string/APKTOOL_RENAMED_0x7f140c2d" android:selectable="false" android:key="@string/APKTOOL_RENAMED_0x7f140b2d" />
 </PreferenceScreen>

@@ -432,7 +432,7 @@ public final class GboardTopRowSwipeRuntimeTest {
                 "src/main/java/dev/jason/gboardpatches/extension/toprowswipe/"
                         + "GboardTopRowSwipeRuntimeSupport.java");
 
-        assertTrue(source.contains("PRIMARY_LABEL_VIEW_ID = 0x7f0b0651"));
+        assertTrue(source.contains("PRIMARY_LABEL_VIEW_ID = 0x7f0b05f3"));
         for (String targetType : List.of(
                 "pmy", "pnu", "pmz", "ppo", "pnt", "pvi", "pvf")) {
             assertTrue("missing target type " + targetType,

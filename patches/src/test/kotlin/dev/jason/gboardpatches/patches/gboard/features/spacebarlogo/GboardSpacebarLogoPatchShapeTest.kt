@@ -26,8 +26,8 @@ class GboardSpacebarLogoPatchShapeTest {
         assertTrue(source.contains("beforeDelegate()"))
         assertTrue(source.contains("afterDelegate()"))
         assertTrue(!source.contains("addInstructions"))
-        assertTrue(!source.contains("Lowd;"))
-        assertTrue(!source.contains("Loth;"))
+        assertTrue(!source.contains("Lpcp;"))
+        assertTrue(!source.contains("Lozt;"))
     }
 
     @Test

@@ -50,7 +50,7 @@ public final class GboardDeveloperOptionsSettingsFeatureTest {
                 "openRootEntry", GboardPatchesSettingsContract.FeatureHost.class);
         openRootEntry.invoke(feature, host);
 
-        Assert.assertEquals(0x7f140b4b, openedHeader.get());
+        Assert.assertEquals(0x7f140a69, openedHeader.get());
         Assert.assertFalse(openedIntermediateFeature.get());
     }
 

@@ -84,10 +84,10 @@ class GboardTopRowSwipePatchShapeTest {
     @Test
     fun `generated bindings drive all five exported top row anchors`() {
         assertEquals("Lcom/google/android/libraries/inputmethod/widgets/SoftKeyView;->r(Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;J)Z", GboardVersionBindings.softKeyBind.reference)
-        assertEquals("Lpvi;->B(Lcom/google/android/libraries/inputmethod/widgets/SoftKeyView;FFJI)V", GboardVersionBindings.pointerOwner.reference)
-        assertEquals("Lpvi;->s(J)V", GboardVersionBindings.pointerCancel.reference)
-        assertEquals("Lpvi;->C()V", GboardVersionBindings.pointerReset.reference)
-        assertEquals("Lpvf;->f(Lpvi;Lpmy;Lpnu;Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;JZZIZJI)V", GboardVersionBindings.gestureDispatch.reference)
+        assertEquals("Lqbp;->B(Lcom/google/android/libraries/inputmethod/widgets/SoftKeyView;FFJI)V", GboardVersionBindings.pointerOwner.reference)
+        assertEquals("Lqbp;->s(J)V", GboardVersionBindings.pointerCancel.reference)
+        assertEquals("Lqbp;->C()V", GboardVersionBindings.pointerReset.reference)
+        assertEquals("Lqbn;->f(Lqbp;Lpti;Lpue;Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;JZZIZJI)V", GboardVersionBindings.gestureDispatch.reference)
     }
 
     @Test
@@ -97,17 +97,17 @@ class GboardTopRowSwipePatchShapeTest {
             move/from16 v0, p2
             move/from16 v1, p3
             move-wide/from16 v11, p4
-            iget v2, p0, Lpvi;->a:I
-            iget-object v3, p0, Lpvi;->m:Lcom/google/android/libraries/inputmethod/widgets/SoftKeyView;
+            iget v2, p0, Lqbp;->a:I
+            iget-object v3, p0, Lqbp;->m:Lcom/google/android/libraries/inputmethod/widgets/SoftKeyView;
             move/from16 v13, p6
-            invoke-virtual {p0, v11, v12, v13}, Lpvi;->r(JI)V
-            invoke-direct {p0}, Lpvi;->ac()V
+            invoke-virtual {p0, v11, v12, v13}, Lqbp;->r(JI)V
+            invoke-direct {p0}, Lqbp;->ac()V
         """.trimIndent()
 
         assertTrue(targetLikeFixture.contains("move/from16 v0, p2"))
         assertTrue(targetLikeFixture.contains("move/from16 v1, p3"))
-        assertTrue(targetLikeFixture.contains("iget-object v3, p0, Lpvi;->m:"))
-        assertTrue(targetLikeFixture.indexOf("Lpvi;->r(JI)V") < targetLikeFixture.indexOf("Lpvi;->ac()V"))
+        assertTrue(targetLikeFixture.contains("iget-object v3, p0, Lqbp;->m:"))
+        assertTrue(targetLikeFixture.indexOf("Lqbp;->r(JI)V") < targetLikeFixture.indexOf("Lqbp;->ac()V"))
         assertTrue(
             TOP_ROW_SWIPE_POINTER_DELEGATE.contains(
                 "invoke-static {p0, p1, v3, v0, v1}, $TOP_ROW_SWIPE_RUNTIME_CLASS->maybeArmAndResolveTopRowOwner"
@@ -125,8 +125,8 @@ class GboardTopRowSwipePatchShapeTest {
         assertTrue(source.contains("GboardVersionBindings.gestureStockDispatch"))
         assertTrue(source.contains("jasondevDispatchWithTopRow"))
         assertTrue(source.contains("jasondevDispatchOrToggle"))
-        assertFalse(source.contains("Lpbj;"))
-        assertFalse(source.contains("Lpbh;"))
+        assertFalse(source.contains("Lphw;"))
+        assertFalse(source.contains("Lphu;"))
         assertFalse(source.contains("p13"))
     }
 

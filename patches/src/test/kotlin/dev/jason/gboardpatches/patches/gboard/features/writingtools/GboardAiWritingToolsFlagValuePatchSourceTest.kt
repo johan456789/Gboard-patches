@@ -23,7 +23,7 @@ class GboardAiWritingToolsFlagValuePatchSourceTest {
         assertTrue(patchSource.contains("findMutableMethodOrThrow"))
         assertFalse(patchSource.contains("FLAG_VALUE_CLASS"))
         assertFalse(constantsSource.contains("FLAG_VALUE_CLASS"))
-        assertFalse(constantsSource.contains("\"Lmky;\""))
+        assertFalse(constantsSource.contains("\"Lmqa;\""))
     }
 
     @Test

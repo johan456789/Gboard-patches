@@ -104,7 +104,7 @@ class GboardFlypySettingsResourcePatchTest {
     <SwitchPreferenceCompat
         android:persistent="true"
         android:title="@string/_0_resource_name_obfuscated_res_0x7f140d83"
-        android:key="@string/_0_resource_name_obfuscated_res_0x7f140a1b"/>
+        android:key="@string/_0_resource_name_obfuscated_res_0x7f140962"/>
     <SwitchPreferenceCompat
         android:persistent="true"
         android:title="@string/_0_resource_name_obfuscated_res_0x7f140cd8"
@@ -122,13 +122,13 @@ class GboardFlypySettingsResourcePatchTest {
 </resources>
 """
 
-        const val PINYIN_SETTINGS_TITLE_REF = "@string/string_0x7f140d41"
-        const val PINYIN_SCHEME_TITLE_REF = "@string/string_0x7f140d40"
-        const val PINYIN_SCHEME_KEY_REF = "@string/string_0x7f140b2e"
-        const val FULL_PINYIN_REF = "@string/string_0x7f140bc4"
-        const val DOUBLE_PINYIN_FLYPY_REF = "@string/string_0x7f140dff"
-        const val QUANPIN_VALUE_REF = "@string/string_0x7f1409a4"
-        const val FLYPY_VALUE_REF = "@string/string_0x7f1409a7"
+        const val PINYIN_SETTINGS_TITLE_REF = "@string/string_0x7f140c43"
+        const val PINYIN_SCHEME_TITLE_REF = "@string/string_0x7f140c42"
+        const val PINYIN_SCHEME_KEY_REF = "@string/string_0x7f140a4a"
+        const val FULL_PINYIN_REF = "@string/string_0x7f140ae0"
+        const val DOUBLE_PINYIN_FLYPY_REF = "@string/string_0x7f140cfc"
+        const val QUANPIN_VALUE_REF = "@string/string_0x7f1408e5"
+        const val FLYPY_VALUE_REF = "@string/string_0x7f1408e8"
         const val ENTRIES_REF = "@array/gboard_flypy_pinyin_scheme_entries"
         const val ENTRY_VALUES_REF = "@array/gboard_flypy_pinyin_scheme_entry_values"
     }

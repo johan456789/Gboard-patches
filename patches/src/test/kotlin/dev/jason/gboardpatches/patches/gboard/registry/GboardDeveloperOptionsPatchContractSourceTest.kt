@@ -69,7 +69,7 @@ class GboardDeveloperOptionsPatchContractSourceTest {
                     "host, TARGET_1803_HEADER_KEY_RESOURCE_ID)",
             ),
         )
-        assertTrue(feature.contains("0x7f140b4b"))
+        assertTrue(feature.contains("0x7f140a69"))
         assertFalse(feature.contains("openFeature("))
         assertFalse(feature.contains("DeveloperSettingsFragment"))
         assertFalse(feature.contains(":android:show_fragment"))

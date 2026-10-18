@@ -26,7 +26,7 @@ public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeSourceTest {
         assertTrue(source.contains("private static final String GESTURE_DISPATCHER_CLASS = \"pvf\";"));
         assertTrue(source.contains("private static final String PREFERENCE_CLASS = \"qhy\";"));
         assertTrue(source.contains("private static final String PREFERENCE_BASE_CLASS = \"cdl\";"));
-        assertTrue(source.contains("public static final int PREFERENCE_KEY_RES_ID = 0x7f140a1b;"));
+        assertTrue(source.contains("public static final int PREFERENCE_KEY_RES_ID = 0x7f140962;"));
         assertTrue(source.contains("getDeclaredMethod(\"r\", actionSetClass, long.class)"));
         assertTrue(source.contains("getDeclaredField(\"e\")"));
         assertTrue(source.contains("getDeclaredField(\"f\")"));

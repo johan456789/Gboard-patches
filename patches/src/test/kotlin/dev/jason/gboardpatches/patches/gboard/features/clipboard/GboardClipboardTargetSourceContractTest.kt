@@ -15,12 +15,12 @@ class GboardClipboardTargetSourceContractTest {
     fun `old token wrong member signature and missing target mutations fail`() {
         val stock = loadSources()
         listOf(
-            stock.mutate("Lfik;", "Leun;"),
-            stock.mutate("Lfjv;", "Levu;"),
-            stock.mutate("Lfjk;", "Levn;"),
+            stock.mutate("Lfkx;", "Levy;"),
+            stock.mutate("Lfmg;", "Levu;"),
+            stock.mutate("Lflx;", "Lewy;"),
             stock.mutate("Lkr;", "Lkl;"),
             stock.mutate("name = \"l\"", "name = \"k\""),
-            stock.mutate("0x7f1409d3", "0x7f14094c"),
+            stock.mutate("0x7f140919", "0x7f14094c"),
             stock.mutate("\"fih\"", "\"euk\""),
             stock.mutate("\"fij\"", "\"eum\""),
             stock.mutate("receiver.getClass(), \"w\"", "receiver.getClass(), \"y\""),
@@ -28,7 +28,7 @@ class GboardClipboardTargetSourceContractTest {
             stock.mutate("name = \"call\"", "name = \"run\""),
             stock.mutate("name = \"g\"", "name = \"call\""),
             stock.mutate("Object dataHandler = receiver;", "Object dataHandler = null;"),
-            stock.mutate("CLIPBOARD_LOADER_CALLABLE_CLASS = \"Lfik;\"", ""),
+            stock.mutate("CLIPBOARD_LOADER_CALLABLE_CLASS = \"Lfkx;\"", ""),
         ).forEachIndexed { index, mutation ->
             assertThrows("mutation $index", IllegalStateException::class.java) {
                 validate(mutation)
@@ -37,7 +37,7 @@ class GboardClipboardTargetSourceContractTest {
     }
 
     private fun validate(sources: Sources) {
-        requireAll(sources.patchOptions, "Lfik;", "Lfjv;", "Lfjk;", "Lkr;")
+        requireAll(sources.patchOptions, "Lfkx;", "Lfmg;", "Lflx;", "Lkr;")
         requireAll(sources.loaderPatch,
             "CLIPBOARD_LOADER_CALLABLE_CLASS", "name = \"call\"", "emptyList()")
         requireAll(sources.prunePatch,
@@ -54,7 +54,7 @@ class GboardClipboardTargetSourceContractTest {
             "CLIPBOARD_LOADER_CALLABLE_CLASS = \"fik\"",
             "CLIPBOARD_ADAPTER_CLASS = \"fjk\"",
             "CLIPBOARD_VIEW_HOLDER_CLASS = \"fji\"",
-            "LAST_VISIBLE_TIMESTAMP_PREF_RES_ID = 0x7f1409d3",
+            "LAST_VISIBLE_TIMESTAMP_PREF_RES_ID = 0x7f140919",
             "receiver.getClass(), \"w\"",
             "resolveClass(classLoader, \"fil\")",
             "resolveClass(classLoader, \"fjv\")",
@@ -89,7 +89,7 @@ class GboardClipboardTargetSourceContractTest {
             "clearCountdownBinding(textView, Long.valueOf(clipId))")
 
         val forbidden = listOf(
-            "Leun;", "Levu;", "Levn;", "Lkl;", "0x7f14094c",
+            "Levy;", "Levu;", "Lewy;", "Lkl;", "0x7f14094c",
             "\"eln\"", "\"emr\"", "\"emk\"", "\"elo\"", "\"emy\"",
             "\"elk\"", "\"elm\"", "\"emo\"", "\"oql\"", "\"bze\"",
             "name = \"k\"", "receiver.getClass(), \"y\"",

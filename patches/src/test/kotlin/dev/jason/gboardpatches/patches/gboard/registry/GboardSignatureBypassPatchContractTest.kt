@@ -54,11 +54,11 @@ class GboardSignatureBypassPatchContractTest {
     @Test
     fun `production source uses only exact rpv normal return patch`() {
         val source = readSource(SIGNATURE_PATCH_PATH)
-        assertTrue(source.contains("Lrpv;"))
-        assertTrue(source.contains("Lrox;->b:Z"))
+        assertTrue(source.contains("Lryi;"))
+        assertTrue(source.contains("Lrxk;->b:Z"))
         assertTrue(source.contains("findGboardSignatureBypassTargetOrThrow"))
         assertTrue(source.contains("applyGboardSignatureBypass"))
-        assertFalse(source.contains("Lqvi;"))
+        assertFalse(source.contains("Lrcp;"))
         assertFalse(source.contains("Lpuo;"))
         assertFalse(source.contains("17.0.10"))
         assertFalse(source.contains("addInstructions(0, SIGNATURE_BYPASS_DELEGATE)"))

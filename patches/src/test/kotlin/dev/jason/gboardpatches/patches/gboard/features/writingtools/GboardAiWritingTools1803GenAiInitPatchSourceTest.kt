@@ -15,10 +15,10 @@ class GboardAiWritingTools1803GenAiInitPatchSourceTest {
             ),
         )
 
-        assertTrue(source.contains("classType = \"Lifn;\""))
+        assertTrue(source.contains("classType = \"Lijm;\""))
         assertTrue(source.contains("name = \"c\""))
-        assertTrue(source.contains("Lidr;->j:Lknm;"))
-        assertTrue(source.contains("Lunb;->cH(Lknm;)Z"))
+        assertTrue(source.contains("Liho;->j:Lksm;"))
+        assertTrue(source.contains("Luwm;->cP(Lksm;)Z"))
         assertTrue(
             source.contains(
                 "AI_WRITING_TOOLS_VOICE_COMMAND_RUNTIME_APPLY_GEN_AI_INIT_CLIENT_TYPE",
@@ -37,7 +37,7 @@ class GboardAiWritingTools1803GenAiInitPatchSourceTest {
         )
 
         assertTrue(source.contains("name = \"d\""))
-        assertTrue(source.contains("Lunb;->cG(Lknm;)Z"))
+        assertTrue(source.contains("Luwm;->cO(Lksm;)Z"))
         assertTrue(
             source.contains(
                 "AI_WRITING_TOOLS_VOICE_COMMAND_RUNTIME_APPLY_SMART_EDIT_INIT_CLIENT_TYPE",

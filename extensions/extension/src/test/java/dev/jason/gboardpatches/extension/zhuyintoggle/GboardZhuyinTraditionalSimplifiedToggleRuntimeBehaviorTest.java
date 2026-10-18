@@ -25,7 +25,7 @@ import org.robolectric.RuntimeEnvironment;
 
 @RunWith(RobolectricTestRunner.class)
 public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeBehaviorTest {
-    private static final int TOGGLE_KEY_ID = 0x7f0b296a;
+    private static final int TOGGLE_KEY_ID = 0x7f0b28c3;
 
     private Context context;
 

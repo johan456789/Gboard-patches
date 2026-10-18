@@ -50,7 +50,7 @@ public final class GboardAddSymbolsSoftKeyRuntimeTest {
 
         Assert.assertFalse(source.contains("0x7f0e05fd"));
         Assert.assertFalse(source.contains("0x7f080576"));
-        Assert.assertTrue(source.contains("POPUP_LAYOUT_ATTRIBUTE_RES_ID = 0x7f040296"));
+        Assert.assertTrue(source.contains("POPUP_LAYOUT_ATTRIBUTE_RES_ID = 0x7f04027f"));
         Assert.assertTrue(source.contains("handles.popupLayout(action) == 0"));
     }
 

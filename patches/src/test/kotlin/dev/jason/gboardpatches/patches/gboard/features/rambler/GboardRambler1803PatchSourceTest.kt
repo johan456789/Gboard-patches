@@ -20,16 +20,16 @@ class GboardRambler1803PatchSourceTest {
         )
 
         assertTrue(source.contains("VoiceSettingsFragment"))
-        assertTrue(source.contains("method(\"Lmqk;\", \"a\""))
-        assertTrue(source.contains("method(\"Lfbl;\", \"hN\""))
+        assertTrue(source.contains("method(\"Lmvq;\", \"a\""))
+        assertTrue(source.contains("method(\"Lfde;\", \"hN\""))
         assertEquals(6, Regex("findMutableMethodOrThrow\\(").findAll(source).count())
         assertFalse(source.contains("ramblerSwitcherLaunch"))
         assertFalse(source.contains("ramblerSwitcherFallback"))
         assertFalse(source.contains("ramblerSessionBuilder"))
-        assertFalse(source.contains("Lhng;"))
+        assertFalse(source.contains("Lhpz;"))
         assertFalse(source.contains("Lhoa;"))
-        assertFalse(source.contains("Ljmy;"))
-        assertFalse(source.contains("Ljmz;"))
+        assertFalse(source.contains("Ljrl;"))
+        assertFalse(source.contains("Ljrm;"))
     }
 
     private fun repositoryRoot(): Path {
