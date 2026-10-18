@@ -10,23 +10,23 @@ import java.nio.file.Path;
 public final class GboardCustomThemeVersionBindingsTest {
     @Test
     public void generatedRuntimeBindingsMatchReviewed1803Contract() {
-        Assert.assertEquals("18.0.3", GboardCustomThemeVersionBindings.TARGET_VERSION);
-        Assert.assertEquals("jxr", GboardCustomThemeVersionBindings.PLUS_CLASS);
+        Assert.assertEquals("18.4.1", GboardCustomThemeVersionBindings.TARGET_VERSION);
+        Assert.assertEquals("kcl", GboardCustomThemeVersionBindings.PLUS_CLASS);
         Assert.assertEquals("f", GboardCustomThemeVersionBindings.PLUS_METHOD);
-        Assert.assertEquals("jxu", GboardCustomThemeVersionBindings.ADAPTER_CLASS);
+        Assert.assertEquals("kco", GboardCustomThemeVersionBindings.ADAPTER_CLASS);
         Assert.assertEquals(
                 "com.google.android.apps.inputmethod.libs.theme.listing.ThemeListingFragment",
                 GboardCustomThemeVersionBindings.RESULT_CLASS);
         Assert.assertEquals("X", GboardCustomThemeVersionBindings.RESULT_METHOD);
         Assert.assertEquals("a", GboardCustomThemeVersionBindings.FRAGMENT_PEER_FIELD);
-        Assert.assertEquals("jxm", GboardCustomThemeVersionBindings.PEER_CLASS);
+        Assert.assertEquals("kcf", GboardCustomThemeVersionBindings.PEER_CLASS);
         Assert.assertEquals("b", GboardCustomThemeVersionBindings.PEER_CONTEXT_FIELD);
         Assert.assertEquals("r", GboardCustomThemeVersionBindings.PEER_LAUNCHER_FIELD);
         Assert.assertEquals("i", GboardCustomThemeVersionBindings.PEER_RESULT_METHOD);
-        Assert.assertEquals("snd", GboardCustomThemeVersionBindings.LAUNCHER_CLASS);
-        Assert.assertEquals("K", GboardCustomThemeVersionBindings.LAUNCHER_METHOD);
-        Assert.assertEquals("qzi", GboardCustomThemeVersionBindings.VALIDATOR_CLASS);
-        Assert.assertEquals("g", GboardCustomThemeVersionBindings.VALIDATOR_METHOD);
+        Assert.assertEquals("skd", GboardCustomThemeVersionBindings.LAUNCHER_CLASS);
+        Assert.assertEquals("H", GboardCustomThemeVersionBindings.LAUNCHER_METHOD);
+        Assert.assertEquals("rgs", GboardCustomThemeVersionBindings.VALIDATOR_CLASS);
+        Assert.assertEquals("h", GboardCustomThemeVersionBindings.VALIDATOR_METHOD);
     }
 
     @Test
@@ -40,8 +40,8 @@ public final class GboardCustomThemeVersionBindingsTest {
         Assert.assertFalse(runtime.contains("getDeclaredField(\"b\")"));
         Assert.assertFalse(runtime.contains("getDeclaredField(\"r\")"));
         Assert.assertFalse(runtime.contains("getDeclaredMethod(\"i\""));
-        Assert.assertFalse(runtime.contains("getDeclaredMethod(\"K\""));
-        Assert.assertFalse(installer.contains("Class.forName(\"qzi\""));
+        Assert.assertFalse(runtime.contains("getDeclaredMethod(\"H\""));
+        Assert.assertFalse(installer.contains("Class.forName(\"rgs\""));
         Assert.assertTrue(adapter.contains("GboardCustomThemeVersionBindings"));
     }
 

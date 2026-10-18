@@ -32,7 +32,7 @@ public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeBehaviorTest {
     @Before
     public void resetFixtureState() throws Exception {
         context = RuntimeEnvironment.getApplication();
-        invokeStatic("qhy", "reset");
+        invokeStatic("qou", "reset");
         GboardZhuyinTraditionalSimplifiedToggleRuntime.VISIBLE_TOGGLE_KEYS.clear();
     }
 
@@ -151,7 +151,7 @@ public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeBehaviorTest {
                 .getMethod("setThrowOnWrite", boolean.class)
                 .invoke(preferences, Boolean.TRUE);
         Object dispatcher = newDispatcher(preferences);
-        Object action = enumValue("pmy", "SLIDE_UP");
+        Object action = enumValue("pti", "SLIDE_UP");
         Object metadata = newMetadata(TOGGLE_KEY_ID);
 
         assertFalse(GboardZhuyinTraditionalSimplifiedToggleRuntime.maybeToggle(
@@ -183,7 +183,7 @@ public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeBehaviorTest {
 
         Object dispatcher = newDispatcher(preferences());
         assertTrue(GboardZhuyinTraditionalSimplifiedToggleRuntime.maybeToggle(
-                dispatcher, enumValue("pmy", "SLIDE_UP"), newMetadata(TOGGLE_KEY_ID)));
+                dispatcher, enumValue("pti", "SLIDE_UP"), newMetadata(TOGGLE_KEY_ID)));
 
         assertEquals(2, GboardZhuyinToggleTargetFixture.bindCount(successfulView));
         assertEquals(101L, GboardZhuyinToggleTargetFixture.bindToken(successfulView));
@@ -211,13 +211,13 @@ public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeBehaviorTest {
     }
 
     private Object newDispatcher(Object preferences) throws Exception {
-        return targetClass("pvf")
-                .getConstructor(Context.class, targetClass("qhy"))
+        return targetClass("qbn")
+                .getConstructor(Context.class, targetClass("qou"))
                 .newInstance(context, preferences);
     }
 
     private Object preferences() throws Exception {
-        return targetClass("qhy").getMethod("instance").invoke(null);
+        return targetClass("qou").getMethod("instance").invoke(null);
     }
 
     private void assertToggleAction(Object metadata, String label) throws Exception {
@@ -233,10 +233,10 @@ public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeBehaviorTest {
     }
 
     private Object action(Object metadata, String actionName) throws Exception {
-        Class<?> actionTypeClass = targetClass("pmy");
+        Class<?> actionTypeClass = targetClass("pti");
         return metadata.getClass()
-                .getMethod("h", actionTypeClass)
-                .invoke(metadata, enumValue("pmy", actionName));
+                .getMethod("g", actionTypeClass)
+                .invoke(metadata, enumValue("pti", actionName));
     }
 
     private String firstLabel(Object action) throws Exception {

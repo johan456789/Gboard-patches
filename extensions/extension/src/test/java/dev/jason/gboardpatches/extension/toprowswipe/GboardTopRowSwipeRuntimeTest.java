@@ -434,7 +434,7 @@ public final class GboardTopRowSwipeRuntimeTest {
 
         assertTrue(source.contains("PRIMARY_LABEL_VIEW_ID = 0x7f0b05f3"));
         for (String targetType : List.of(
-                "pmy", "pnu", "pmz", "ppo", "pnt", "pvi", "pvf")) {
+                "pti", "pue", "ptj", "pvz", "pud", "qbp", "qbn")) {
             assertTrue("missing target type " + targetType,
                     source.contains("\"" + targetType + "\""));
         }
@@ -448,7 +448,7 @@ public final class GboardTopRowSwipeRuntimeTest {
         assertTrue(source.contains("getDeclaredField(\"f\")"));
         assertTrue(source.contains("getDeclaredField(\"g\")"));
         assertTrue(source.contains("getDeclaredField(\"h\")"));
-        assertTrue(source.contains("getDeclaredMethod(\"h\", actionTypeClass)"));
+        assertTrue(source.contains("getDeclaredMethod(\"g\", actionTypeClass)"));
         assertTrue(source.replaceAll("\\s+", " ").contains(
                 "getDeclaredMethod(\"q\", int.class, intentionClass, Object.class)"));
     }
