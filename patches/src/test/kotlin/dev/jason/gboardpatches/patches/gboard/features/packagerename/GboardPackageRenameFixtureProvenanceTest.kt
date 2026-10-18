@@ -95,9 +95,9 @@ class GboardPackageRenameFixtureProvenanceTest {
         assertEquals(
             mapOf(
                 "res/xml/settings.xml" to
-                    "4441821A8091B0F14B98E5B1D60FAE3D7A4464F7394F90D3D03BE85C639D8B2E",
+                    "A0145A2424672D0F26B302495372F0FC983179CB244F065AE30A6BC5C60FBA31",
                 "res/xml/settings_legacy.xml" to
-                    "D556A6D2469893FBAB00EB74BDD722921CF4FAC162017A1AC93672CD039015A4",
+                    "6561F3C0C077FBE7A4A5A231A56899E76FDB1F3F7949534F4B1A8F8C37C9AA6E",
             ),
             resources,
         )
