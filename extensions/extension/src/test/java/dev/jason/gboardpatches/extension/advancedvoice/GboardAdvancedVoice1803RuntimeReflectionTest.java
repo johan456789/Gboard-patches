@@ -343,7 +343,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Method launchMethod = FakeCoroutineLauncher.class.getDeclaredMethod(
                 "aq",
                 FakeMddScope.class,
-                FakeCoroutineContext.class,
+                int.class,
                 FakeMddRequest.class,
                 int.class);
         launchMethod.setAccessible(true);
@@ -371,7 +371,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
 
         Assert.assertEquals(1, FakeCoroutineLauncher.launchCount.get());
         Assert.assertSame(provider.d, FakeCoroutineLauncher.scope);
-        Assert.assertNull(FakeCoroutineLauncher.context);
+        Assert.assertEquals(0, FakeCoroutineLauncher.startMode);
         Assert.assertEquals(3, FakeCoroutineLauncher.mode);
         Assert.assertSame(provider, FakeCoroutineLauncher.request.provider);
         Assert.assertEquals("zh-TW",
@@ -425,7 +425,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Method failingLaunchMethod = FakeFailingCoroutineLauncher.class.getDeclaredMethod(
                 "aq",
                 FakeMddScope.class,
-                FakeCoroutineContext.class,
+                int.class,
                 FakeMddRequest.class,
                 int.class);
         failingLaunchMethod.setAccessible(true);
@@ -452,7 +452,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Method workingLaunchMethod = FakeCoroutineLauncher.class.getDeclaredMethod(
                 "aq",
                 FakeMddScope.class,
-                FakeCoroutineContext.class,
+                int.class,
                 FakeMddRequest.class,
                 int.class);
         workingLaunchMethod.setAccessible(true);
@@ -617,9 +617,6 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
     private static final class FakeMddScope {
     }
 
-    private static final class FakeCoroutineContext {
-    }
-
     private static final class FakeContinuation {
     }
 
@@ -641,18 +638,18 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
     private static final class FakeCoroutineLauncher {
         private static final AtomicInteger launchCount = new AtomicInteger();
         private static FakeMddScope scope;
-        private static FakeCoroutineContext context;
         private static FakeMddRequest request;
+        private static int startMode;
         private static int mode;
 
         private static Object aq(
                 FakeMddScope launchScope,
-                FakeCoroutineContext launchContext,
+                int launchStartMode,
                 FakeMddRequest launchRequest,
                 int launchMode) {
             launchCount.incrementAndGet();
             scope = launchScope;
-            context = launchContext;
+            startMode = launchStartMode;
             request = launchRequest;
             mode = launchMode;
             return new Object();
@@ -661,7 +658,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         private static void reset() {
             launchCount.set(0);
             scope = null;
-            context = null;
+            startMode = 0;
             request = null;
             mode = 0;
         }
@@ -670,7 +667,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
     private static final class FakeFailingCoroutineLauncher {
         private static Object aq(
                 FakeMddScope launchScope,
-                FakeCoroutineContext launchContext,
+                int launchStartMode,
                 FakeMddRequest launchRequest,
                 int launchMode) {
             throw new IllegalStateException("launch failed");

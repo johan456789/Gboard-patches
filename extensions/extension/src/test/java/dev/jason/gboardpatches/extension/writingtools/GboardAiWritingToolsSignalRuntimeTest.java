@@ -27,9 +27,9 @@ public final class GboardAiWritingToolsSignalRuntimeTest {
         GboardAiWritingToolsSettings.ensureDefaults(preferences);
         applicationContextField().set(null, new SharedPreferencesContext(preferences));
 
-        Object shownInBar = Class.forName("gvu").getField("a").get(null);
+        Object shownInBar = Class.forName("gyh").getField("a").get(null);
         Object unsupervised = Class.forName("lvi").getField("b").get(null);
-        Object minorsPassed = Class.forName("gqd").getField("a").get(null);
+        Object minorsPassed = Class.forName("gsq").getField("b").get(null);
 
         Assert.assertTrue(GboardAiWritingToolsRuntime.applySignalResult(shownInBar, false));
         Assert.assertTrue(GboardAiWritingToolsRuntime.applySignalResult(unsupervised, false));
@@ -48,7 +48,7 @@ public final class GboardAiWritingToolsSignalRuntimeTest {
         GboardAiWritingToolsSettings.ensureDefaults(preferences);
         GboardAiWritingToolsSettings.writeEnabled(preferences, false);
         applicationContextField().set(null, new SharedPreferencesContext(preferences));
-        Object shownInBar = Class.forName("gvu").getField("a").get(null);
+        Object shownInBar = Class.forName("gyh").getField("a").get(null);
 
         Assert.assertFalse(GboardAiWritingToolsRuntime.applySignalResult(shownInBar, false));
     }
@@ -56,7 +56,7 @@ public final class GboardAiWritingToolsSignalRuntimeTest {
     @Test
     public void signalSpecificationsUseExact1803Fields() {
         Assert.assertArrayEquals(
-                new String[]{"gvu#a", "lvi#b", "gqd#a"},
+                new String[]{"gyh#a", "lvi#b", "gsq#b"},
                 GboardAiWritingToolsRuntime.forcedSignalTargetSpecsForTesting());
     }
 
