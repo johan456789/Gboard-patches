@@ -69,11 +69,11 @@ class GboardPackageRenameFixtureProvenanceTest {
         assertEquals(
             mapOf(
                 "res/values/arrays.xml" to
-                    "29564FEA71EF0956B2C0AE78BBC35170BA3768F0E7BF30F1738A50520AC40322",
+                    "85F20A3B71530537C3CD93C7DD1F921B6DB9EFB4DB26C0739400663C42536F61",
                 "res/values/strings.xml" to
-                    "932259E4C1B977407919085735065A48AE336C1E4D01D35F0AAF41C29BE3E22B",
-                "res/xml/APKTOOL_RENAMED_0x7f170033.xml" to
-                    "6637D8037933B4BBDA35719F72DAF1181F0B5BB5BCD5F2AAD33B670CF3FA0CB0",
+                    "62C68DCC621E695FA0482D99C981CEF2D6BA48CF0B30C64B4236AE54A976CC5A",
+                "res/xml/_0_resource_name_obfuscated_res_0x7f170022.xml" to
+                    "EDE5CC6D50476B326A02E4E7DF1FD509AECDE5FE8590919B86490358B5A91845",
             ),
             resources,
         )
@@ -85,7 +85,7 @@ class GboardPackageRenameFixtureProvenanceTest {
     }
 
     @Test
-    fun `settings fixtures pin both official 1803 settings resources`() {
+    fun `settings fixtures pin both official 1841 settings resources`() {
         val provenance = JsonParser.parseString(readText(PROVENANCE_FIXTURE)).asJsonObject
         val resources = provenance.getAsJsonArray("settingsSources").map { it.asJsonObject }
             .associate { resource ->
@@ -95,35 +95,40 @@ class GboardPackageRenameFixtureProvenanceTest {
         assertEquals(
             mapOf(
                 "res/xml/settings.xml" to
-                    "A0145A2424672D0F26B302495372F0FC983179CB244F065AE30A6BC5C60FBA31",
+                    "E82ECBD2BC4EC46915F6F82ACE53AA468EE23AD691FC5C470E4A4FCF71413A55",
                 "res/xml/settings_legacy.xml" to
-                    "6561F3C0C077FBE7A4A5A231A56899E76FDB1F3F7949534F4B1A8F8C37C9AA6E",
+                    "79A03A1581DF3F216B76289B91A121E9AB4767A8738758D12757E1B63CE6EE95",
             ),
             resources,
         )
         assertEquals(
-            "A0145A2424672D0F26B302495372F0FC983179CB244F065AE30A6BC5C60FBA31",
+            "E82ECBD2BC4EC46915F6F82ACE53AA468EE23AD691FC5C470E4A4FCF71413A55",
             sha256(normalizeLineEndings(readBytes(SETTINGS_FIXTURE))),
         )
         assertEquals(
-            "6561F3C0C077FBE7A4A5A231A56899E76FDB1F3F7949534F4B1A8F8C37C9AA6E",
+            "79A03A1581DF3F216B76289B91A121E9AB4767A8738758D12757E1B63CE6EE95",
             sha256(normalizeLineEndings(readBytes(SETTINGS_LEGACY_FIXTURE))),
         )
     }
 
     @Test
-    fun `all six split manifests stay on the official package and require standalone renamed output`() {
+    fun `all four split manifests stay on the official package and require standalone renamed output`() {
         val inventory = JsonParser.parseString(readText(SPLIT_MANIFEST_INVENTORY)).asJsonObject
         val apks = inventory.getAsJsonArray("apks").map { it.asJsonObject }
 
-        assertEquals(TARGET_VERSION, inventory.get("targetVersion").asString)
-        assertEquals(175940518, inventory.get("versionCode").asInt)
+        assertEquals(BUNDLE_VERSION, inventory.get("targetVersion").asString)
+        assertEquals(BUNDLE_VERSION_CODE, inventory.get("versionCode").asInt)
         assertEquals(SOURCE_PACKAGE, inventory.get("sourcePackage").asString)
-        assertEquals(7, apks.size)
+        assertEquals(4, apks.size)
         assertEquals(1, apks.count { it.get("split").isJsonNull })
-        assertEquals(6, apks.count { !it.get("split").isJsonNull })
-        assertEquals(3, apks.count { it.get("isFeatureSplit").asBoolean })
+        assertEquals(3, apks.count { !it.get("split").isJsonNull })
+        assertEquals(2, apks.count { it.get("isFeatureSplit").asBoolean })
         assertTrue(apks.all { it.get("package").asString == SOURCE_PACKAGE })
+        assertTrue(
+            apks.all { apk ->
+                apk.get("source").asString == "$BUNDLE_ARTIFACT:${apk.get("name").asString}"
+            },
+        )
         assertEquals(
             EXPECTED_APK_AND_MANIFEST_HASHES,
             apks.associate { apk ->
@@ -165,53 +170,44 @@ class GboardPackageRenameFixtureProvenanceTest {
 
     private companion object {
         const val SOURCE_PACKAGE = "com.google.android.inputmethod.latin"
-        const val TARGET_VERSION = "18.0.3.954559732-release-arm64-v8a"
+        const val TARGET_VERSION = "18.4.1.985164140-release-arm64-v8a"
         const val TARGET_APK_SHA256 =
-            "66F93FDD6CA2E53675C725AF38E7F47C9474CBB45E80AFCEFE9782817CEC7179"
+            "797652F9BF89BB0BF2015A270E715E7BF5F89150891FC74F7AD40C163D3DAC75"
         const val DECODED_MANIFEST_SHA256 =
-            "A8D58F88C6DC39E6280A5311D196ACD0F5DC5D9B536645F3AE20511F49D3438E"
+            "1E93467AC1C0A4F8648CEC74342D07F63E48D7B5AF2C32E044FF5A18BFFFDA7B"
         const val MANIFEST_FIXTURE_SHA256 =
-            "7AD94356577526170AB5F53A335FBC8BA1E55E5FC40DD6B5DD620645FD6A6B74"
+            "1E93467AC1C0A4F8648CEC74342D07F63E48D7B5AF2C32E044FF5A18BFFFDA7B"
+        const val BUNDLE_VERSION = "18.4.1.985164140-release-x86_64"
+        const val BUNDLE_VERSION_CODE = 176027080
+        const val BUNDLE_ARTIFACT = "gboard-18.4.1-x86_64.apkm"
         const val PROVENANCE_FIXTURE =
-            "/gboard/18.0.3/package-rename/provenance.json"
+            "/gboard/18.4.1/package-rename/provenance.json"
         const val MANIFEST_FIXTURE =
-            "/gboard/18.0.3/package-rename/AndroidManifest.normalized.xml"
+            "/gboard/18.4.1/package-rename/AndroidManifest.normalized.xml"
         const val RETAINED_LITERALS_FIXTURE =
-            "/gboard/18.0.3/package-rename/retained-resource-literals.xml"
+            "/gboard/18.4.1/package-rename/retained-resource-literals.xml"
         const val SETTINGS_FIXTURE =
-            "/gboard/18.0.3/package-rename/settings.xml"
+            "/gboard/18.4.1/package-rename/settings.xml"
         const val SETTINGS_LEGACY_FIXTURE =
-            "/gboard/18.0.3/package-rename/settings_legacy.xml"
+            "/gboard/18.4.1/package-rename/settings_legacy.xml"
         const val SPLIT_MANIFEST_INVENTORY =
-            "/gboard/18.0.3/package-rename/split-manifest-inventory.json"
+            "/gboard/18.4.1/package-rename/split-manifest-inventory.json"
         val EXPECTED_APK_AND_MANIFEST_HASHES = mapOf(
             "base.apk" to listOf(
-                "66F93FDD6CA2E53675C725AF38E7F47C9474CBB45E80AFCEFE9782817CEC7179",
-                "67D154F16CDE5FA6DE34D3AA0614ED98F10A39680373D952F92BC41B2848E216",
-            ),
-            "split_brella_feature_split.apk" to listOf(
-                "EC0EF128B009834DF9FE570AF47E4A15EFCA48080BFCE2A69CC5A7E11397128B",
-                "D4032329CBFDE5A32B88AB966E47FB269C2FD2CE99769601EDB321976E3C388A",
-            ),
-            "split_config.mdpi.apk" to listOf(
-                "82142C101A29E28E35AE40C672964EC7E967677A0A547A16F5EDC31A69F78B10",
-                "2C08522FAA37789995780262700E68A1D30E81E14BBBCD49BED5B7C72D909BB5",
-            ),
-            "split_config.tvdpi.apk" to listOf(
-                "00250F9C17BC672AB51DD4530A2D0CC54CAEB897A2BCC9A2141705D651E3C21E",
-                "930F55BFD0CF188135E4FD8D638B760B51F9137F2483702BA9ADB0816DA65425",
+                "738EC545D5311B0BCC4332237F8F128816F0DF1781F60BA0C642867FC3BF1B24",
+                "65A28EA2A2EE2FA8B519AB905F5A1E11C4706E618F5CDCB02AD0D951CA48D0F7",
             ),
             "split_config.xxhdpi.apk" to listOf(
-                "03C26F98EDED9B7CBCE4AAF57440FEF67675BC7724061847153EBBEB280DF3BC",
-                "BA6FDFC8B7AB8A2A5FA0E6ABE36F309E96257B3F1894E4E141A84B8B7FDBB156",
+                "C363A196A0094DDAB91F2119F5C3831CB0F340B58601F9BC29E218448F1D8078",
+                "7758EA3153EDC6FA63538978A2935C55BF2F24AD861BF7532E025BC24A0B1D49",
             ),
-            "split_dictation_feature_split.apk" to listOf(
-                "86697CC0575EFB7355FF63B2E0141474D0400AF6CD4518530A20EC8AAFD51F80",
-                "5A3D27F7BB5548B8D2D010F65D77CB0C458D60F4A3208ED3BF18B65576A94801",
+            "split_brella_feature_split.apk" to listOf(
+                "167A979925CEA3ACC92A1F32E84C30F12B9387E133056090A5BDE1DE03D499F8",
+                "5C264D94D1ACF097455C021010D84C9EFC2E66937D8A3DCA1D2B2FDAF7412FD2",
             ),
             "split_tenoranimation_feature_split.apk" to listOf(
-                "F56FBE3C7E5E81D319F7961A61AEC7F7DC4D78B9C8C738E9AD6C9DC47B634415",
-                "8B82F7ACCAE457295E2F58C700D5341F3F1F478A170803FC6B00892D4C643B96",
+                "32383E568A6470F6E9B5EEC7881EC42EDE5FAF694D3E7B98CC4302CF6558F8EA",
+                "D1FC42502F4E941F80E8FC422A414E7B06F64DA79606964DA43987E084C4BF46",
             ),
         )
     }
