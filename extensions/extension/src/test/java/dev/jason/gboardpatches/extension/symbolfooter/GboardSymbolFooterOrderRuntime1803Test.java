@@ -47,11 +47,11 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
     }
 
     @Test
-    public void exact1803MappingsReorderThroughVvwCopyAndPreserveItemIdentity() throws Exception {
+    public void exact1841MappingsReorderThroughImmutableListCopyAndPreserveItemIdentity() throws Exception {
         provider.order = new ArrayList<String>(Arrays.asList(
                 "jasondev_symbol", "emoticon", "smiley",
                 "gif_search_result", "sticker_search_result"));
-        Object receiver = construct("gri", new Class<?>[] { Context.class }, context);
+        Object receiver = construct("gtv", new Class<?>[] { Context.class }, context);
         Object futureOne = item("future_one");
         Object emoji = item("smiley");
         Object custom = item("jasondev_symbol");
@@ -63,7 +63,7 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
                 receiver, source);
 
         Assert.assertNotSame(source, reordered);
-        Assert.assertEquals("vvw", reordered.getClass().getName());
+        Assert.assertEquals("wfr", reordered.getClass().getName());
         Assert.assertEquals(1, copyCallsField().getInt(null));
         Assert.assertEquals(Arrays.asList(custom, emoticon, emoji, futureOne, futureTwo),
                 new ArrayList<Object>((Collection<?>) reordered));
@@ -71,7 +71,7 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
     }
 
     @Test
-    public void unchangedTargetOrderRetainsOriginalVvwIdentityWithoutRebuild() throws Exception {
+    public void unchangedTargetOrderRetainsOriginalImmutableListIdentityWithoutRebuild() throws Exception {
         provider.order = new ArrayList<String>(
                 GboardSymbolFooterOrderSettings.DEFAULT_SYMBOL_FOOTER_ORDER);
         Object source = list(
@@ -83,7 +83,7 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
                 item("future_one"));
 
         Object result = GboardSymbolFooterOrderRuntime.reorderExpressionCorpusList(
-                construct("gri", new Class<?>[] { Context.class }, context), source);
+                construct("gtv", new Class<?>[] { Context.class }, context), source);
 
         Assert.assertSame(source, result);
         Assert.assertEquals(0, copyCallsField().getInt(null));
@@ -102,7 +102,7 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
         Object source = list(futureOne, sticker, emoji, futureTwo, emoticon, gif);
 
         Object result = GboardSymbolFooterOrderRuntime.reorderExpressionCorpusList(
-                construct("gri", new Class<?>[] { Context.class }, context), source);
+                construct("gtv", new Class<?>[] { Context.class }, context), source);
 
         Assert.assertEquals(Arrays.asList(
                         emoticon, emoji, gif, sticker, futureOne, futureTwo),
@@ -116,7 +116,7 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
         Object emoji = item("smiley");
         Object gif = item("gif_search_result");
         Object source = list(emoticon, emoji, gif);
-        Object receiver = construct("gri", new Class<?>[] { Context.class }, context);
+        Object receiver = construct("gtv", new Class<?>[] { Context.class }, context);
 
         provider.order = new ArrayList<String>(Arrays.asList("future_one", "emoticon"));
         Object malformed = GboardSymbolFooterOrderRuntime.reorderExpressionCorpusList(
@@ -135,10 +135,10 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
     @Test
     public void targetClassLoaderBindingsAreIsolatedAndMissingTargetsFailBoundedly() throws Exception {
         TargetClassLoader loader = new TargetClassLoader(getClass().getClassLoader());
-        Class<?> isolatedGri = loader.loadClass("gri");
-        Class<?> isolatedPpa = loader.loadClass("ppa");
-        Class<?> isolatedNva = loader.loadClass("nva");
-        Class<?> isolatedVvw = loader.loadClass("vvw");
+        Class<?> isolatedGri = loader.loadClass("gtv");
+        Class<?> isolatedPpa = loader.loadClass("pvl");
+        Class<?> isolatedNva = loader.loadClass("obb");
+        Class<?> isolatedVvw = loader.loadClass("wfr");
         Object receiver = declaredConstructor(isolatedGri, Context.class).newInstance(context);
         Object emojiType = declaredConstructor(isolatedPpa, String.class).newInstance("smiley");
         Object emoticonType = declaredConstructor(isolatedPpa, String.class).newInstance("emoticon");
@@ -172,12 +172,12 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
     }
 
     private Object item(String typeName) throws Exception {
-        Object keyboardType = construct("ppa", new Class<?>[] { String.class }, typeName);
-        return construct("nva", new Class<?>[] { Class.forName("ppa") }, keyboardType);
+        Object keyboardType = construct("pvl", new Class<?>[] { String.class }, typeName);
+        return construct("obb", new Class<?>[] { Class.forName("pvl") }, keyboardType);
     }
 
     private Object list(Object... items) throws Exception {
-        return construct("vvw", new Class<?>[] { Collection.class }, Arrays.asList(items));
+        return construct("wfr", new Class<?>[] { Collection.class }, Arrays.asList(items));
     }
 
     private Object construct(String name, Class<?>[] parameterTypes, Object... arguments)
@@ -193,14 +193,14 @@ public final class GboardSymbolFooterOrderRuntime1803Test {
     }
 
     private Field copyCallsField() throws Exception {
-        Field field = Class.forName("vvw").getDeclaredField("copyCalls");
+        Field field = Class.forName("wfr").getDeclaredField("copyCalls");
         field.setAccessible(true);
         return field;
     }
 
     private static final class TargetClassLoader extends ClassLoader {
         private static final Set<String> TARGETS = new HashSet<String>(
-                Arrays.asList("gri", "nva", "ppa", "vvw"));
+                Arrays.asList("gtv", "obb", "pvl", "wfr"));
 
         TargetClassLoader(ClassLoader parent) {
             super(parent);

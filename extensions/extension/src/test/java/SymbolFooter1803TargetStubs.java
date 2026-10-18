@@ -4,46 +4,46 @@ import android.view.inputmethod.EditorInfo;
 import java.util.ArrayList;
 import java.util.Collection;
 
-final class gri {
+final class gtv {
     public final Context c;
 
-    gri(Context context) {
+    gtv(Context context) {
         c = context;
     }
 
-    public vvw a(EditorInfo editorInfo, boolean incognito) {
-        return new vvw();
+    public wfr a(EditorInfo editorInfo, boolean incognito) {
+        return new wfr();
     }
 }
 
-final class nva {
-    public final ppa e;
+final class obb {
+    public final pvl c;
 
-    nva(ppa keyboardType) {
-        e = keyboardType;
+    obb(pvl keyboardType) {
+        c = keyboardType;
     }
 }
 
-final class ppa {
+final class pvl {
     public final String m;
 
-    ppa(String name) {
+    pvl(String name) {
         m = name;
     }
 }
 
-final class vvw extends ArrayList<Object> {
+final class wfr extends ArrayList<Object> {
     static int copyCalls;
 
-    vvw() {
+    wfr() {
     }
 
-    vvw(Collection<?> values) {
+    wfr(Collection<?> values) {
         super(values);
     }
 
-    public static vvw o(Collection<?> values) {
+    public static wfr o(Collection<?> values) {
         copyCalls++;
-        return new vvw(values);
+        return new wfr(values);
     }
 }

@@ -142,10 +142,10 @@ public final class GboardAddSymbolsRuntimeTest {
     public void runtimeUsesOnlyGboard1803ReflectionHandles() throws Exception {
         String source = runtimeSource();
         List<String> targetClasses = List.of(
-                "ppa", "oxw", "kr", "vvz", "vvw", "wbb", "izu", "jan", "iyd",
-                "gib", "gip", "gic", "qxa", "ghy", "zhv", "ghw", "yus", "ghu",
-                "nhp", "gie", "gid", "ghs", "ghr", "ghv", "nvk", "nva", "nuy",
-                "jgd");
+                "pvl", "pej", "kr", "wfu", "wfr", "wkv", "jdk", "jed", "jbt",
+                "gkp", "gld", "gkq", "jtc", "gkm", "zri", "gkk", "zeb", "gki",
+                "nnq", "gks", "gkr", "gkg", "gkf", "gkj", "obl", "obb", "oaz",
+                "jkn");
         for (String className : targetClasses) {
             Assert.assertTrue(
                     "Missing Gboard 18.0.3 runtime handle: " + className,
@@ -172,9 +172,9 @@ public final class GboardAddSymbolsRuntimeTest {
         Assert.assertTrue(source.contains(
                 "immutableMapBuilderClass.getDeclaredMethod(\"m\")"));
         Assert.assertTrue(source.contains(
-                "\"E\", emoticonRecyclerViewClass, String.class"));
+                "\"D\", emoticonRecyclerViewClass, String.class"));
         Assert.assertFalse(source.contains(
-                "\"y\", emoticonRecyclerViewClass, String.class"));
+                "\"E\", emoticonRecyclerViewClass, String.class"));
         Assert.assertFalse(source.contains("getMethod(\"ad\", int.class)"));
     }
 
