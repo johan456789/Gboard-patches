@@ -95,18 +95,18 @@ class GboardPackageRenameFixtureProvenanceTest {
         assertEquals(
             mapOf(
                 "res/xml/settings.xml" to
-                    "4441821A8091B0F14B98E5B1D60FAE3D7A4464F7394F90D3D03BE85C639D8B2E",
+                    "A0145A2424672D0F26B302495372F0FC983179CB244F065AE30A6BC5C60FBA31",
                 "res/xml/settings_legacy.xml" to
-                    "D556A6D2469893FBAB00EB74BDD722921CF4FAC162017A1AC93672CD039015A4",
+                    "6561F3C0C077FBE7A4A5A231A56899E76FDB1F3F7949534F4B1A8F8C37C9AA6E",
             ),
             resources,
         )
         assertEquals(
-            "38335296A8D56AE8DAD93E0728A33C31666A71476199333FD47914ACDF73467A",
+            "A0145A2424672D0F26B302495372F0FC983179CB244F065AE30A6BC5C60FBA31",
             sha256(normalizeLineEndings(readBytes(SETTINGS_FIXTURE))),
         )
         assertEquals(
-            "C4917C166457BE1D8628E8CE6C23FBE13B77507483D9E7BEB726FA6256588929",
+            "6561F3C0C077FBE7A4A5A231A56899E76FDB1F3F7949534F4B1A8F8C37C9AA6E",
             sha256(normalizeLineEndings(readBytes(SETTINGS_LEGACY_FIXTURE))),
         )
     }

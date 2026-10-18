@@ -2,12 +2,10 @@ package dev.jason.gboardpatches.patches.gboard.registry
 
 import dev.jason.gboardpatches.patches.gboard.features.closeproactivesuggestions.gboardCloseProactiveSuggestionsFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.closeproactivesuggestions.gboardCloseProactiveSuggestionsFlagValuePatch
-import dev.jason.gboardpatches.patches.gboard.features.flowmode.gboardFlowModeFeatureMarkerPatch
-import dev.jason.gboardpatches.patches.gboard.features.flowmode.gboardFlowModeFlagValuePatch
-import dev.jason.gboardpatches.patches.gboard.features.flowmode.gboardFlowModeKeyEventPatch
 import dev.jason.gboardpatches.patches.gboard.features.quickinsert.gboardQuickInsertFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.quickinsert.gboardQuickInsertFlagValuePatch
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -19,21 +17,23 @@ class GboardThreeRuntimePatchesContractTest {
         val close = registrations.single { patch ->
             patch.name == "Close Proactive Suggestions"
         }
-        val flow = registrations.single { patch ->
-            patch.name == "Hyperspeed Typing Animation"
-        }
         val quick = registrations.single { patch -> patch.name == "Quick Insert" }
 
         assertSame(gboardCloseProactiveSuggestionsPatch, close)
-        assertSame(gboardFlowModeAnimationPatch, flow)
         assertSame(gboardQuickInsertPatch, quick)
+
+        // Gboard 18.4.1 compiles out the stock FlowModeDetector, so Hyperspeed Typing Animation is
+        // not admitted on this target and is not published.
+        assertFalse(registrations.any { patch ->
+            patch.name == "Hyperspeed Typing Animation"
+        })
 
         val generated = generatedPublishedPatches().associateBy { patch ->
             patch["name"].asString
         }
         assertTrue(generated.getValue(close.name!!)["use"].asBoolean)
-        assertTrue(generated.getValue(flow.name!!)["use"].asBoolean)
         assertTrue(generated.getValue(quick.name!!)["use"].asBoolean)
+        assertFalse(generated.containsKey("Hyperspeed Typing Animation"))
     }
 
     @Test
@@ -45,15 +45,9 @@ class GboardThreeRuntimePatchesContractTest {
             dependency === gboardCloseProactiveSuggestionsFlagValuePatch
         })
 
-        assertTrue(gboardFlowModeAnimationPatch.dependencies.any { dependency ->
-            dependency === gboardFlowModeFeatureMarkerPatch
-        })
-        assertTrue(gboardFlowModeAnimationPatch.dependencies.any { dependency ->
-            dependency === gboardFlowModeFlagValuePatch
-        })
-        assertTrue(gboardFlowModeAnimationPatch.dependencies.any { dependency ->
-            dependency === gboardFlowModeKeyEventPatch
-        })
+        // Hyperspeed Typing Animation is not admitted on Gboard 18.4.1, so its public patch owns
+        // no feature marker or runtime contribution wiring on this target.
+        assertTrue(gboardFlowModeAnimationPatch.dependencies.isEmpty())
 
         assertTrue(gboardQuickInsertPatch.dependencies.any { dependency ->
             dependency === gboardQuickInsertFeatureMarkerPatch

@@ -47,6 +47,8 @@ class GboardPortProductCatalogContractTest {
     private val catalog: JsonObject = JsonParser.parseString(
         Files.readString(catalogPath, StandardCharsets.UTF_8),
     ).asJsonObject
+    private val admittedFeatureIds: Set<String> =
+        GboardTargetAdmission.admittedContributionIdsByFeature.keys
 
     @Test
     fun catalogIsDeterministicAndDeclaresSelectedOnlyZeroSelectionComposition() {
@@ -65,7 +67,15 @@ class GboardPortProductCatalogContractTest {
             features.map { feature -> feature["feature_id"].asString }.sorted(),
             features.map { feature -> feature["feature_id"].asString },
         )
-        assertMatchesPublishedRegistrationCount(features.size)
+        val unadmittedFeatureIds = features.map { feature -> feature["feature_id"].asString }
+            .filterNot { featureId -> featureId in admittedFeatureIds }
+        // Gboard 18.4.1 compiles out the stock FlowModeDetector, so the version-neutral catalog
+        // still declares Hyperspeed Typing Animation while this target does not admit it.
+        assertEquals(listOf(UNSUPPORTED_TARGET_FEATURE_ID), unadmittedFeatureIds)
+        assertEquals(
+            GboardPublishedPatchCatalog.morpheRegistrations.size,
+            features.size - unadmittedFeatureIds.size,
+        )
         assertEquals(features.size, features.map { it["feature_id"].asString }.distinct().size)
         assertEquals(features.size, features.map { it["public_patch_name"].asString }.distinct().size)
 
@@ -155,13 +165,15 @@ class GboardPortProductCatalogContractTest {
                 StandardCharsets.UTF_8,
             ),
         ).asJsonObject
-        assertEquals("18.0.3", bindingProfile["target_version"].asString)
+        assertEquals("18.4.1", bindingProfile["target_version"].asString)
         val authoritativeKeys = bindingProfile.getAsJsonObject("bindings").keySet()
         val authoritativeKinds = bindingProfile.getAsJsonObject("bindings").entrySet()
             .associate { (key, binding) -> key to binding.asJsonObject["kind"].asString }
         val bindingContracts = catalog.getAsJsonObject("binding_contracts").entrySet()
             .associate { (key, kind) -> key to kind.asString }
-        val requiredKeys = features().flatMap { feature ->
+        val requiredKeys = features().filter { feature ->
+            feature["feature_id"].asString in admittedFeatureIds
+        }.flatMap { feature ->
             val featureId = feature["feature_id"].asString
             val admitted = GboardTargetAdmission.admittedContributionIdsByFeature
                 .getValue(featureId)
@@ -387,6 +399,15 @@ class GboardPortProductCatalogContractTest {
                 markerSource.contains("\"$marker\""),
             )
 
+            if (contract.featureId !in admittedFeatureIds) {
+                // Not admitted on this target (for example Hyperspeed Typing Animation on 18.4.1),
+                // so no public patch is published for it.
+                assertTrue(
+                    "${contract.featureId} must not be published on this target",
+                    registrations.none { it.name == feature["public_patch_name"].asString },
+                )
+                return@forEach
+            }
             val publicPatch = registrations.single {
                 it.name == feature["public_patch_name"].asString
             }
@@ -484,7 +505,18 @@ class GboardPortProductCatalogContractTest {
         val registrations = GboardPublishedPatchCatalog.morpheRegistrations
         val publishedNames = registrations.mapNotNull { patch -> patch.name }.toSet()
 
-        assertEquals(publishedNames, byPatchName.keys)
+        val expectedPublishedNames = byPatchName.keys.filter { patchName ->
+            byPatchName.getValue(patchName)["feature_id"].asString in
+                admittedFeatureIds
+        }.toSet()
+        assertEquals(expectedPublishedNames, publishedNames)
+        // Only the features admitted on this target may back a published patch name.
+        assertEquals(
+            byPatchName.keys - publishedNames,
+            setOf(
+                byFeatureId.getValue(UNSUPPORTED_TARGET_FEATURE_ID)["public_patch_name"].asString,
+            ),
+        )
         registrations.forEach { patch ->
             val feature = byPatchName.getValue(patch.name!!)
             val expectedDependencies = feature.getAsJsonArray("depends_on_feature_ids")
@@ -638,6 +670,9 @@ class GboardPortProductCatalogContractTest {
             "patches/src/main/resources/gboard/gboard-version-bindings.json"
         const val REGISTRY_PATH =
             "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/registry/GboardPatchRegistry.kt"
+        // Gboard 18.4.1 compiles out the stock FlowModeDetector, so the Hyperspeed Typing Animation
+        // contributions are never admitted on this target.
+        const val UNSUPPORTED_TARGET_FEATURE_ID = "flow_mode_animation"
         val WEB_CLIPBOARD_RESOURCE_ROOTS = listOf(
             "patches/src/main/resources/web-clipboard-assets",
             "patches/src/main/resources/web-clipboard-res",
