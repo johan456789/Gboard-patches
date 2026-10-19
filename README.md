@@ -28,7 +28,7 @@ Add this repository as a Morphe source:
 
 ### Enable Rambler
 
-1. Patch a split bundle (`.apkm`) from [APKMirror](https://www.apkmirror.com/apk/google-inc/gboard/), not a standalone APK. Only the bundle includes the dictation payload (`libdictation_jni.so`) that Advanced Voice Typing needs. Check that **Patches → AI & Voice → Advanced Voice Typing** shows **Dictation payload (Installed)**.
+1. Patch a split bundle (`.apkm`) from [APKMirror](https://www.apkmirror.com/apk/google-inc/gboard/), not a standalone APK. For Gboard 18.4.1 on arm64, use the `release-arm64-v8a-4` bundle (240-320dpi variant); the standalone and x86_64 variants don't include the dictation payload. Only the bundle includes the dictation payload (`libdictation_jni.so`) that Advanced Voice Typing needs. Check that **Patches → AI & Voice → Advanced Voice Typing** shows **Dictation payload (Installed)**.
 2. Turn on **Patches → AI & Voice → Advanced Voice Typing → Enable Advanced Voice Typing**, then force-stop Gboard.
 3. Open **Gboard Settings → Voice typing → Dictation type** and select **Rambler**, then force-stop Gboard again.
 4. Open any text field and tap the mic. The first time, a **Just speak naturally** popup appears; tap **Get started**.

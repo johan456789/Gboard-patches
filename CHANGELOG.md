@@ -1,4 +1,4 @@
-## Unreleased
+## [3.12.0.3](https://github.com/johan456789/Gboard-patches/compare/v3.12.0.2...v3.12.0.3) (2026-10-19)
 
 ### 🐛 Bug Fixes
 
@@ -7,7 +7,7 @@
 
 ### 🚀 Updated App Support
 
-* **Gboard:** support the official Gboard `18.4.1.985164140-release-arm64-v8a`.
+* **Gboard:** support the official Gboard `18.4.1.985164140-release-arm64-v8a`. Support for Gboard `18.0.3` is dropped.
 * **Gboard:** the `Hyperspeed Typing Animation` patch is unavailable on Gboard 18.4.1 because Google compiled out its `FlowModeDetector`.
 
 ### 🐛 修復
@@ -17,7 +17,7 @@
 
 ### 🚀 支援版本更新
 
-* **Gboard:** 支援官方 Gboard `18.4.1.985164140-release-arm64-v8a`。
+* **Gboard:** 支援官方 Gboard `18.4.1.985164140-release-arm64-v8a`，不再支援 Gboard `18.0.3`。
 * **Gboard:** `Hyperspeed Typing Animation` Patch 在 Gboard 18.4.1 上無法使用，因為 Google 已從該版本移除 `FlowModeDetector`。
 
 ## [3.12.0.2](https://github.com/johan456789/Gboard-patches/compare/v3.12.0.1...v3.12.0.2) (2026-10-17)
