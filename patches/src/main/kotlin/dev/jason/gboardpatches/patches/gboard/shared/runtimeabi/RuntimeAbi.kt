@@ -101,6 +101,7 @@ internal enum class RuntimeCallId(internal val encodedAbi: String) {
     RAMBLER_RUNTIME_UPDATE_OFFICIAL_SELECTION("Ldev/jason/gboardpatches/extension/rambler/GboardRambler1803OfficialSelectionRuntime;->updateOfficialSelection(Z)V"),
     RAMBLER_RUNTIME_APPLY_OFFICIAL_SELECTION("Ldev/jason/gboardpatches/extension/rambler/GboardRambler1803OfficialSelectionRuntime;->applyOfficialSelectionOverride(Z)Z"),
     QUICK_INSERT_RUNTIME_APPLY_FLAG_VALUE("Ldev/jason/gboardpatches/extension/quickinsert/GboardQuickInsertRuntime;->applyFlagValue(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;"),
+    SPACE_BAR_SWIPE_FIX_RUNTIME_APPLY_FLAG_VALUE("Ldev/jason/gboardpatches/extension/spacebarswipefix/GboardSpaceBarSwipeFixRuntime;->applyFlagValue(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;"),
     ROUNDED_KEYBOARD_RUNTIME_APPLY_THEME_ADMISSION("Ldev/jason/gboardpatches/extension/roundedkeyboard/GboardRoundedKeyboardRuntime;->applyThemeAdmission(Z)Z"),
     ROUNDED_KEYBOARD_RUNTIME_RESOLVE_EFFECTIVE_RADII_DP("Ldev/jason/gboardpatches/extension/roundedkeyboard/GboardRoundedKeyboardRuntime;->resolveEffectiveRadiiDp(Ljava/lang/String;)[F"),
     SETTINGS_HOMEPAGE_RUNTIME_APPLY_SETTINGS_HOMEPAGE_POLICY("Ldev/jason/gboardpatches/extension/settingshomepage/GboardSettingsHomepageRuntime;->applySettingsHomepagePolicy(Ljava/lang/Object;)V"),

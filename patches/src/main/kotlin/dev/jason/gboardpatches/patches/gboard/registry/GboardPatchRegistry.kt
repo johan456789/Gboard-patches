@@ -33,6 +33,8 @@ import dev.jason.gboardpatches.patches.gboard.features.clipboardcontentlimit.gbo
 import dev.jason.gboardpatches.patches.gboard.features.clipboardcontentlimit.gboardClipboardContentLimitFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.closeproactivesuggestions.gboardCloseProactiveSuggestionsFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.closeproactivesuggestions.gboardCloseProactiveSuggestionsFlagValuePatch
+import dev.jason.gboardpatches.patches.gboard.features.spacebarswipefix.gboardSpaceBarSwipeFixFeatureMarkerPatch
+import dev.jason.gboardpatches.patches.gboard.features.spacebarswipefix.gboardSpaceBarSwipeFixFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.developeroptions.gboardDeveloperOptionsFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.cursortrackpad.gboardCursorTrackpadFeatureMarkerPatch
 import dev.jason.gboardpatches.patches.gboard.features.cursortrackpad.gboardCursorTrackpadFlagValuePatch
@@ -456,6 +458,23 @@ val gboardCloseProactiveSuggestionsPatch = gboardPublicResourcePatch(
         gboardPatchesSettingsPatch,
         gboardCloseProactiveSuggestionsFeatureMarkerPatch,
         gboardCloseProactiveSuggestionsFlagValuePatch,
+    )
+}
+
+@Suppress("unused")
+val gboardSpaceBarSwipeFixPatch = gboardPublicResourcePatch(
+    featureId = "space_bar_swipe_fix",
+    name = "Space Bar Swipe Fix",
+    description = "還原 Google 的 key_edge_distance_threshold，讓空白鍵滑動移動游標而非觸發滑動輸入\n" +
+        "Restore Google's key_edge_distance_threshold so swipes on the space bar move the cursor instead of triggering glide typing.",
+    default = true,
+) {
+    compatibleWith(COMPATIBILITY_GBOARD)
+
+    dependsOn(
+        gboardPatchesSettingsPatch,
+        gboardSpaceBarSwipeFixFeatureMarkerPatch,
+        gboardSpaceBarSwipeFixFlagValuePatch,
     )
 }
 
@@ -918,6 +937,7 @@ object GboardPublishedPatchCatalog {
         gboardFrostedGlassPatch,
         gboardAccessPointCountPatch,
         gboardCloseProactiveSuggestionsPatch,
+        gboardSpaceBarSwipeFixPatch,
         gboardFlowModeAnimationPatch,
         gboardCustomThemePatch,
         gboardQuickInsertPatch,

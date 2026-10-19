@@ -1,7 +1,7 @@
 {
-    "created_at":  "2026-10-17T20:36:42",
-    "description":  "### 🐛 Bug Fixes\n\n* **Gboard:** `Double Pinyin - flyPY (Traditional Chinese)`: accept the v spelling of ju/qu/xu/yu (`jv`, `qv`, `xv`, `yv`, e.g. `qvxn` → 取消), which previously produced no candidates.\n\n### 🐛 修復\n\n* **Gboard:** `Double Pinyin - flyPY (Traditional Chinese)`：支援 ju/qu/xu/yu 的 v 拼法（`jv`、`qv`、`xv`、`yv`，例如 `qvxn` → 取消），修正先前無法出字的問題。",
-    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0.2/patches-3.12.0.2.mpp",
+    "created_at":  "2026-10-19T21:54:18",
+    "description":  "### 🐛 Bug Fixes\n\n* **Gboard:** retarget all patches to Gboard `18.4.1.985164140-release-arm64-v8a` (versionCode `176027078`).\n* **Gboard:** add the `Space Bar Swipe Fix` patch, which restores Google's `key_edge_distance_threshold` so swipes on the space bar move the cursor instead of triggering glide typing, notably after voice typing in 繁拼.\n\n### 🚀 Updated App Support\n\n* **Gboard:** support the official Gboard `18.4.1.985164140-release-arm64-v8a`. Support for Gboard `18.0.3` is dropped.\n* **Gboard:** the `Hyperspeed Typing Animation` patch is unavailable on Gboard 18.4.1 because Google compiled out its `FlowModeDetector`.\n\n### 🐛 修復\n\n* **Gboard:** 將所有 Patch 重新對應至 Gboard `18.4.1.985164140-release-arm64-v8a`（versionCode `176027078`）。\n* **Gboard:** 新增 `Space Bar Swipe Fix` Patch，還原 Google 的 `key_edge_distance_threshold`，讓空白鍵滑動移動游標而非觸發滑動輸入，尤其在繁拼語音輸入後。\n\n### 🚀 支援版本更新\n\n* **Gboard:** 支援官方 Gboard `18.4.1.985164140-release-arm64-v8a`，不再支援 Gboard `18.0.3`。\n* **Gboard:** `Hyperspeed Typing Animation` Patch 在 Gboard 18.4.1 上無法使用，因為 Google 已從該版本移除 `FlowModeDetector`。",
+    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0.3/patches-3.12.0.3.mpp",
     "signature_download_url":  "",
-    "version":  "3.12.0.2"
+    "version":  "3.12.0.3"
 }

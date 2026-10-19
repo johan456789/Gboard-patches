@@ -23,6 +23,7 @@ import dev.jason.gboardpatches.patches.gboard.features.ocr.gboardOcrFlagValuePat
 import dev.jason.gboardpatches.patches.gboard.features.quickinsert.gboardQuickInsertFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.longpressquickactions.gboardLongPressQuickActionsSoftKeyPatch
 import dev.jason.gboardpatches.patches.gboard.features.spacebarlogo.gboardSpacebarLogoSoftKeyPatch
+import dev.jason.gboardpatches.patches.gboard.features.spacebarswipefix.gboardSpaceBarSwipeFixFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.toprowswipe.gboardTopRowSwipeSoftKeyPatch
 import dev.jason.gboardpatches.patches.gboard.features.writingtools.gboardAiWritingToolsFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.zhuyinbottomrow.gboardZhuyinBottomRowWeightSoftKeyPatch
@@ -53,7 +54,7 @@ class GboardPortProductCatalogContractTest {
     @Test
     fun catalogIsDeterministicAndDeclaresSelectedOnlyZeroSelectionComposition() {
         assertEquals("gboard-port-product-catalog.v1", catalog["format"].asString)
-        assertEquals("1.15.0", catalog["catalog_version"].asString)
+        assertEquals("1.16.0", catalog["catalog_version"].asString)
         val composition = catalog.getAsJsonObject("composition")
         assertEquals(
             setOf("selected_only_call_chain", "runtime_feature_mask"),
@@ -209,7 +210,7 @@ class GboardPortProductCatalogContractTest {
     }
 
     @Test
-    fun flagFamilyDeclaresSeventeenSelectedOnlyComposerCallsInCanonicalOrder() {
+    fun flagFamilyDeclaresEighteenSelectedOnlyComposerCallsInCanonicalOrder() {
         val flagContributions = features().flatMap { feature ->
             feature.getAsJsonArray("contributions")
                 .map { contribution -> contribution.asJsonObject }
@@ -219,18 +220,18 @@ class GboardPortProductCatalogContractTest {
                 .map { contribution -> feature["feature_id"].asString to contribution }
         }.sortedBy { (_, contribution) -> contribution["order"].asInt }
 
-        assertEquals(17, flagContributions.size)
+        assertEquals(18, flagContributions.size)
         assertEquals(
             listOf(
                 10, 20, 30, 40, 100, 200, 300, 400,
-                500, 600, 700, 800, 900, 1000, 1100, 1200, 1300,
+                500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400,
             ),
             flagContributions.map { (_, contribution) -> contribution["order"].asInt },
         )
         val runtimeCalls = flagContributions.map { (_, contribution) ->
             contribution.getAsJsonArray("runtime_calls").first().asString
         }
-        assertEquals(17, runtimeCalls.distinct().size)
+        assertEquals(18, runtimeCalls.distinct().size)
         assertFalse("FEATURE_FLAGS_RUNTIME_APPLY_OVERRIDDEN_FLAG_VALUE" in runtimeCalls)
         flagContributions.forEach { (_, contribution) ->
             assertEquals(
@@ -724,6 +725,7 @@ class GboardPortProductCatalogContractTest {
             "package_rename" to "generic",
             "quick_insert" to "version-sensitive",
             "rounded_keyboard_panel" to "version-sensitive",
+            "space_bar_swipe_fix" to "version-sensitive",
             "settings_homepage_override" to "version-sensitive",
             "simple_calculator" to "version-sensitive",
             "swipeable_custom_top_row" to "version-sensitive",
@@ -872,6 +874,14 @@ class GboardPortProductCatalogContractTest {
                 "gboardBluetoothMicrophoneFlagValuePatch",
                 FEATURE_ROOT + "bluetoothmicrophone/GboardBluetoothMicrophoneFlagValuePatch.kt",
                 FEATURE_ROOT + "bluetoothmicrophone/GboardBluetoothMicrophoneFeatureMarkerPatch.kt",
+            ),
+            FlagFeatureContract(
+                "space_bar_swipe_fix",
+                GboardFlagFamilyFeature.SPACE_BAR_SWIPE_FIX,
+                gboardSpaceBarSwipeFixFlagValuePatch,
+                "gboardSpaceBarSwipeFixFlagValuePatch",
+                FEATURE_ROOT + "spacebarswipefix/GboardSpaceBarSwipeFixFlagValuePatch.kt",
+                FEATURE_ROOT + "spacebarswipefix/GboardSpaceBarSwipeFixFeatureMarkerPatch.kt",
             ),
         )
         val SOFT_KEY_FEATURE_CONTRACTS = listOf(

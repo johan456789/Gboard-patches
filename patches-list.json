@@ -1,5 +1,5 @@
 {
-  "version": "3.12.0.2",
+  "version": "3.12.0.3",
   "patches": [
     {
       "name": "AI Writing Tools",
@@ -428,6 +428,18 @@
     {
       "name": "Simple Calculator",
       "description": "直接輸入算式，在 Gboard 推薦列顯示可捲動算式與答案。\nType an expression and show a scrollable equation plus its answer in Gboard's suggestion row.",
+      "use": true,
+      "dependencies": [],
+      "compatiblePackages": {
+        "com.google.android.inputmethod.latin": [
+          "18.4.1.985164140-release-arm64-v8a"
+        ]
+      },
+      "options": []
+    },
+    {
+      "name": "Space Bar Swipe Fix",
+      "description": "還原 Google 的 key_edge_distance_threshold，讓空白鍵滑動移動游標而非觸發滑動輸入\nRestore Google's key_edge_distance_threshold so swipes on the space bar move the cursor instead of triggering glide typing.",
       "use": true,
       "dependencies": [],
       "compatiblePackages": {
