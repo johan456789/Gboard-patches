@@ -5,6 +5,7 @@ import dev.jason.gboardpatches.patches.gboard.features.spacebarswipefix.gboardSp
 import dev.jason.gboardpatches.patches.gboard.features.spacebarswipefix.gboardSpaceBarSwipeFixFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.shared.GboardFlagFamilyFeature
 import dev.jason.gboardpatches.patches.gboard.shared.gboardPatchesSettingsPatch
+import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeAbiCatalog
 import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallId
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
