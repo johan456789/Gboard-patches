@@ -37,19 +37,19 @@ internal fun MutableMethod.requireGboardExpressionCorpusPatchState():
     }
 }
 
-private const val EXPRESSION_CORPUS_MANAGER_CLASS = "Lgri;"
+private const val EXPRESSION_CORPUS_MANAGER_CLASS = "Lgtv;"
 private const val EXPRESSION_CORPUS_MANAGER_METHOD = "a"
-private const val EXPRESSION_CORPUS_MANAGER_RETURN_TYPE = "Lvvw;"
+private const val EXPRESSION_CORPUS_MANAGER_RETURN_TYPE = "Lwfr;"
 private val EXPRESSION_CORPUS_MANAGER_PARAMETERS =
     listOf("Landroid/view/inputmethod/EditorInfo;", "Z")
 private const val EXPRESSION_CORPUS_MANAGER_DESCRIPTOR =
-    "Lgri;->a(Landroid/view/inputmethod/EditorInfo;Z)Lvvw;"
+    "Lgtv;->a(Landroid/view/inputmethod/EditorInfo;Z)Lwfr;"
 private val EXPECTED_ACCESS_FLAGS = AccessFlags.PUBLIC.value or AccessFlags.FINAL.value
 private const val STOCK_FINGERPRINT =
-    "16e28c427db28420cefee20eb9540514abeb052611f217d573d162b51bd448bd"
+    "086e3ab57b3470afcdc43b3394114d2b8294ca818ca0863612b3524d3b40e89b"
 private const val CUSTOM_ONLY_FINGERPRINT =
-    "eb76629f175f17385fbdea910d71428d3146b51c21b8d4a206c2763458374069"
+    "b2f68a0b6bec5e211f7c7f95069c5ccd6a45308eee61cf55f4d409768f56f0a1"
 private const val TAB_ONLY_FINGERPRINT =
-    "84e94bd83ed9d56aa5efac05b5044d50ba14d6a8ec2b8f4df0409de4a93b50ab"
+    "2ba3ab83e57c753d93544d919439e07ea16f04b1f6beb9e6022cbb1dd4d0d782"
 private const val COMPOSED_FINGERPRINT =
-    "ca4083859038f75ddadd281d4a389dff842c6a7399764d9f5dfcaeb17b292c61"
+    "d858f0838d40546c46d34d33a1183770578ac75935dc991dd8f02fd2596771a8"

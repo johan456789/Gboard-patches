@@ -85,10 +85,10 @@ class GboardSettingsHomepagePatchContractTest {
         assertTrue(sources.contains(
             "applySettingsHomepagePolicy(Ljava/lang/Object;)V",
         ))
-        assertFalse(sources.contains("Lddg;"))
+        assertFalse(sources.contains("Ldea;"))
         assertFalse(Regex("\\bddg\\b").containsMatchIn(sources))
         assertFalse(sources.contains("shouldUseNewSettingsStyle"))
-        assertFalse(sources.contains("Ldgj;->a(Landroid/content/Context;)Z"))
+        assertFalse(sources.contains("Ldhe;->a(Landroid/content/Context;)Z"))
         assertFalse(sources.contains("SettingsActivity;->t()I"))
         assertFalse(sources.contains("0x7f170e7e"))
         assertFalse(sources.contains("0x7f170e7f"))
@@ -113,7 +113,7 @@ class GboardSettingsHomepagePatchContractTest {
     private fun String.countExact(value: String): Int = split(value).size - 1
 
     private companion object {
-        const val TARGET_VERSION = "18.0.3.954559732-release-arm64-v8a"
+        const val TARGET_VERSION = "18.4.1.985164140-release-arm64-v8a"
         const val REGISTRY_PATH =
             "patches/src/main/kotlin/dev/jason/gboardpatches/patches/gboard/registry/" +
                 "GboardPatchRegistry.kt"

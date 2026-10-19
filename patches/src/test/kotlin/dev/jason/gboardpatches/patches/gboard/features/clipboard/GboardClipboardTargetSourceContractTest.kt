@@ -15,20 +15,20 @@ class GboardClipboardTargetSourceContractTest {
     fun `old token wrong member signature and missing target mutations fail`() {
         val stock = loadSources()
         listOf(
-            stock.mutate("Lfik;", "Leun;"),
-            stock.mutate("Lfjv;", "Levu;"),
-            stock.mutate("Lfjk;", "Levn;"),
+            stock.mutate("Lfkx;", "Levy;"),
+            stock.mutate("Lfmg;", "Levu;"),
+            stock.mutate("Lflx;", "Lewy;"),
             stock.mutate("Lkr;", "Lkl;"),
             stock.mutate("name = \"l\"", "name = \"k\""),
-            stock.mutate("0x7f1409d3", "0x7f14094c"),
-            stock.mutate("\"fih\"", "\"euk\""),
-            stock.mutate("\"fij\"", "\"eum\""),
-            stock.mutate("receiver.getClass(), \"w\"", "receiver.getClass(), \"y\""),
+            stock.mutate("0x7f140919", "0x7f14094c"),
+            stock.mutate("\"fku\"", "\"euk\""),
+            stock.mutate("\"fkw\"", "\"eum\""),
+            stock.mutate("receiver.getClass(), \"z\"", "receiver.getClass(), \"y\""),
             stock.mutate("expectedRecent != currentRecent", "expectedRecent > currentRecent"),
             stock.mutate("name = \"call\"", "name = \"run\""),
             stock.mutate("name = \"g\"", "name = \"call\""),
             stock.mutate("Object dataHandler = receiver;", "Object dataHandler = null;"),
-            stock.mutate("CLIPBOARD_LOADER_CALLABLE_CLASS = \"Lfik;\"", ""),
+            stock.mutate("CLIPBOARD_LOADER_CALLABLE_CLASS = \"Lfkx;\"", ""),
         ).forEachIndexed { index, mutation ->
             assertThrows("mutation $index", IllegalStateException::class.java) {
                 validate(mutation)
@@ -37,7 +37,7 @@ class GboardClipboardTargetSourceContractTest {
     }
 
     private fun validate(sources: Sources) {
-        requireAll(sources.patchOptions, "Lfik;", "Lfjv;", "Lfjk;", "Lkr;")
+        requireAll(sources.patchOptions, "Lfkx;", "Lfmg;", "Lflx;", "Lkr;")
         requireAll(sources.loaderPatch,
             "CLIPBOARD_LOADER_CALLABLE_CLASS", "name = \"call\"", "emptyList()")
         requireAll(sources.prunePatch,
@@ -51,25 +51,25 @@ class GboardClipboardTargetSourceContractTest {
             "expandClipboardItemBindRegisters()", "validateExpandedClipboardItemBind()")
         requireAll(sources.columnPatch, "name = \"l\"", "parameterTypes = emptyList()")
         requireAll(sources.runtimeSupport,
-            "CLIPBOARD_LOADER_CALLABLE_CLASS = \"fik\"",
-            "CLIPBOARD_ADAPTER_CLASS = \"fjk\"",
-            "CLIPBOARD_VIEW_HOLDER_CLASS = \"fji\"",
-            "LAST_VISIBLE_TIMESTAMP_PREF_RES_ID = 0x7f1409d3",
-            "receiver.getClass(), \"w\"",
-            "resolveClass(classLoader, \"fil\")",
-            "resolveClass(classLoader, \"fjv\")",
-            "resolveClass(classLoader, \"fih\")",
-            "resolveClass(classLoader, \"fij\")",
-            "resolveClass(classLoader, \"fjo\")",
-            "resolveClass(classLoader, \"qhy\")",
-            "resolveClass(classLoader, \"cdl\")",
+            "CLIPBOARD_LOADER_CALLABLE_CLASS = \"fkx\"",
+            "CLIPBOARD_ADAPTER_CLASS = \"flx\"",
+            "CLIPBOARD_VIEW_HOLDER_CLASS = \"flv\"",
+            "LAST_VISIBLE_TIMESTAMP_PREF_RES_ID = 0x7f140919",
+            "receiver.getClass(), \"z\"",
+            "resolveClass(classLoader, \"fky\")",
+            "resolveClass(classLoader, \"fmg\")",
+            "resolveClass(classLoader, \"fku\")",
+            "resolveClass(classLoader, \"fkw\")",
+            "resolveClass(classLoader, \"fmb\")",
+            "resolveClass(classLoader, \"qou\")",
+            "resolveClass(classLoader, \"cdx\")",
             "declaredField(dataHandlerClass, \"f\")",
             "declaredField(dataHandlerClass, \"g\")",
             "declaredField(adapterClass, \"e\")",
             "declaredField(adapterClass, \"n\")",
             "declaredField(adapterClass, \"o\")",
-            "declaredField(adapterClass, \"y\")",
-            "declaredField(clipModelClass, \"c\")",
+            "declaredField(adapterClass, \"p\")",
+            "declaredField(clipModelClass, \"a\")",
             "clipIsSensitiveMethod = declaredMethod(clipClass, \"m\")",
             "readClipboardShowSensitiveContent(preferences)",
             "declaredMethod(dataHandlerClass, \"t\"",
@@ -89,7 +89,7 @@ class GboardClipboardTargetSourceContractTest {
             "clearCountdownBinding(textView, Long.valueOf(clipId))")
 
         val forbidden = listOf(
-            "Leun;", "Levu;", "Levn;", "Lkl;", "0x7f14094c",
+            "Levy;", "Levu;", "Lewy;", "Lkl;", "0x7f14094c",
             "\"eln\"", "\"emr\"", "\"emk\"", "\"elo\"", "\"emy\"",
             "\"elk\"", "\"elm\"", "\"emo\"", "\"oql\"", "\"bze\"",
             "name = \"k\"", "receiver.getClass(), \"y\"",

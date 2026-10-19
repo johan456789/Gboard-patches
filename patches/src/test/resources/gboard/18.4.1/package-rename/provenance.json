@@ -1,0 +1,42 @@
+{
+  "targetPackage": "com.google.android.inputmethod.latin",
+  "targetVersion": "18.4.1.985164140-release-arm64-v8a",
+  "targetApk": "gboard-18.4.1-arm64.apk",
+  "targetApkSource": "APKMirror arm64 APK download, Google-signed, versionCode 176027078",
+  "targetApkArtifactType": "standalone APK (com.android.stamp.type = STAMP_TYPE_STANDALONE_APK)",
+  "targetApkSha256": "797652F9BF89BB0BF2015A270E715E7BF5F89150891FC74F7AD40C163D3DAC75",
+  "extraction": "jadx 1.5.6 -s -d out gboard-18.4.1-arm64.apk",
+  "decodedManifest": "resources/AndroidManifest.xml",
+  "decodedManifestSha256": "1E93467AC1C0A4F8648CEC74342D07F63E48D7B5AF2C32E044FF5A18BFFFDA7B",
+  "manifestFixture": "AndroidManifest.normalized.xml",
+  "manifestFixtureNormalization": "UTF-8 without BOM; CRLF normalized to LF; XML content otherwise verbatim",
+  "manifestFixtureSha256": "1E93467AC1C0A4F8648CEC74342D07F63E48D7B5AF2C32E044FF5A18BFFFDA7B",
+  "selectedManifestAttributeCount": 15,
+  "settingsSources": [
+    {
+      "path": "res/xml/settings.xml",
+      "apkEntry": "res/B_o.xml",
+      "sha256": "E82ECBD2BC4EC46915F6F82ACE53AA468EE23AD691FC5C470E4A4FCF71413A55"
+    },
+    {
+      "path": "res/xml/settings_legacy.xml",
+      "apkEntry": "res/IeH.xml",
+      "sha256": "79A03A1581DF3F216B76289B91A121E9AB4767A8738758D12757E1B63CE6EE95"
+    }
+  ],
+  "resourceSources": [
+    {
+      "path": "res/values/arrays.xml",
+      "sha256": "85F20A3B71530537C3CD93C7DD1F921B6DB9EFB4DB26C0739400663C42536F61"
+    },
+    {
+      "path": "res/values/strings.xml",
+      "sha256": "62C68DCC621E695FA0482D99C981CEF2D6BA48CF0B30C64B4236AE54A976CC5A"
+    },
+    {
+      "path": "res/xml/_0_resource_name_obfuscated_res_0x7f170022.xml",
+      "apkEntry": "res/jyy.xml",
+      "sha256": "EDE5CC6D50476B326A02E4E7DF1FD509AECDE5FE8590919B86490358B5A91845"
+    }
+  ]
+}

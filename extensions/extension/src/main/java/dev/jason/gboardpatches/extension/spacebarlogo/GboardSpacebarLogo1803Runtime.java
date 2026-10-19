@@ -10,16 +10,16 @@ import java.util.WeakHashMap;
 
 public final class GboardSpacebarLogo1803Runtime {
     private static final String TAG = "GboardPatches";
-    private static final String ACTION_TYPE_CLASS = "pmy";
+    private static final String ACTION_TYPE_CLASS = "pti";
     private static final String ACTION_DEF_CLASS =
             "com.google.android.libraries.inputmethod.metadata.ActionDef";
-    private static final String ACTION_ENTRY_CLASS = "pnu";
+    private static final String ACTION_ENTRY_CLASS = "pue";
     private static final int KEYCODE_SPACE = 62;
-    public static final int SPACEBAR_VIEW_ID = 0x7f0b0606;
-    public static final int PRIMARY_LABEL_VIEW_ID = 0x7f0b0651;
-    public static final int GOOGLE_G_DRAWABLE_ID = 0x7f08048b;
-    public static final int HEART_DRAWABLE_ID = 0x7f080476;
-    public static final int EMOJI_DRAWABLE_ID = 0x7f0804c3;
+    public static final int SPACEBAR_VIEW_ID = 0x7f0b05b3;
+    public static final int PRIMARY_LABEL_VIEW_ID = 0x7f0b05f3;
+    public static final int GOOGLE_G_DRAWABLE_ID = 0x7f080457;
+    public static final int HEART_DRAWABLE_ID = 0x7f080442;
+    public static final int EMOJI_DRAWABLE_ID = 0x7f080490;
     private static final GboardSpacebarLogoRuntime.ViewBindings VIEW_BINDINGS =
             new GboardSpacebarLogoRuntime.ViewBindings(
                     SPACEBAR_VIEW_ID, PRIMARY_LABEL_VIEW_ID, GOOGLE_G_DRAWABLE_ID,
@@ -144,7 +144,7 @@ public final class GboardSpacebarLogo1803Runtime {
             Class<?> actionTypeClass = Class.forName(ACTION_TYPE_CLASS, false, classLoader);
             Class<?> actionDefClass = Class.forName(ACTION_DEF_CLASS, false, classLoader);
             Class<?> actionEntryClass = Class.forName(ACTION_ENTRY_CLASS, false, classLoader);
-            pressActionMethod = metadataClass.getDeclaredMethod("h", actionTypeClass);
+            pressActionMethod = metadataClass.getDeclaredMethod("g", actionTypeClass);
             primaryEntryMethod = actionDefClass.getDeclaredMethod("b");
             keycodeField = actionEntryClass.getDeclaredField("c");
             pressActionType = enumValue(actionTypeClass, "PRESS");

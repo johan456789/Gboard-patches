@@ -75,9 +75,9 @@ public final class GboardAddSymbolsRuntime {
             "com.google.android.apps.inputmethod.libs.expression.extension.IEmoticonExtension";
 
     private static final int SWITCH_KEYBOARD_KEYCODE = -0x2714;
-    private static final int CUSTOM_EMOTICON_RECENTS_HEADER_ICON_RES_ID = 0x7f0804e8;
+    private static final int CUSTOM_EMOTICON_RECENTS_HEADER_ICON_RES_ID = 0x7f0804b6;
     private static final int CUSTOM_EMOTICON_RECENTS_HEADER_CONTENT_DESCRIPTION_RES_ID =
-            0x7f140571;
+            0x7f140505;
 
     private static final String STOCK_RICH_SYMBOL_KEYBOARD_DATA = "rich_symbol";
     private static final String STOCK_EMOTICON_KEYBOARD_DATA = "emoticon";
@@ -91,8 +91,8 @@ public final class GboardAddSymbolsRuntime {
 
     private static final int CUSTOM_EMOTICON_SPAN_COUNT = 8;
     private static final int CUSTOM_EMOTICON_ITEM_VIEW_TYPE = 0x4843;
-    private static final int STOCK_EMOTICON_ITEM_LAYOUT_RES_ID = 0x7f0e00db;
-    private static final int STOCK_EMOTICON_ITEM_TEXT_COLOR_ATTR_RES_ID = 0x7f0404ed;
+    private static final int STOCK_EMOTICON_ITEM_LAYOUT_RES_ID = 0x7f0e00d8;
+    private static final int STOCK_EMOTICON_ITEM_TEXT_COLOR_ATTR_RES_ID = 0x7f0404cb;
     private static final int CUSTOM_EMOTICON_ITEM_MARGIN_DP = 0;
     private static final int CUSTOM_EMOTICON_ITEM_PADDING_HORIZONTAL_DP = 0;
     private static final int CUSTOM_EMOTICON_ITEM_PADDING_VERTICAL_DP = 0;
@@ -101,7 +101,7 @@ public final class GboardAddSymbolsRuntime {
     private static final float CUSTOM_EMOTICON_ITEM_GLYPH_HORIZONTAL_MARGIN_RATIO = 0.04f;
     private static final float CUSTOM_EMOTICON_ITEM_GLYPH_VERTICAL_MARGIN_RATIO = 0.04f;
     private static final float CUSTOM_EMOTICON_ITEM_GLYPH_TEXT_SCALE_X = 1f;
-    private static final int CUSTOM_EMOTICON_HEADER_START_EDGE_VIEW_ID = 0x7f0b063a;
+    private static final int CUSTOM_EMOTICON_HEADER_START_EDGE_VIEW_ID = 0x7f0b05e0;
 
     private static final Map<ClassLoader, Handles> REFLECTION_BY_LOADER =
             Collections.synchronizedMap(new WeakHashMap<>());
@@ -1476,7 +1476,7 @@ public final class GboardAddSymbolsRuntime {
     }
 
     static boolean isCustomEmoticonHistoryConsumerCase(Object callbackCase) {
-        // Gboard 18.0.3 iyd.accept() routes EmoticonKeyboardM2 through synthetic case 5.
+        // Gboard 18.4.1 iyd.accept() routes EmoticonKeyboardM2 through synthetic case 5.
         return callbackCase instanceof Integer && ((Integer) callbackCase).intValue() == 5;
     }
 
@@ -1491,11 +1491,11 @@ public final class GboardAddSymbolsRuntime {
                     Integer.valueOf(CUSTOM_EMOTICON_RECENTS_HEADER_ICON_RES_ID));
             handles.headerImageBuilderSetContentDescriptionResMethod.invoke(imageBuilder,
                     Integer.valueOf(CUSTOM_EMOTICON_RECENTS_HEADER_CONTENT_DESCRIPTION_RES_ID));
-            handles.headerImageBuilderSetSizeMethod.invoke(imageBuilder,
+            handles.headerImageBuilderSizeField.set(imageBuilder,
                     handles.headerImageSizeSmallEnum);
             Object imagePayload = handles.headerImageBuilderBuildMethod.invoke(imageBuilder);
             handles.headerItemBuilderImageField.set(itemBuilder, imagePayload);
-            handles.headerItemBuilderSetContentTypeMethod.invoke(itemBuilder,
+            handles.headerItemBuilderContentTypeField.set(itemBuilder,
                     handles.headerItemContentTypeImageResourceEnum);
             return;
         }
@@ -1515,7 +1515,7 @@ public final class GboardAddSymbolsRuntime {
         handles.headerTextBuilderSetContentDescriptionMethod.invoke(textBuilder, displayLabel);
         Object textPayload = handles.headerTextBuilderBuildMethod.invoke(textBuilder);
         handles.headerItemBuilderContentField.set(itemBuilder, textPayload);
-        handles.headerItemBuilderSetContentTypeMethod.invoke(itemBuilder,
+        handles.headerItemBuilderContentTypeField.set(itemBuilder,
                 handles.headerItemContentTypeMiddleEnum);
     }
 
@@ -2095,7 +2095,7 @@ public final class GboardAddSymbolsRuntime {
         final Field headerModelBuilderSelectedPositionField;
         final Field headerModelBuilderStartItemField;
         final Method headerItemBuilderFactoryMethod;
-        final Method headerItemBuilderSetContentTypeMethod;
+        final Field headerItemBuilderContentTypeField;
         final Method headerItemBuilderBuildMethod;
         final Field headerItemBuilderImageField;
         final Field headerItemBuilderContentField;
@@ -2103,7 +2103,7 @@ public final class GboardAddSymbolsRuntime {
         final Method headerImageBuilderFactoryMethod;
         final Method headerImageBuilderSetIconResMethod;
         final Method headerImageBuilderSetContentDescriptionResMethod;
-        final Method headerImageBuilderSetSizeMethod;
+        final Field headerImageBuilderSizeField;
         final Method headerImageBuilderBuildMethod;
         final Method headerTextBuilderFactoryMethod;
         final Method headerTextBuilderSetTextMethod;
@@ -2120,48 +2120,48 @@ public final class GboardAddSymbolsRuntime {
         final Method gridLayoutManagerSetSpanCountMethod;
 
         Handles(ClassLoader classLoader) throws Throwable {
-            Class<?> keyboardTypeClass = Class.forName("ppa", false, classLoader);
-            keyboardProviderReceiverInterfaceClass = Class.forName("oxw", false, classLoader);
+            Class<?> keyboardTypeClass = Class.forName("pvl", false, classLoader);
+            keyboardProviderReceiverInterfaceClass = Class.forName("pej", false, classLoader);
             supportRecyclerViewClass = Class.forName(
                     "android.support.v7.widget.RecyclerView", false, classLoader);
             recyclerViewViewHolderClass = Class.forName("kr", false, classLoader);
             gridLayoutManagerClass = Class.forName(
                     "android.support.v7.widget.GridLayoutManager", false, classLoader);
-            Class<?> immutableMapBuilderClass = Class.forName("vvz", false, classLoader);
-            Class<?> immutableListClass = Class.forName("vvw", false, classLoader);
-            Class<?> integerStringMapClass = Class.forName("wbb", false, classLoader);
+            Class<?> immutableMapBuilderClass = Class.forName("wfu", false, classLoader);
+            Class<?> immutableListClass = Class.forName("wfr", false, classLoader);
+            Class<?> integerStringMapClass = Class.forName("wkv", false, classLoader);
             emoticonKeyboardClass = Class.forName(
                     "com.google.android.apps.inputmethod.libs.search.emoticon.EmoticonKeyboardM2",
                     false, classLoader);
             emoticonRecyclerViewClass = Class.forName(
                     "com.google.android.apps.inputmethod.libs.search.emoticon.EmoticonRecyclerView",
                     false, classLoader);
-            emoticonRecyclerAdapterClass = Class.forName("izu", false, classLoader);
-            Class<?> emoticonDescriptionProviderClass = Class.forName("jan", false, classLoader);
-            emoticonItemClickConsumerClass = Class.forName("iyd", false, classLoader);
+            emoticonRecyclerAdapterClass = Class.forName("jdk", false, classLoader);
+            Class<?> emoticonDescriptionProviderClass = Class.forName("jed", false, classLoader);
+            emoticonItemClickConsumerClass = Class.forName("jbt", false, classLoader);
             consumerClass = Class.forName("java.util.function.Consumer", false, classLoader);
-            Class<?> emoticonHeaderControllerClass = Class.forName("gib", false, classLoader);
-            Class<?> emoticonHeaderScrollControllerClass = Class.forName("gip", false, classLoader);
-            Class<?> emoticonHeaderModelClass = Class.forName("gic", false, classLoader);
-            Class<?> emoticonHeaderModelBuilderClass = Class.forName("qxa", false, classLoader);
-            Class<?> emoticonHeaderItemClass = Class.forName("ghy", false, classLoader);
-            Class<?> emoticonHeaderItemBuilderClass = Class.forName("zhv", false, classLoader);
-            Class<?> emoticonHeaderTextClass = Class.forName("ghw", false, classLoader);
-            Class<?> emoticonHeaderTextBuilderClass = Class.forName("yus", false, classLoader);
-            Class<?> emoticonHeaderImageClass = Class.forName("ghu", false, classLoader);
-            Class<?> emoticonHeaderImageBuilderClass = Class.forName("nhp", false, classLoader);
-            Class<?> emoticonHeaderSelectionClass = Class.forName("gie", false, classLoader);
-            Class<?> emoticonHeaderSelectionTypeClass = Class.forName("gid", false, classLoader);
-            Class<?> emoticonHeaderContentTypeClass = Class.forName("ghs", false, classLoader);
-            Class<?> emoticonHeaderCallbackInfoClass = Class.forName("ghr", false, classLoader);
-            Class<?> emoticonHeaderImageSizeClass = Class.forName("ghv", false, classLoader);
+            Class<?> emoticonHeaderControllerClass = Class.forName("gkp", false, classLoader);
+            Class<?> emoticonHeaderScrollControllerClass = Class.forName("gld", false, classLoader);
+            Class<?> emoticonHeaderModelClass = Class.forName("gkq", false, classLoader);
+            Class<?> emoticonHeaderModelBuilderClass = Class.forName("jtc", false, classLoader);
+            Class<?> emoticonHeaderItemClass = Class.forName("gkm", false, classLoader);
+            Class<?> emoticonHeaderItemBuilderClass = Class.forName("zri", false, classLoader);
+            Class<?> emoticonHeaderTextClass = Class.forName("gkk", false, classLoader);
+            Class<?> emoticonHeaderTextBuilderClass = Class.forName("zeb", false, classLoader);
+            Class<?> emoticonHeaderImageClass = Class.forName("gki", false, classLoader);
+            Class<?> emoticonHeaderImageBuilderClass = Class.forName("nnq", false, classLoader);
+            Class<?> emoticonHeaderSelectionClass = Class.forName("gks", false, classLoader);
+            Class<?> emoticonHeaderSelectionTypeClass = Class.forName("gkr", false, classLoader);
+            Class<?> emoticonHeaderContentTypeClass = Class.forName("gkg", false, classLoader);
+            Class<?> emoticonHeaderCallbackInfoClass = Class.forName("gkf", false, classLoader);
+            Class<?> emoticonHeaderImageSizeClass = Class.forName("gkj", false, classLoader);
             Class<?> startElementScrollBehaviorClass = Class.forName(
                     "com.google.android.apps.inputmethod.libs.expression.header.StartElementScrollBehavior",
                     false, classLoader);
-            Class<?> extensionManagerClass = Class.forName("nvk", false, classLoader);
-            expressionCorpusItemClass = Class.forName("nva", false, classLoader);
-            Class<?> expressionCorpusItemBuilderClass = Class.forName("nuy", false, classLoader);
-            Class<?> richSymbolCorpusProviderClass = Class.forName("jgd", false, classLoader);
+            Class<?> extensionManagerClass = Class.forName("obl", false, classLoader);
+            expressionCorpusItemClass = Class.forName("obb", false, classLoader);
+            Class<?> expressionCorpusItemBuilderClass = Class.forName("oaz", false, classLoader);
+            Class<?> richSymbolCorpusProviderClass = Class.forName("jkn", false, classLoader);
 
             immutableMapBuilderConstructor = immutableMapBuilderClass.getDeclaredConstructor(int.class);
             immutableMapBuilderConstructor.setAccessible(true);
@@ -2178,9 +2178,9 @@ public final class GboardAddSymbolsRuntime {
             extensionManagerKeyboardProviderMapField = extensionManagerClass.getDeclaredField("c");
             extensionManagerKeyboardProviderMapField.setAccessible(true);
 
-            expressionCorpusItemKeyboardTypeField = expressionCorpusItemClass.getDeclaredField("e");
+            expressionCorpusItemKeyboardTypeField = expressionCorpusItemClass.getDeclaredField("c");
             expressionCorpusItemKeyboardTypeField.setAccessible(true);
-            expressionCorpusItemExtensionClassField = expressionCorpusItemClass.getDeclaredField("i");
+            expressionCorpusItemExtensionClassField = expressionCorpusItemClass.getDeclaredField("g");
             expressionCorpusItemExtensionClassField.setAccessible(true);
             richSymbolCorpusProviderItemField =
                     richSymbolCorpusProviderClass.getDeclaredField("a");
@@ -2199,7 +2199,7 @@ public final class GboardAddSymbolsRuntime {
                     expressionCorpusItemBuilderClass.getDeclaredField("a");
             expressionCorpusItemBuilderEligibleKeyboardTypesField.setAccessible(true);
             expressionCorpusItemBuilderExtensionClassField =
-                    expressionCorpusItemBuilderClass.getDeclaredField("b");
+                    expressionCorpusItemBuilderClass.getDeclaredField("c");
             expressionCorpusItemBuilderExtensionClassField.setAccessible(true);
 
             immutableListCopyMethod = immutableListClass.getDeclaredMethod("o", Collection.class);
@@ -2215,19 +2215,19 @@ public final class GboardAddSymbolsRuntime {
             emoticonBodyRecyclerField.setAccessible(true);
             emoticonEmptyStateField = emoticonKeyboardClass.getDeclaredField("q");
             emoticonEmptyStateField.setAccessible(true);
-            emoticonKeyboardContextField = findFieldInHierarchy(emoticonKeyboardClass, "w");
+            emoticonKeyboardContextField = findFieldInHierarchy(emoticonKeyboardClass, "z");
             emoticonKeyboardContextField.setAccessible(true);
 
             consumerAcceptMethod = consumerClass.getDeclaredMethod("accept", Object.class);
             consumerAcceptMethod.setAccessible(true);
             emoticonRecyclerAttachAdapterMethod = emoticonRecyclerViewClass.getDeclaredMethod(
-                    "aJ", emoticonDescriptionProviderClass, consumerClass);
+                    "aL", emoticonDescriptionProviderClass, consumerClass);
             emoticonRecyclerAttachAdapterMethod.setAccessible(true);
             emoticonRecyclerSetItemsMethod = emoticonRecyclerViewClass.getDeclaredMethod(
                     "a", List.class);
             emoticonRecyclerSetItemsMethod.setAccessible(true);
             emoticonSetEmoticonsMethod = emoticonKeyboardClass.getDeclaredMethod(
-                    "E", emoticonRecyclerViewClass, String.class);
+                    "D", emoticonRecyclerViewClass, String.class);
             emoticonSetEmoticonsMethod.setAccessible(true);
 
             emoticonItemClickConsumerConstructor =
@@ -2279,23 +2279,23 @@ public final class GboardAddSymbolsRuntime {
             headerModelBuilderFactoryMethod = emoticonHeaderModelClass.getDeclaredMethod("a");
             headerModelBuilderFactoryMethod.setAccessible(true);
             headerModelBuilderAddMiddleItemMethod =
-                    emoticonHeaderModelBuilderClass.getDeclaredMethod("i", emoticonHeaderItemClass);
+                    emoticonHeaderModelBuilderClass.getDeclaredMethod("h", emoticonHeaderItemClass);
             headerModelBuilderAddMiddleItemMethod.setAccessible(true);
             headerModelBuilderBuildMethod =
-                    emoticonHeaderModelBuilderClass.getDeclaredMethod("h");
+                    emoticonHeaderModelBuilderClass.getDeclaredMethod("g");
             headerModelBuilderBuildMethod.setAccessible(true);
             headerModelBuilderSelectedPositionField =
-                    emoticonHeaderModelBuilderClass.getDeclaredField("a");
+                    emoticonHeaderModelBuilderClass.getDeclaredField("d");
             headerModelBuilderSelectedPositionField.setAccessible(true);
             headerModelBuilderStartItemField =
-                    emoticonHeaderModelBuilderClass.getDeclaredField("f");
+                    emoticonHeaderModelBuilderClass.getDeclaredField("e");
             headerModelBuilderStartItemField.setAccessible(true);
 
             headerItemBuilderFactoryMethod = emoticonHeaderItemClass.getDeclaredMethod("a");
             headerItemBuilderFactoryMethod.setAccessible(true);
-            headerItemBuilderSetContentTypeMethod =
-                    emoticonHeaderItemBuilderClass.getDeclaredMethod("r", emoticonHeaderContentTypeClass);
-            headerItemBuilderSetContentTypeMethod.setAccessible(true);
+            // 18.4.1 inlines the content type setter; write the builder field directly.
+            headerItemBuilderContentTypeField = emoticonHeaderItemBuilderClass.getDeclaredField("e");
+            headerItemBuilderContentTypeField.setAccessible(true);
             headerItemBuilderBuildMethod =
                     emoticonHeaderItemBuilderClass.getDeclaredMethod("q");
             headerItemBuilderBuildMethod.setAccessible(true);
@@ -2309,16 +2309,16 @@ public final class GboardAddSymbolsRuntime {
             headerImageBuilderFactoryMethod = emoticonHeaderImageClass.getDeclaredMethod("a");
             headerImageBuilderFactoryMethod.setAccessible(true);
             headerImageBuilderSetIconResMethod =
-                    emoticonHeaderImageBuilderClass.getDeclaredMethod("q", int.class);
+                    emoticonHeaderImageBuilderClass.getDeclaredMethod("o", int.class);
             headerImageBuilderSetIconResMethod.setAccessible(true);
             headerImageBuilderSetContentDescriptionResMethod =
-                    emoticonHeaderImageBuilderClass.getDeclaredMethod("o", int.class);
+                    emoticonHeaderImageBuilderClass.getDeclaredMethod("n", int.class);
             headerImageBuilderSetContentDescriptionResMethod.setAccessible(true);
-            headerImageBuilderSetSizeMethod =
-                    emoticonHeaderImageBuilderClass.getDeclaredMethod("r", emoticonHeaderImageSizeClass);
-            headerImageBuilderSetSizeMethod.setAccessible(true);
+            // 18.4.1 inlines the size setter; write the builder field directly.
+            headerImageBuilderSizeField = emoticonHeaderImageBuilderClass.getDeclaredField("b");
+            headerImageBuilderSizeField.setAccessible(true);
             headerImageBuilderBuildMethod =
-                    emoticonHeaderImageBuilderClass.getDeclaredMethod("m");
+                    emoticonHeaderImageBuilderClass.getDeclaredMethod("l");
             headerImageBuilderBuildMethod.setAccessible(true);
 
             headerTextBuilderFactoryMethod = emoticonHeaderTextClass.getDeclaredMethod("a");

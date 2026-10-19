@@ -25,9 +25,9 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             new GboardVoiceModeToggleAccessPoint1803Contribution();
     public static final String TOKEN = "voice_mode_toggle";
     /** Mic icon for standard voice typing. */
-    static final int STANDARD_MIC_DRAWABLE_ID = 0x7f0805ee;
+    static final int STANDARD_MIC_DRAWABLE_ID = 0x7f0805a3;
     /** Mic-with-sparkle icon Gboard uses when agentic dictation (Rambler) is selected. */
-    static final int RAMBLER_MIC_DRAWABLE_ID = 0x7f080620;
+    static final int RAMBLER_MIC_DRAWABLE_ID = 0x7f0805d2;
     private static volatile Object activeController;
     private static volatile Context activeContext;
 
@@ -46,7 +46,7 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
                 values.add(TOKEN);
             }
             Class<?> immutableCollection = Class.forName(
-                    "vxe", false, original.getClass().getClassLoader());
+                    "wgz", false, original.getClass().getClassLoader());
             Method copy = immutableCollection.getDeclaredMethod("n", Collection.class);
             copy.setAccessible(true);
             return copy.invoke(null, values);
@@ -78,7 +78,9 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
         active.builderTokenMethod.invoke(builder, TOKEN);
         active.builderIconResourceMethod.invoke(builder, iconFor(context));
         active.builderLabelTextField.set(builder, "Voice mode");
-        active.builderContentDescriptionTextField.set(builder, "Toggle voice typing mode");
+        if (active.builderContentDescriptionTextField != null) {
+            active.builderContentDescriptionTextField.set(builder, "Toggle voice typing mode");
+        }
         active.builderRunnableMethod.invoke(builder, new ToggleAction(context));
         return active.builderBuildMethod.invoke(builder);
     }
@@ -226,16 +228,17 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
         }
 
         static Handles resolve(ClassLoader classLoader) throws Throwable {
-            Class<?> descriptor = Class.forName("mic", false, classLoader);
-            Class<?> builder = Class.forName("mhx", false, classLoader);
-            Class<?> controller = Class.forName("mlh", false, classLoader);
+            Class<?> descriptor = Class.forName("mng", false, classLoader);
+            Class<?> builder = Class.forName("mnb", false, classLoader);
+            Class<?> controller = Class.forName("mqk", false, classLoader);
             Method descriptorBuilderFactory = descriptor.getDeclaredMethod("c");
             Method builderTokenMethod = builder.getDeclaredMethod("l", String.class);
             Method builderRunnableMethod = builder.getDeclaredMethod("q", Runnable.class);
             Method builderBuildMethod = builder.getDeclaredMethod("a");
             Method builderIconResourceMethod = builder.getDeclaredMethod("i", int.class);
             Field builderLabelTextField = builder.getDeclaredField("d");
-            Field builderContentDescriptionTextField = builder.getDeclaredField("e");
+            // 18.4.1 access point descriptors no longer carry a content description.
+            Field builderContentDescriptionTextField = null;
             Method controllerRegisterMethod = controller.getDeclaredMethod(
                     "g", descriptor, boolean.class);
             descriptorBuilderFactory.setAccessible(true);
@@ -244,7 +247,6 @@ public final class GboardVoiceModeToggleAccessPoint1803Contribution {
             builderBuildMethod.setAccessible(true);
             builderIconResourceMethod.setAccessible(true);
             builderLabelTextField.setAccessible(true);
-            builderContentDescriptionTextField.setAccessible(true);
             controllerRegisterMethod.setAccessible(true);
             return new Handles(classLoader, descriptorBuilderFactory, builderTokenMethod,
                     builderRunnableMethod, builderBuildMethod, builderIconResourceMethod,

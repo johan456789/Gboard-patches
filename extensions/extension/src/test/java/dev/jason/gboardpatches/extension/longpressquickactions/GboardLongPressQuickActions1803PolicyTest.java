@@ -14,93 +14,93 @@ public final class GboardLongPressQuickActions1803PolicyTest {
 
     @Test
     public void mapsAllEnglishLowerAndUppercaseTargetKeysToExactActions() throws Exception {
-        assertPlan(0x7f0b1990, "a", -0x2766, 0x7f0804e3,
+        assertPlan(0x7f0b18d2, "a", -0x2766, 0x7f0804b1,
                 "Select all", 0x102001f);
-        assertPlan(0x7f0b18b2, "A", -0x2766, 0x7f0804e3,
+        assertPlan(0x7f0b17f5, "A", -0x2766, 0x7f0804b1,
                 "Select all", 0x102001f);
-        assertPlan(0x7f0b1ac9, "z", -0x273d, 0x7f08051f,
+        assertPlan(0x7f0b1a0b, "z", -0x273d, 0x7f0804ed,
                 "Undo", 0);
-        assertPlan(0x7f0b1969, "Z", -0x273d, 0x7f08051f,
+        assertPlan(0x7f0b18ab, "Z", -0x273d, 0x7f0804ed,
                 "Undo", 0);
-        assertPlan(0x7f0b19a5, "c", -0x2767, 0x7f08044f,
+        assertPlan(0x7f0b18e7, "c", -0x2767, 0x7f08041b,
                 "Copy", 0x1020021);
-        assertPlan(0x7f0b18c3, "C", -0x2767, 0x7f08044f,
+        assertPlan(0x7f0b1806, "C", -0x2767, 0x7f08041b,
                 "Copy", 0x1020021);
-        assertPlan(0x7f0b1abf, "x", -0x2769, 0x7f080450,
+        assertPlan(0x7f0b1a01, "x", -0x2769, 0x7f08041c,
                 "Cut", 0x1020020);
-        assertPlan(0x7f0b1964, "X", -0x2769, 0x7f080450,
+        assertPlan(0x7f0b18a6, "X", -0x2769, 0x7f08041c,
                 "Cut", 0x1020020);
-        assertPlan(0x7f0b1ab7, "v", -0x2768, 0x7f080452,
+        assertPlan(0x7f0b19f9, "v", -0x2768, 0x7f08041e,
                 "Paste", 0x1020022);
-        assertPlan(0x7f0b195f, "V", -0x2768, 0x7f080452,
+        assertPlan(0x7f0b18a1, "V", -0x2768, 0x7f08041e,
                 "Paste", 0x1020022);
-        assertPlan(0x7f0b1ac2, "y", -0x27a3, 0x7f0804df,
+        assertPlan(0x7f0b1a04, "y", -0x27a3, 0x7f0804ad,
                 "Redo", 0);
-        assertPlan(0x7f0b1965, "Y", -0x27a3, 0x7f0804df,
+        assertPlan(0x7f0b18a7, "Y", -0x27a3, 0x7f0804ad,
                 "Redo", 0);
     }
 
     @Test
     public void mapsExactZhuyinTargetKeysToActions() throws Exception {
-        assertPlan(0x7f0b2976, "a", -0x2766, 0x7f0804e3,
+        assertPlan(0x7f0b28cf, "a", -0x2766, 0x7f0804b1,
                 "Select all", 0x102001f);
-        assertPlan(0x7f0b296d, "z", -0x273d, 0x7f08051f,
+        assertPlan(0x7f0b28c6, "z", -0x273d, 0x7f0804ed,
                 "Undo", 0);
-        assertPlan(0x7f0b2970, "c", -0x2767, 0x7f08044f,
+        assertPlan(0x7f0b28c9, "c", -0x2767, 0x7f08041b,
                 "Copy", 0x1020021);
-        assertPlan(0x7f0b2975, "x", -0x2769, 0x7f080450,
+        assertPlan(0x7f0b28ce, "x", -0x2769, 0x7f08041c,
                 "Cut", 0x1020020);
-        assertPlan(0x7f0b2987, "v", -0x2768, 0x7f080452,
+        assertPlan(0x7f0b28e0, "v", -0x2768, 0x7f08041e,
                 "Paste", 0x1020022);
-        assertPlan(0x7f0b2989, "y", -0x27a3, 0x7f0804df,
+        assertPlan(0x7f0b28e2, "y", -0x27a3, 0x7f0804ad,
                 "Redo", 0);
     }
 
     @Test
     public void rejectsMismatchedPayloadsUnknownKeysAndDuplicateActions() throws Exception {
-        Assert.assertNull(invokePlan(0x7f0b1990, "A", new int[0]));
-        Assert.assertNull(invokePlan(0x7f0b18b2, "a", new int[0]));
-        Assert.assertNull(invokePlan(0x7f0b2976, "A", new int[0]));
-        Assert.assertNull(invokePlan(0x7f0b2970, "x", new int[0]));
+        Assert.assertNull(invokePlan(0x7f0b18d2, "A", new int[0]));
+        Assert.assertNull(invokePlan(0x7f0b17f5, "a", new int[0]));
+        Assert.assertNull(invokePlan(0x7f0b28cf, "A", new int[0]));
+        Assert.assertNull(invokePlan(0x7f0b28c9, "x", new int[0]));
         Assert.assertNull(invokePlan(0x7f0b19f6, "q", new int[0]));
-        Assert.assertNull(invokePlan(0x7f0b1990, null, new int[0]));
-        Assert.assertNull(invokePlan(0x7f0b1990, "a", new int[] {-0x2766}));
-        Assert.assertNull(invokePlan(0x7f0b2976, "a", new int[] {-0x2766}));
-        Assert.assertNotNull(invokePlan(0x7f0b2976, "a", new int[] {-0x2767}));
+        Assert.assertNull(invokePlan(0x7f0b18d2, null, new int[0]));
+        Assert.assertNull(invokePlan(0x7f0b18d2, "a", new int[] {-0x2766}));
+        Assert.assertNull(invokePlan(0x7f0b28cf, "a", new int[] {-0x2766}));
+        Assert.assertNotNull(invokePlan(0x7f0b28cf, "a", new int[] {-0x2767}));
     }
 
     @Test
     public void exposesContextMenuActionsOnlyForExactEligibleLongPressEvents()
             throws Exception {
         Assert.assertEquals(Integer.valueOf(0x102001f),
-                contextMenuActionFor(0x7f0b1990, "a", "LONG_PRESS", -0x2766));
+                contextMenuActionFor(0x7f0b18d2, "a", "LONG_PRESS", -0x2766));
         Assert.assertEquals(Integer.valueOf(0x1020021),
-                contextMenuActionFor(0x7f0b18c3, "C", "LONG_PRESS", -0x2767));
+                contextMenuActionFor(0x7f0b1806, "C", "LONG_PRESS", -0x2767));
         Assert.assertEquals(Integer.valueOf(0x1020020),
-                contextMenuActionFor(0x7f0b1abf, "x", "LONG_PRESS", -0x2769));
+                contextMenuActionFor(0x7f0b1a01, "x", "LONG_PRESS", -0x2769));
         Assert.assertEquals(Integer.valueOf(0x1020022),
-                contextMenuActionFor(0x7f0b195f, "V", "LONG_PRESS", -0x2768));
+                contextMenuActionFor(0x7f0b18a1, "V", "LONG_PRESS", -0x2768));
         Assert.assertEquals(Integer.valueOf(0x102001f),
-                contextMenuActionFor(0x7f0b2976, "a", "LONG_PRESS", -0x2766));
+                contextMenuActionFor(0x7f0b28cf, "a", "LONG_PRESS", -0x2766));
         Assert.assertEquals(Integer.valueOf(0x1020021),
-                contextMenuActionFor(0x7f0b2970, "c", "LONG_PRESS", -0x2767));
+                contextMenuActionFor(0x7f0b28c9, "c", "LONG_PRESS", -0x2767));
         Assert.assertEquals(Integer.valueOf(0x1020020),
-                contextMenuActionFor(0x7f0b2975, "x", "LONG_PRESS", -0x2769));
+                contextMenuActionFor(0x7f0b28ce, "x", "LONG_PRESS", -0x2769));
         Assert.assertEquals(Integer.valueOf(0x1020022),
-                contextMenuActionFor(0x7f0b2987, "v", "LONG_PRESS", -0x2768));
+                contextMenuActionFor(0x7f0b28e0, "v", "LONG_PRESS", -0x2768));
 
         Assert.assertNull(contextMenuActionFor(
-                0x7f0b1ac9, "z", "LONG_PRESS", -0x273d));
+                0x7f0b1a0b, "z", "LONG_PRESS", -0x273d));
         Assert.assertNull(contextMenuActionFor(
-                0x7f0b1965, "Y", "LONG_PRESS", -0x27a3));
+                0x7f0b18a7, "Y", "LONG_PRESS", -0x27a3));
         Assert.assertNull(contextMenuActionFor(
-                0x7f0b296d, "z", "LONG_PRESS", -0x273d));
+                0x7f0b28c6, "z", "LONG_PRESS", -0x273d));
         Assert.assertNull(contextMenuActionFor(
-                0x7f0b2989, "y", "LONG_PRESS", -0x27a3));
+                0x7f0b28e2, "y", "LONG_PRESS", -0x27a3));
         Assert.assertNull(contextMenuActionFor(
-                0x7f0b1990, "a", "PRESS", -0x2766));
+                0x7f0b18d2, "a", "PRESS", -0x2766));
         Assert.assertNull(contextMenuActionFor(
-                0x7f0b2976, "a", "LONG_PRESS", -0x2767));
+                0x7f0b28cf, "a", "LONG_PRESS", -0x2767));
         Assert.assertNull(contextMenuActionFor(
                 0x7f0b19f6, "q", "LONG_PRESS", -0x2766));
     }
@@ -108,34 +108,34 @@ public final class GboardLongPressQuickActions1803PolicyTest {
     @Test
     public void recognizesAllSixExactInjectedActionEvents() throws Exception {
         Assert.assertTrue(isQuickActionEvent(
-                0x7f0b1990, "a", "LONG_PRESS", -0x2766));
+                0x7f0b18d2, "a", "LONG_PRESS", -0x2766));
         Assert.assertTrue(isQuickActionEvent(
-                0x7f0b296d, "z", "LONG_PRESS", -0x273d));
+                0x7f0b28c6, "z", "LONG_PRESS", -0x273d));
         Assert.assertTrue(isQuickActionEvent(
-                0x7f0b2970, "c", "LONG_PRESS", -0x2767));
+                0x7f0b28c9, "c", "LONG_PRESS", -0x2767));
         Assert.assertTrue(isQuickActionEvent(
-                0x7f0b1abf, "x", "LONG_PRESS", -0x2769));
+                0x7f0b1a01, "x", "LONG_PRESS", -0x2769));
         Assert.assertTrue(isQuickActionEvent(
-                0x7f0b2987, "v", "LONG_PRESS", -0x2768));
+                0x7f0b28e0, "v", "LONG_PRESS", -0x2768));
         Assert.assertTrue(isQuickActionEvent(
-                0x7f0b1965, "Y", "LONG_PRESS", -0x27a3));
+                0x7f0b18a7, "Y", "LONG_PRESS", -0x27a3));
 
         Assert.assertFalse(isQuickActionEvent(
-                0x7f0b1990, "a", "PRESS", -0x2766));
+                0x7f0b18d2, "a", "PRESS", -0x2766));
         Assert.assertFalse(isQuickActionEvent(
-                0x7f0b1990, "a", "LONG_PRESS", -0x2767));
+                0x7f0b18d2, "a", "LONG_PRESS", -0x2767));
         Assert.assertFalse(isQuickActionEvent(
-                0x7f0b2976, "A", "LONG_PRESS", -0x2766));
+                0x7f0b28cf, "A", "LONG_PRESS", -0x2766));
     }
 
     @Test
     public void recognizesOnlyTheAssignedActionInsidePatchedMetadata() throws Exception {
         Assert.assertTrue(containsAssignedAction(
-                0x7f0b1abf, "x", new int[] {-0x2769}));
+                0x7f0b1a01, "x", new int[] {-0x2769}));
         Assert.assertTrue(containsAssignedAction(
-                0x7f0b2987, "v", new int[] {-0x2767, -0x2768}));
+                0x7f0b28e0, "v", new int[] {-0x2767, -0x2768}));
         Assert.assertFalse(containsAssignedAction(
-                0x7f0b1abf, "x", new int[] {-0x2768}));
+                0x7f0b1a01, "x", new int[] {-0x2768}));
         Assert.assertFalse(containsAssignedAction(
                 0x7f0b19f6, "q", new int[] {-0x2769}));
     }
@@ -144,13 +144,13 @@ public final class GboardLongPressQuickActions1803PolicyTest {
     public void globeChordUsesTheSameEnglishAndZhuyinMappings() {
         Assert.assertSame(GboardEditingShortcutPolicy.Shortcut.SELECT_ALL,
                 GboardLongPressQuickActions1803Policy.shortcutForChord(
-                        0x7f0b1990, "a", 'a', -10043, -10009));
+                        0x7f0b18d2, "a", 'a', -10043, -10009));
         Assert.assertSame(GboardEditingShortcutPolicy.Shortcut.CUT,
                 GboardLongPressQuickActions1803Policy.shortcutForChord(
-                        0x7f0b2975, "x", -10009, -10043, -10009));
+                        0x7f0b28ce, "x", -10009, -10043, -10009));
         Assert.assertSame(GboardEditingShortcutPolicy.Shortcut.REDO,
                 GboardLongPressQuickActions1803Policy.shortcutForPointerTarget(
-                        0x7f0b2989, "y", -10043, -10043));
+                        0x7f0b28e2, "y", -10043, -10043));
         Assert.assertNull(GboardLongPressQuickActions1803Policy.shortcutForChord(
                 0x7f0b19f6, "q", 'q', -10043, -10009));
     }
@@ -158,8 +158,8 @@ public final class GboardLongPressQuickActions1803PolicyTest {
     @Test
     public void zhuyinRangeAdmissionIsVersionOwnedAndBounded() {
         Assert.assertFalse(GboardLongPressQuickActions1803Policy.isZhuyinKeyId(0x7f0b295d));
-        Assert.assertTrue(GboardLongPressQuickActions1803Policy.isZhuyinKeyId(0x7f0b295e));
-        Assert.assertTrue(GboardLongPressQuickActions1803Policy.isZhuyinKeyId(0x7f0b298a));
+        Assert.assertTrue(GboardLongPressQuickActions1803Policy.isZhuyinKeyId(0x7f0b28b7));
+        Assert.assertTrue(GboardLongPressQuickActions1803Policy.isZhuyinKeyId(0x7f0b28e3));
         Assert.assertFalse(GboardLongPressQuickActions1803Policy.isZhuyinKeyId(0x7f0b298b));
     }
 

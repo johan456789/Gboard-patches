@@ -49,7 +49,7 @@ public final class GboardKeyboardPreviewController {
     private static final int BUTTON_SIZE_DP = 56;
     private static final int BUTTON_MARGIN_DP = 16;
     private static final int CONTENT_CLEARANCE_DP = 88;
-    private static final int TARGET_KEYBOARD_DRAWABLE_ID = 0x7f0804a6;
+    private static final int TARGET_KEYBOARD_DRAWABLE_ID = 0x7f080473;
 
     private final Activity activity;
     private final Supplier<List<String>> targetPackageNames;

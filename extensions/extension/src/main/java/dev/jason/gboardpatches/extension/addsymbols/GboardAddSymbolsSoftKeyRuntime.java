@@ -15,16 +15,16 @@ public final class GboardAddSymbolsSoftKeyRuntime {
     private static final String TAG = "GboardAddSymbols";
     private static final String ACTION_SET_CLASS =
             "com.google.android.libraries.inputmethod.metadata.SoftKeyDef";
-    private static final String ACTION_TYPE_CLASS = "pmy";
+    private static final String ACTION_TYPE_CLASS = "pti";
     private static final String ACTION_DEF_CLASS =
             "com.google.android.libraries.inputmethod.metadata.ActionDef";
-    private static final String ACTION_ENTRY_CLASS = "pnu";
-    private static final String ACTION_BUILDER_CLASS = "pmz";
-    private static final String METADATA_BUILDER_CLASS = "ppo";
-    private static final String INTENTION_CLASS = "pnt";
-    private static final String KEYBOARD_TYPE_CLASS = "ppa";
+    private static final String ACTION_ENTRY_CLASS = "pue";
+    private static final String ACTION_BUILDER_CLASS = "ptj";
+    private static final String METADATA_BUILDER_CLASS = "pvz";
+    private static final String INTENTION_CLASS = "pud";
+    private static final String KEYBOARD_TYPE_CLASS = "pvl";
 
-    private static final int POPUP_LAYOUT_ATTRIBUTE_RES_ID = 0x7f040296;
+    private static final int POPUP_LAYOUT_ATTRIBUTE_RES_ID = 0x7f04027f;
     private static final int SWITCH_KEYBOARD_KEYCODE = -0x2714;
     private static final int SWITCH_TO_ONE_HANDED_MODE_KEYCODE = -0x2749;
     private static final int OPEN_EXTENSION_KEYCODE = -0x274a;
@@ -241,7 +241,7 @@ public final class GboardAddSymbolsSoftKeyRuntime {
 
             actionDefsField = field(actionSetClass, "f");
             keyLabelsField = field(actionSetClass, "g");
-            exactActionLookupMethod = method(actionSetClass, "h", actionTypeClass);
+            exactActionLookupMethod = method(actionSetClass, "g", actionTypeClass);
             actionTypeField = field(actionDefClass, "c");
             actionEntriesField = field(actionDefClass, "d");
             popupLayoutField = field(actionDefClass, "g");
@@ -262,7 +262,7 @@ public final class GboardAddSymbolsSoftKeyRuntime {
             buildActionMethod = method(actionBuilderClass, "c");
             metadataBuilderConstructor = constructor(metadataBuilderClass);
             metadataActionsField = field(metadataBuilderClass, "b");
-            copyMetadataMethod = method(metadataBuilderClass, "j", actionSetClass);
+            copyMetadataMethod = method(metadataBuilderClass, "k", actionSetClass);
             buildMetadataMethod = method(metadataBuilderClass, "d");
             pressActionType = enumValue(actionTypeClass, "PRESS");
             longPressActionType = enumValue(actionTypeClass, "LONG_PRESS");

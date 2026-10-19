@@ -8,18 +8,18 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class fik {
-    public final fil a;
-    fik(fil owner) { a = owner; }
+class fkx {
+    public final fky a;
+    fkx(fky owner) { a = owner; }
     public Object call() { return null; }
 }
 
-class fil {
+class fky {
     public final Context b;
-    fil(Context context) { b = context; }
+    fky(Context context) { b = context; }
 }
 
-class fjv {
+class fmg {
     static long primaryTimestamp;
     static long cleanupFailureId = Long.MIN_VALUE;
     static final List<String> events = new ArrayList<>();
@@ -27,7 +27,7 @@ class fjv {
     public final boolean f;
     public final AtomicInteger g;
 
-    fjv(Context context, boolean disabled, int count) {
+    fmg(Context context, boolean disabled, int count) {
         c = context;
         f = disabled;
         g = new AtomicInteger(count);
@@ -57,18 +57,18 @@ class jt {
     public void n(int position) { removed.add(Integer.valueOf(position)); }
 }
 
-class fjk extends jt {
+class flx extends jt {
     public final Context e;
     public final List<Object> n;
     public int o;
-    public int y;
+    public int p;
     public int refreshCount;
 
-    fjk(Context context, List<Object> items, int recentCount, int pinnedVisibleCount) {
+    flx(Context context, List<Object> items, int recentCount, int pinnedVisibleCount) {
         e = context;
         n = items;
         o = recentCount;
-        y = pinnedVisibleCount;
+        p = pinnedVisibleCount;
     }
 
     public void F() {}
@@ -78,48 +78,48 @@ class fjk extends jt {
 
 class kr {}
 
-class fji extends kr {
+class flv extends kr {
     public final TextView t;
-    fji(TextView textView) { t = textView; }
+    flv(TextView textView) { t = textView; }
 }
 
-class fij {
-    public String c;
-    public final int e;
+class fkw {
+    public String a;
+    public final int c;
     public final boolean h;
 
-    fij(int itemType) {
+    fkw(int itemType) {
         this(itemType, false);
     }
 
-    fij(int itemType, boolean sensitive) {
-        c = "";
-        e = itemType;
+    fkw(int itemType, boolean sensitive) {
+        a = "";
+        c = itemType;
         h = sensitive;
     }
 }
 
-class fih {
-    public static final fih a = new fih(-1L, new j$.time.Instant(0L), 0, false, false);
-    public static final fih b = new fih(-2L, new j$.time.Instant(0L), 0, false, false);
-    public static final fih c = new fih(-3L, new j$.time.Instant(0L), 2, false, true);
+class fku {
+    public static final fku a = new fku(-1L, new j$.time.Instant(0L), 0, false, false);
+    public static final fku b = new fku(-2L, new j$.time.Instant(0L), 0, false, false);
+    public static final fku c = new fku(-3L, new j$.time.Instant(0L), 2, false, true);
 
     public final long d;
     public final j$.time.Instant e;
-    public final fij g;
+    public final fkw g;
     private final boolean pinned;
     private final boolean special;
 
-    fih(long id, j$.time.Instant timestamp, int itemType, boolean isPinned,
+    fku(long id, j$.time.Instant timestamp, int itemType, boolean isPinned,
             boolean isSpecial) {
         this(id, timestamp, itemType, isPinned, isSpecial, false);
     }
 
-    fih(long id, j$.time.Instant timestamp, int itemType, boolean isPinned,
+    fku(long id, j$.time.Instant timestamp, int itemType, boolean isPinned,
             boolean isSpecial, boolean sensitive) {
         d = id;
         e = timestamp;
-        g = new fij(itemType, sensitive);
+        g = new fkw(itemType, sensitive);
         pinned = isPinned;
         special = isSpecial;
     }
@@ -129,9 +129,9 @@ class fih {
     public boolean o() { return special; }
 }
 
-class fjo {
+class fmb {
     static final List<Object> items = new ArrayList<>();
-    static final List<String> events = fjv.events;
+    static final List<String> events = fmg.events;
     static final Uri URI = Uri.parse("content://clipboard1803/items");
 
     public static Uri d(Context context, int type, long id) { return URI; }
@@ -142,7 +142,7 @@ class fjo {
                 ? Long.MIN_VALUE : Long.parseLong(selectionArgs[0]);
         List<Object> result = new ArrayList<>();
         for (Object item : items) {
-            fih clip = (fih) item;
+            fku clip = (fku) item;
             long value = clip.e.toEpochMilli();
             if ("timestamp = ?".equals(selection)) {
                 if (value == timestamp) result.add(item);
@@ -151,7 +151,7 @@ class fjo {
             }
         }
         result.sort(Comparator.comparingLong((Object value) ->
-                ((fih) value).e.toEpochMilli()).reversed());
+                ((fku) value).e.toEpochMilli()).reversed());
         return result;
     }
 
@@ -164,21 +164,21 @@ class fjo {
     }
 }
 
-class cdl {
+class cdx {
     static long lastVisibleTimestamp;
     public long m(int key, long defaultValue) { return lastVisibleTimestamp; }
     public void s(int key, long value) { lastVisibleTimestamp = value; }
 }
 
-class qhy extends cdl {
-    public static qhy I(Context context) { return new qhy(); }
+class qou extends cdx {
+    public static qou I(Context context) { return new qou(); }
 }
 
 class AbstractKeyboard1803Stub {
-    public final Context w;
+    public final Context z;
     public final Object y;
     AbstractKeyboard1803Stub(Context context, Object shadow) {
-        w = context;
+        z = context;
         y = shadow;
     }
 }

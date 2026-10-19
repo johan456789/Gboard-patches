@@ -94,7 +94,8 @@ internal fun MutableMethod.gboardStructuralFingerprint(
             }
         }
     }
-    return MessageDigest.getInstance("SHA-256")
+    val digest = MessageDigest.getInstance("SHA-256")
         .digest(canonical.toByteArray(StandardCharsets.UTF_8))
         .joinToString("") { byte -> "%02x".format(byte) }
+    return digest
 }

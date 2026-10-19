@@ -137,9 +137,9 @@ class GboardAboutPageResourcePatchTest {
     private companion object {
         const val FIXTURE = "/gboard/18.0.3/about/setting_about.xml"
         const val FIXTURE_SHA256 =
-            "11C2E56818575A4B0D28D5FBBE25FCA66549AFA678AA112F27239257A655BBFB"
-        const val ABOUT_VERSION_KEY_REF = "@string/APKTOOL_RENAMED_0x7f140c23"
-        const val ABOUT_VERSION_SANITIZED_KEY_REF = "@string/string_0x7f140c23"
+            "B4B9D2F569F67DA1909921B582695D95C50D17C02E64C061BD7A7D3C87A890EB"
+        const val ABOUT_VERSION_KEY_REF = "@string/APKTOOL_RENAMED_0x7f140b2d"
+        const val ABOUT_VERSION_SANITIZED_KEY_REF = "@string/string_0x7f140b2d"
         const val ABOUT_PREFERENCE_CLASS =
             "com.google.android.libraries.inputmethod.settings.widget.ExtendedPreference"
     }

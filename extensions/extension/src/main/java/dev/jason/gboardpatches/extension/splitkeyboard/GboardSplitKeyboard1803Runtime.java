@@ -9,7 +9,7 @@ import java.util.List;
 import dev.jason.gboardpatches.extension.flagsettings.GboardFlagRuntimeContext;
 
 public final class GboardSplitKeyboard1803Runtime {
-    private static final String IMMUTABLE_LIST_CLASS = "vvw";
+    private static final String IMMUTABLE_LIST_CLASS = "wfr";
     private static final String IMMUTABLE_LIST_COPY_METHOD = "o";
     private static final String SPLIT_ELIGIBILITY_METHOD = "au";
     private static final String CURRENT_MODE_METHOD = "G";

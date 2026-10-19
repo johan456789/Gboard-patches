@@ -13,20 +13,20 @@ public final class GboardSpacebarLogoSourceContractTest {
     private final Path root = Path.of(".").toAbsolutePath().normalize();
 
     @Test
-    public void versionAdapterOwnsAll1803Symbols() throws Exception {
+    public void versionAdapterOwnsAll1841Symbols() throws Exception {
         String source = read(root.resolve(
                 "src/main/java/dev/jason/gboardpatches/extension/spacebarlogo/" +
                         "GboardSpacebarLogo1803Runtime.java"));
 
-        Assert.assertTrue(source.contains("ACTION_TYPE_CLASS = \"pmy\""));
+        Assert.assertTrue(source.contains("ACTION_TYPE_CLASS = \"pti\""));
         Assert.assertTrue(source.contains(
                 "com.google.android.libraries.inputmethod.metadata.ActionDef"));
-        Assert.assertTrue(source.contains("ACTION_ENTRY_CLASS = \"pnu\""));
-        Assert.assertTrue(source.contains("SPACEBAR_VIEW_ID = 0x7f0b0606"));
-        Assert.assertTrue(source.contains("PRIMARY_LABEL_VIEW_ID = 0x7f0b0651"));
-        Assert.assertTrue(source.contains("GOOGLE_G_DRAWABLE_ID = 0x7f08048b"));
-        Assert.assertTrue(source.contains("HEART_DRAWABLE_ID = 0x7f080476"));
-        Assert.assertTrue(source.contains("EMOJI_DRAWABLE_ID = 0x7f0804c3"));
+        Assert.assertTrue(source.contains("ACTION_ENTRY_CLASS = \"pue\""));
+        Assert.assertTrue(source.contains("SPACEBAR_VIEW_ID = 0x7f0b05b3"));
+        Assert.assertTrue(source.contains("PRIMARY_LABEL_VIEW_ID = 0x7f0b05f3"));
+        Assert.assertTrue(source.contains("GOOGLE_G_DRAWABLE_ID = 0x7f080457"));
+        Assert.assertTrue(source.contains("HEART_DRAWABLE_ID = 0x7f080442"));
+        Assert.assertTrue(source.contains("EMOJI_DRAWABLE_ID = 0x7f080490"));
     }
 
     @Test

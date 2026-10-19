@@ -12,8 +12,6 @@ import dev.jason.gboardpatches.patches.gboard.features.advancedvoice.gboardAdvan
 import dev.jason.gboardpatches.patches.gboard.features.advancedvoice.gboardAdvancedVoiceFlagValuePatch
 import dev.jason.gboardpatches.patches.gboard.features.englishqwerty.gboardEnglishQwertyPointerPatch
 import dev.jason.gboardpatches.patches.gboard.features.englishqwerty.gboardEnglishQwertySoftKeyPatch
-import dev.jason.gboardpatches.patches.gboard.features.flowmode.gboardFlowModeFlagValuePatch
-import dev.jason.gboardpatches.patches.gboard.features.flowmode.gboardFlowModeKeyEventPatch
 import dev.jason.gboardpatches.patches.gboard.features.longpressquickactions.gboardLongPressQuickActionsInputEventPatch
 import dev.jason.gboardpatches.patches.gboard.features.longpressquickactions.gboardLongPressQuickActionsGesturePatch
 import dev.jason.gboardpatches.patches.gboard.features.longpressquickactions.gboardLongPressQuickActionsPointerOwnerPatch
@@ -82,14 +80,7 @@ internal object GboardContributionWiring {
                 arrayOf(gboardEnglishQwertyPointerPatch)
             },
         ),
-        "flow_mode_animation" to listOf(
-            unit("flow_mode_animation.flag") {
-                arrayOf(gboardFlowModeFlagValuePatch)
-            },
-            unit("flow_mode_animation.key_event") {
-                arrayOf(gboardFlowModeKeyEventPatch)
-            },
-        ),
+        // flow_mode_animation is not admitted on 18.4.1 (stock FlowModeDetector compiled out).
         "g_logo_on_spacebar" to listOf(
             unit(
                 "g_logo_on_spacebar.before_bind",

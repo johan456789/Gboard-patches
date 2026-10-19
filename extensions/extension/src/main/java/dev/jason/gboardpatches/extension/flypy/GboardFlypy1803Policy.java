@@ -7,7 +7,7 @@ public final class GboardFlypy1803Policy {
             "zh_hant_t_i0_shuangpin_flypy_android_token_dictionary";
     public static final String PINYIN_DICTIONARY_ID =
             "zh_hant_t_i0_pinyin_android_token_dictionary";
-    public static final int PINYIN_SCHEME_PREF_RES_ID = 0x7f140b2e;
+    public static final int PINYIN_SCHEME_PREF_RES_ID = 0x7f140a4a;
     public static final int TOKEN_DICTIONARY_TYPE = 4;
 
     private GboardFlypy1803Policy() {

@@ -16,17 +16,17 @@ public final class GboardZhuyinTraditionalSimplifiedToggleRuntimeSourceTest {
 
         assertTrue(source.contains(
                 "\"com.google.android.libraries.inputmethod.metadata.SoftKeyDef\""));
-        assertTrue(source.contains("private static final String ACTION_TYPE_CLASS = \"pmy\";"));
+        assertTrue(source.contains("private static final String ACTION_TYPE_CLASS = \"pti\";"));
         assertTrue(source.contains(
                 "\"com.google.android.libraries.inputmethod.metadata.ActionDef\""));
-        assertTrue(source.contains("private static final String ACTION_ENTRY_CLASS = \"pnu\";"));
-        assertTrue(source.contains("private static final String ACTION_BUILDER_CLASS = \"pmz\";"));
-        assertTrue(source.contains("private static final String METADATA_BUILDER_CLASS = \"ppo\";"));
-        assertTrue(source.contains("private static final String INTENTION_CLASS = \"pnt\";"));
-        assertTrue(source.contains("private static final String GESTURE_DISPATCHER_CLASS = \"pvf\";"));
-        assertTrue(source.contains("private static final String PREFERENCE_CLASS = \"qhy\";"));
-        assertTrue(source.contains("private static final String PREFERENCE_BASE_CLASS = \"cdl\";"));
-        assertTrue(source.contains("public static final int PREFERENCE_KEY_RES_ID = 0x7f140a1b;"));
+        assertTrue(source.contains("private static final String ACTION_ENTRY_CLASS = \"pue\";"));
+        assertTrue(source.contains("private static final String ACTION_BUILDER_CLASS = \"ptj\";"));
+        assertTrue(source.contains("private static final String METADATA_BUILDER_CLASS = \"pvz\";"));
+        assertTrue(source.contains("private static final String INTENTION_CLASS = \"pud\";"));
+        assertTrue(source.contains("private static final String GESTURE_DISPATCHER_CLASS = \"qbn\";"));
+        assertTrue(source.contains("private static final String PREFERENCE_CLASS = \"qou\";"));
+        assertTrue(source.contains("private static final String PREFERENCE_BASE_CLASS = \"cdx\";"));
+        assertTrue(source.contains("public static final int PREFERENCE_KEY_RES_ID = 0x7f140962;"));
         assertTrue(source.contains("getDeclaredMethod(\"r\", actionSetClass, long.class)"));
         assertTrue(source.contains("getDeclaredField(\"e\")"));
         assertTrue(source.contains("getDeclaredField(\"f\")"));

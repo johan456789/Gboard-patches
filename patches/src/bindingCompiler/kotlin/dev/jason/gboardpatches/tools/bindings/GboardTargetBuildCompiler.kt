@@ -126,6 +126,7 @@ object GboardTargetBuildCompiler {
                     .map { contribution -> contribution.asJsonObject.get("contribution_id").asString }
                     .toSortedSet()
             }
+            .filterKeys { it !in UNSUPPORTED_ON_TARGET_FEATURE_IDS }
             .filterValues { it.isNotEmpty() }
             .toSortedMap()
         return Admission(
@@ -422,6 +423,10 @@ object GboardTargetBuildCompiler {
 
     private val GSON = GsonBuilder().disableHtmlEscaping().serializeNulls().create()
     private const val GBOARD_PACKAGE_NAME = "com.google.android.inputmethod.latin"
+    // Gboard 18.4.1 compiles out the stock FlowModeDetector (its class is a throwing stub that is
+    // never constructed), so Hyperspeed Typing Animation has nothing to hook on this target.
+    private val UNSUPPORTED_ON_TARGET_FEATURE_IDS = setOf("flow_mode_animation")
+
     private val DEFAULT_ARTIFACT_IDENTITY = GboardArtifactIdentity(
         packageName = GBOARD_PACKAGE_NAME,
         apkFileType = "APK",
@@ -429,6 +434,6 @@ object GboardTargetBuildCompiler {
             "7ce83c1b71f3d572fed04c8d40c5cb10ff75e6d87d9df6fbd53f0468c2905053",
             "f0fd6c5b410f25cb25c3b53346c8972fae30f8ee7411df910480ad6b2d60db83",
         ),
-        versionNames = listOf("18.0.3.954559732-release-arm64-v8a"),
+        versionNames = listOf("18.4.1.985164140-release-arm64-v8a"),
     )
 }

@@ -18,15 +18,16 @@ private const val VOICE_SETTINGS =
     "Lcom/google/android/apps/inputmethod/latin/preference/VoiceSettingsFragment;"
 
 private object GboardRambler1803Targets {
-    val layout = method(VOICE_SETTINGS, "aB", emptyList(), "I")
-    val setup = method(VOICE_SETTINGS, "ac", emptyList(), "V")
+    val layout = method(VOICE_SETTINGS, "aC", emptyList(), "I")
+    // 18.4.1 moves the selector setup out of ac() into aJ(), shared by ac() and aD().
+    val setup = method(VOICE_SETTINGS, "aJ", emptyList(), "V")
     val create = method(VOICE_SETTINGS, "f", listOf("Landroid/os/Bundle;"), "V")
     val selectionWrite = method(
         VOICE_SETTINGS,
-        "aD",
+        "aE",
         listOf(
             "Z",
-            "Lqhy;",
+            "Lqou;",
             "Lcom/google/android/libraries/inputmethod/preferencewidgets/" +
                 "CustomSelectorWithWidgetPreference;",
             "Lcom/google/android/libraries/inputmethod/preferencewidgets/" +
@@ -34,8 +35,8 @@ private object GboardRambler1803Targets {
         ),
         "V",
     )
-    val selectionRead = method("Lmqk;", "a", listOf("Landroid/content/Context;"), "Z")
-    val defaultSelection = method("Lfbl;", "hN", emptyList(), "V")
+    val selectionRead = method("Lmvq;", "a", listOf("Landroid/content/Context;"), "Z")
+    val defaultSelection = method("Lfde;", "hT", emptyList(), "V")
 
     private fun method(
         owner: String,
@@ -46,7 +47,7 @@ private object GboardRambler1803Targets {
 }
 
 internal val gboardRambler1803OfficialSelectorPatch = bytecodePatch(
-    description = "讓 18.0.3 Rambler capability 只在官方 Voice typing selector scope 放行。",
+    description = "讓 18.4.1 Rambler capability 只在官方 Voice typing selector scope 放行。",
 ) {
     compatibleWith(COMPATIBILITY_GBOARD)
     dependsOn(gboardPatchesExtensionCarrierPatch)

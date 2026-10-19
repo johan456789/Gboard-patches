@@ -70,7 +70,7 @@ private val gboardLongPressQuickActionsPointerOwnerSpec = GboardPointerOwnerFeat
 )
 
 internal val gboardLongPressQuickActionsPointerOwnerPatch = gboardPointerOwnerFeaturePatch(
-    description = "在 18.0.3 pointer owner 完成後補用 Gboard stock long-press scheduler。",
+    description = "在 18.4.1 pointer owner 完成後補用 Gboard stock long-press scheduler。",
     spec = gboardLongPressQuickActionsPointerOwnerSpec,
 )
 

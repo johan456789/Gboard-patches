@@ -91,7 +91,7 @@ public final class GboardAiWritingToolsRuntimeLoggingTest {
         preferences.edit().clear().commit();
         GboardAiWritingToolsSettings.ensureDefaults(preferences);
         staticField("applicationContext").set(null, context);
-        Object forcedSignal = Class.forName("gvu").getField("a").get(null);
+        Object forcedSignal = Class.forName("gyh").getField("a").get(null);
 
         for (int index = 0; index < 80; index++) {
             Assert.assertTrue(GboardAiWritingToolsRuntime.applySignalResult(
@@ -130,7 +130,7 @@ public final class GboardAiWritingToolsRuntimeLoggingTest {
     }
 
     private static long warningCount(String message) {
-        String expected = "[gboard-writing-tools-18.0.3] " + message;
+        String expected = "[gboard-writing-tools-18.4.1] " + message;
         return ShadowLog.getLogsForTag(TAG).stream()
                 .filter(item -> item.type == android.util.Log.WARN)
                 .filter(item -> expected.equals(item.msg))

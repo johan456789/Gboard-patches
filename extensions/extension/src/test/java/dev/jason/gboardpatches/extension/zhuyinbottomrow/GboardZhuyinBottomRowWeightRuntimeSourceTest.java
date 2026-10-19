@@ -14,17 +14,17 @@ public final class GboardZhuyinBottomRowWeightRuntimeSourceTest {
         String source = readRuntimeSupportSource();
 
         Assert.assertTrue(source.contains(
-                "private static final String ACTION_TYPE_CLASS = \"pmy\";"));
+                "private static final String ACTION_TYPE_CLASS = \"pti\";"));
         Assert.assertTrue(source.contains(
                 "\"com.google.android.libraries.inputmethod.metadata.SoftKeyDef\""));
         Assert.assertTrue(source.contains(
                 "\"com.google.android.libraries.inputmethod.metadata.ActionDef\""));
         Assert.assertTrue(source.contains(
-                "private static final String ACTION_DATA_CLASS = \"pnu\";"));
+                "private static final String ACTION_DATA_CLASS = \"pue\";"));
         Assert.assertTrue(source.contains("softKeyViewClass.getDeclaredField(\"e\")"));
         Assert.assertTrue(source.contains("actionSetClass.getDeclaredField(\"g\")"));
         Assert.assertTrue(source.contains(
-                "actionSetClass.getDeclaredMethod(\"h\", actionTypeClass)"));
+                "actionSetClass.getDeclaredMethod(\"g\", actionTypeClass)"));
         Assert.assertTrue(source.contains("actionDefClass.getDeclaredField(\"d\")"));
         Assert.assertTrue(source.contains("actionDataClass.getDeclaredField(\"e\")"));
         Assert.assertFalse(source.contains("\"nxi\""));

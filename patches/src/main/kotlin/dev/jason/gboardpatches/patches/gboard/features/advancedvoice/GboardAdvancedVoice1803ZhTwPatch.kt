@@ -16,43 +16,43 @@ import dev.jason.gboardpatches.patches.shared.Constants.COMPATIBILITY_GBOARD
 
 private object GboardAdvancedVoice1803Targets {
     val nativeSplitReadiness = GboardMethodTarget(
-        classType = "Lscn;",
+        classType = "Lslc;",
         name = "a",
         parameterTypes = emptyList(),
         returnType = "Z",
     )
     val eligibilityConstructor = GboardMethodTarget(
-        classType = "Lsdc;",
+        classType = "Lslr;",
         name = "<init>",
         parameterTypes = listOf(
-            "Landroid/content/Context;", "Lkuj;", "Lpol;", "Lrtu;", "Ltfz;", "Ltfz;",
-            "Lsmr;", "Ltfz;", "Lsmx;", "Lsik;", "Lkuj;", "Lshr;", "Lshz;", "Ltfz;",
-            "Lsji;", "Lsnb;", "Lsoz;", "Lrsy;", "Lsdq;", "Lscq;", "Lkuj;", "Labsf;",
+            "Landroid/content/Context;", "Lkzk;", "Luqx;", "Lscj;", "Ltpa;", "Ltpa;",
+            "Lsvo;", "Ltpa;", "Lsvv;", "Lsrd;", "Lkzk;", "Lsqk;", "Lsqs;", "Ltpa;",
+            "Lssb;", "Lsvz;", "Lsxw;", "Lsbp;", "Lsmf;", "Lslf;", "Lkzk;", "Lacct;",
             "Ljava/util/Set;",
         ),
         returnType = "V",
     )
     val mddProviderConstructor = GboardMethodTarget(
-        classType = "Lrtu;",
+        classType = "Lscj;",
         name = "<init>",
         parameterTypes = listOf(
-            "Landroid/content/Context;", "Lrtv;", "Lrtp;", "Labsf;",
+            "Landroid/content/Context;", "Lsck;", "Lsce;", "Lacct;",
         ),
         returnType = "V",
     )
     val formatterConstructor = GboardMethodTarget(
-        classType = "Lrwr;",
+        classType = "Lsfd;",
         name = "<init>",
         parameterTypes = listOf(
-            "Ljava/util/Locale;", "Lenl;", "Lsjb;", "Lenc;", "Z", "Lrwu;", "Lsoq;",
-            "Ltfz;", "Ljava/util/concurrent/Executor;",
+            "Ljava/util/Locale;", "Leot;", "Lsru;", "I", "Z", "Lsfg;", "Lsxn;",
+            "Ltpa;", "Ljava/util/concurrent/Executor;",
         ),
         returnType = "V",
     )
 }
 
 internal val gboardAdvancedVoice1803ZhTwPatch = bytecodePatch(
-    description = "移植 18.0.3 已驗證的 zh-TW locale、MDD 與 formatter 行為。",
+    description = "移植 18.4.1 已驗證的 zh-TW locale、MDD 與 formatter 行為。",
 ) {
     compatibleWith(COMPATIBILITY_GBOARD)
     dependsOn(gboardPatchesExtensionCarrierPatch)
@@ -83,7 +83,7 @@ private fun MutableMethod.applyNativeSplitReadiness() {
     check(returns.isNotEmpty()) { "No boolean returns in scn#a" }
     val existing = instructions.count { it.isMethodReference(reference) }
     if (existing != 0) {
-        check(existing == returns.size) { "Malformed 18.0.3 native split readiness delegates" }
+        check(existing == returns.size) { "Malformed 18.4.1 native split readiness delegates" }
         return
     }
     returns.asReversed().forEach { returnIndex ->
@@ -118,7 +118,7 @@ private fun MutableMethod.applyZhTwLocaleAdmission() {
     val instructions = implementation?.instructions ?: error("No sdc constructor implementation")
     val existing = instructions.count { it.isMethodReference(reference) }
     if (existing != 0) {
-        check(existing == 1) { "Duplicate 18.0.3 zh-TW locale admission" }
+        check(existing == 1) { "Duplicate 18.4.1 zh-TW locale admission" }
         return
     }
     addInstructions(
@@ -138,7 +138,7 @@ private fun MutableMethod.applyZhTwMddProvisioning() {
     val returns = returnInstructionIndices()
     val existing = instructions.count { it.isMethodReference(reference) }
     if (existing != 0) {
-        check(existing == returns.size) { "Malformed 18.0.3 zh-TW MDD delegates" }
+        check(existing == returns.size) { "Malformed 18.4.1 zh-TW MDD delegates" }
         return
     }
     returns.asReversed().forEach {
@@ -152,7 +152,7 @@ private fun MutableMethod.applyZhTwFormatterGate() {
     val instructions = implementation?.instructions ?: error("No rwr constructor implementation")
     val existing = instructions.count { it.isMethodReference(reference) }
     if (existing != 0) {
-        check(existing == 1) { "Duplicate 18.0.3 zh-TW formatter delegate" }
+        check(existing == 1) { "Duplicate 18.4.1 zh-TW formatter delegate" }
         return
     }
     addInstructions(

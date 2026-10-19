@@ -19,10 +19,10 @@ class GboardAdvancedVoice1803PatchSourceTest {
             StandardCharsets.UTF_8,
         )
 
-        assertTrue(source.contains("classType = \"Lsdc;\""))
-        assertTrue(source.contains("classType = \"Lrtu;\""))
-        assertTrue(source.contains("classType = \"Lrwr;\""))
-        assertTrue(source.contains("classType = \"Lscn;\""))
+        assertTrue(source.contains("classType = \"Lslr;\""))
+        assertTrue(source.contains("classType = \"Lscj;\""))
+        assertTrue(source.contains("classType = \"Lsfd;\""))
+        assertTrue(source.contains("classType = \"Lslc;\""))
         assertTrue(source.contains(
             "ADVANCED_VOICE_RUNTIME_AFTER_1803_NATIVE_SPLIT_READINESS",
         ))
@@ -41,9 +41,9 @@ class GboardAdvancedVoice1803PatchSourceTest {
         assertTrue(source.contains("ADVANCED_VOICE_RUNTIME_BEFORE_FORMATTER_CONSTRUCTED"))
         assertEquals(4, Regex("findMutableMethodOrThrow\\(").findAll(source).count())
         assertFalse(source.contains("Lric;"))
-        assertFalse(source.contains("Leqb;"))
-        assertFalse(source.contains("Lqzh;"))
-        assertFalse(source.contains("Lrcb;"))
+        assertFalse(source.contains("Lerj;"))
+        assertFalse(source.contains("Lrgr;"))
+        assertFalse(source.contains("Lrju;"))
     }
 
     private fun repositoryRoot(): Path {

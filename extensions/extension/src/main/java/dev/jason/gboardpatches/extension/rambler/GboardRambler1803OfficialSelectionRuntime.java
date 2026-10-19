@@ -12,7 +12,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
     /** Persistent user toggle that inverts the effective voice backend. */
     public static final String PREF_KEY_VOICE_MODE_INVERTED = "pref_voice_mode_inverted";
     /** R.string id of Gboard's own agentic-dictation selection pref (the store behind mqk.a). */
-    private static final int AGENTIC_SELECTION_RES_ID = 0x7f140a0d;
+    private static final int AGENTIC_SELECTION_RES_ID = 0x7f140954;
     /** Voice-icon state bit that rebuilds the mic for agentic dictation instead of standard. */
     private static final int VOICE_ICON_AGENTIC_BIT = 64;
 
@@ -193,7 +193,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
             return false;
         }
         try {
-            Class<?> qhyClass = Class.forName("qhy", false, context.getClassLoader());
+            Class<?> qhyClass = Class.forName("qou", false, context.getClassLoader());
             Object qhy = qhyClass.getMethod("I", Context.class).invoke(null, context);
             Object value = qhyClass.getMethod("x", int.class, boolean.class)
                     .invoke(qhy, AGENTIC_SELECTION_RES_ID, Boolean.FALSE);
@@ -209,7 +209,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
             return;
         }
         try {
-            Class<?> qhyClass = Class.forName("qhy", false, context.getClassLoader());
+            Class<?> qhyClass = Class.forName("qou", false, context.getClassLoader());
             Object qhy = qhyClass.getMethod("I", Context.class).invoke(null, context);
             qhyClass.getMethod("q", int.class, boolean.class)
                     .invoke(qhy, AGENTIC_SELECTION_RES_ID, value);
@@ -244,7 +244,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
             if (context == null) {
                 return;
             }
-            Class<?> rqvClass = Class.forName("rqv", false, context.getClassLoader());
+            Class<?> rqvClass = Class.forName("rzm", false, context.getClassLoader());
             rqvClass.getMethod("a", int.class, boolean.class)
                     .invoke(null, Integer.valueOf(VOICE_ICON_AGENTIC_BIT), Boolean.valueOf(agentic));
         } catch (Throwable ignored) {
@@ -275,7 +275,7 @@ public final class GboardRambler1803OfficialSelectionRuntime {
                 return null;
             }
             ClassLoader loader = application.getClass().getClassLoader();
-            Class<?> support = Class.forName("mqk", false, loader);
+            Class<?> support = Class.forName("mvq", false, loader);
             Method selection = support.getDeclaredMethod("a", Context.class);
             selection.setAccessible(true);
             Object value = selection.invoke(null, application);

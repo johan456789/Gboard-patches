@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Typed stock-route policy for Rambler in the formal Gboard 18.0.3 release. */
+/** Typed stock-route policy for Rambler in the formal Gboard 18.4.1 release. */
 public final class GboardRambler1803StockPolicy {
     public static final String SHOW_RAMBLER_DICT_SETTINGS_FLAG =
             "show_rambler_dict_settings";

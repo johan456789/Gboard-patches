@@ -9,6 +9,6 @@ internal val ZHUYIN_SLIDE_SOFT_KEY_DELEGATE by lazy {
 }
 
 internal val gboardZhuyinSlideSoftKeyPatch = gboardSoftKeyFamilyFeaturePatch(
-    description = "在 18.0.3 SoftKeyView bind 最後補齊普通注音上下滑 action。",
+    description = "在 18.4.1 SoftKeyView bind 最後補齊普通注音上下滑 action。",
     feature = GboardSoftKeyFamilyFeature.ZHUYIN_SLIDE,
 )

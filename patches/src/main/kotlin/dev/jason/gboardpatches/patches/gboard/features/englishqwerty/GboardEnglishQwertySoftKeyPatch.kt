@@ -19,7 +19,7 @@ private val softKeyMetadataType: String
     get() = GboardVersionBindings.softKeyMetadataType.descriptor
 
 internal val gboardEnglishQwertySoftKeyPatch = gboardSoftKeyFamilyFeaturePatch(
-    description = "在 18.0.3 English QWERTY bind time 注入缺少的上滑大小寫 action。",
+    description = "在 18.4.1 English QWERTY bind time 注入缺少的上滑大小寫 action。",
     feature = GboardSoftKeyFamilyFeature.ENGLISH_QWERTY,
 )
 
@@ -180,15 +180,15 @@ private val RESOLVE_PRIMARY_LABEL_BODY = """
 private val RESOLVE_PRESS_PAYLOAD_BODY = """
     if-eqz p0, :cond_none
 
-    sget-object v0, Lpmy;->a:Lpmy;
+    sget-object v0, Lpti;->a:Lpti;
 
-    invoke-virtual {p0, v0}, Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;->h(Lpmy;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;
+    invoke-virtual {p0, v0}, Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;->g(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;
 
     move-result-object v0
 
     if-eqz v0, :cond_none
 
-    iget-object v0, v0, Lcom/google/android/libraries/inputmethod/metadata/ActionDef;->d:[Lpnu;
+    iget-object v0, v0, Lcom/google/android/libraries/inputmethod/metadata/ActionDef;->d:[Lpue;
 
     if-eqz v0, :cond_none
 
@@ -203,7 +203,7 @@ private val RESOLVE_PRESS_PAYLOAD_BODY = """
 
     if-eqz v3, :cond_next
 
-    iget-object v3, v3, Lpnu;->e:Ljava/lang/Object;
+    iget-object v3, v3, Lpue;->e:Ljava/lang/Object;
 
     instance-of v4, v3, Ljava/lang/CharSequence;
 
@@ -250,58 +250,58 @@ private val IS_ENGLISH_QWERTY_KEY_ID_BODY = """
 
     :sswitch_data_0
     .sparse-switch
-        0x7f0b1a4a -> :sswitch_0
-        0x7f0b1933 -> :sswitch_0
-        0x7f0b1aba -> :sswitch_0
-        0x7f0b1961 -> :sswitch_0
-        0x7f0b19c1 -> :sswitch_0
-        0x7f0b18cf -> :sswitch_0
-        0x7f0b1a4e -> :sswitch_0
-        0x7f0b1934 -> :sswitch_0
-        0x7f0b1a81 -> :sswitch_0
-        0x7f0b1942 -> :sswitch_0
-        0x7f0b1ac2 -> :sswitch_0
-        0x7f0b1965 -> :sswitch_0
-        0x7f0b1aa2 -> :sswitch_0
-        0x7f0b194c -> :sswitch_0
-        0x7f0b19f0 -> :sswitch_0
-        0x7f0b18f4 -> :sswitch_0
-        0x7f0b1a2d -> :sswitch_0
-        0x7f0b191c -> :sswitch_0
-        0x7f0b1a43 -> :sswitch_0
-        0x7f0b1931 -> :sswitch_0
+        0x7f0b198c -> :sswitch_0
+        0x7f0b1875 -> :sswitch_0
+        0x7f0b19fc -> :sswitch_0
+        0x7f0b18a3 -> :sswitch_0
+        0x7f0b1903 -> :sswitch_0
+        0x7f0b1811 -> :sswitch_0
         0x7f0b1990 -> :sswitch_0
-        0x7f0b18b2 -> :sswitch_0
-        0x7f0b1a59 -> :sswitch_0
-        0x7f0b1939 -> :sswitch_0
-        0x7f0b19b3 -> :sswitch_0
-        0x7f0b18ca -> :sswitch_0
-        0x7f0b19d7 -> :sswitch_0
-        0x7f0b18e2 -> :sswitch_0
-        0x7f0b19db -> :sswitch_0
-        0x7f0b18e4 -> :sswitch_0
-        0x7f0b19ea -> :sswitch_0
-        0x7f0b18ef -> :sswitch_0
+        0x7f0b1876 -> :sswitch_0
+        0x7f0b19c3 -> :sswitch_0
+        0x7f0b1884 -> :sswitch_0
+        0x7f0b1a04 -> :sswitch_0
+        0x7f0b18a7 -> :sswitch_0
+        0x7f0b19e4 -> :sswitch_0
+        0x7f0b188e -> :sswitch_0
+        0x7f0b1932 -> :sswitch_0
+        0x7f0b1836 -> :sswitch_0
+        0x7f0b196f -> :sswitch_0
+        0x7f0b185e -> :sswitch_0
+        0x7f0b1985 -> :sswitch_0
+        0x7f0b1873 -> :sswitch_0
+        0x7f0b18d2 -> :sswitch_0
+        0x7f0b17f5 -> :sswitch_0
+        0x7f0b199b -> :sswitch_0
+        0x7f0b187b -> :sswitch_0
+        0x7f0b18f5 -> :sswitch_0
+        0x7f0b180d -> :sswitch_0
+        0x7f0b1919 -> :sswitch_0
+        0x7f0b1824 -> :sswitch_0
+        0x7f0b191d -> :sswitch_0
+        0x7f0b1826 -> :sswitch_0
+        0x7f0b192c -> :sswitch_0
+        0x7f0b1831 -> :sswitch_0
+        0x7f0b1943 -> :sswitch_0
+        0x7f0b1847 -> :sswitch_0
+        0x7f0b1947 -> :sswitch_0
+        0x7f0b1849 -> :sswitch_0
+        0x7f0b194f -> :sswitch_0
+        0x7f0b184d -> :sswitch_0
+        0x7f0b1a0b -> :sswitch_0
+        0x7f0b18ab -> :sswitch_0
         0x7f0b1a01 -> :sswitch_0
-        0x7f0b1905 -> :sswitch_0
-        0x7f0b1a05 -> :sswitch_0
-        0x7f0b1907 -> :sswitch_0
-        0x7f0b1a0d -> :sswitch_0
-        0x7f0b190b -> :sswitch_0
-        0x7f0b1ac9 -> :sswitch_0
-        0x7f0b1969 -> :sswitch_0
-        0x7f0b1abf -> :sswitch_0
-        0x7f0b1964 -> :sswitch_0
-        0x7f0b19a5 -> :sswitch_0
-        0x7f0b18c3 -> :sswitch_0
-        0x7f0b1ab7 -> :sswitch_0
-        0x7f0b195f -> :sswitch_0
-        0x7f0b19a0 -> :sswitch_0
-        0x7f0b18c1 -> :sswitch_0
-        0x7f0b1a21 -> :sswitch_0
-        0x7f0b1913 -> :sswitch_0
-        0x7f0b1a1a -> :sswitch_0
-        0x7f0b190f -> :sswitch_0
+        0x7f0b18a6 -> :sswitch_0
+        0x7f0b18e7 -> :sswitch_0
+        0x7f0b1806 -> :sswitch_0
+        0x7f0b19f9 -> :sswitch_0
+        0x7f0b18a1 -> :sswitch_0
+        0x7f0b18e2 -> :sswitch_0
+        0x7f0b1804 -> :sswitch_0
+        0x7f0b1963 -> :sswitch_0
+        0x7f0b1855 -> :sswitch_0
+        0x7f0b195c -> :sswitch_0
+        0x7f0b1851 -> :sswitch_0
     .end sparse-switch
 """.trimIndent()
 
@@ -332,9 +332,9 @@ private val PATCH_INCOMING_METADATA_BODY = """
 
     if-eqz v0, :cond_return_original_safe
 
-    sget-object v0, Lpmy;->c:Lpmy;
+    sget-object v0, Lpti;->c:Lpti;
 
-    invoke-virtual {p1, v0}, Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;->h(Lpmy;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;
+    invoke-virtual {p1, v0}, Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;->g(Lpti;)Lcom/google/android/libraries/inputmethod/metadata/ActionDef;
 
     move-result-object v0
 
@@ -383,19 +383,19 @@ private val PATCH_INCOMING_METADATA_BODY = """
     if-eqz v0, :cond_return_original_safe
 
     :cond_build_action
-    new-instance v4, Lppo;
+    new-instance v4, Lpvz;
 
-    invoke-direct {v4}, Lppo;-><init>()V
+    invoke-direct {v4}, Lpvz;-><init>()V
 
-    invoke-virtual {v4, p1}, Lppo;->j(Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;)V
+    invoke-virtual {v4, p1}, Lpvz;->k(Lcom/google/android/libraries/inputmethod/metadata/SoftKeyDef;)V
 
-    new-instance v5, Lpmz;
+    new-instance v5, Lptj;
 
-    invoke-direct {v5}, Lpmz;-><init>()V
+    invoke-direct {v5}, Lptj;-><init>()V
 
-    sget-object v6, Lpmy;->c:Lpmy;
+    sget-object v6, Lpti;->c:Lpti;
 
-    iput-object v6, v5, Lpmz;->a:Lpmy;
+    iput-object v6, v5, Lptj;->a:Lpti;
 
     const/4 v6, 0x1
 
@@ -405,23 +405,23 @@ private val PATCH_INCOMING_METADATA_BODY = """
 
     aput-object v3, v7, v6
 
-    iput-object v7, v5, Lpmz;->c:[Ljava/lang/String;
+    iput-object v7, v5, Lptj;->c:[Ljava/lang/String;
 
     const v7, -0x2719
 
-    sget-object v8, Lpnt;->c:Lpnt;
+    sget-object v8, Lpud;->c:Lpud;
 
-    invoke-virtual {v5, v7, v8, v3}, Lpmz;->q(ILpnt;Ljava/lang/Object;)V
+    invoke-virtual {v5, v7, v8, v3}, Lptj;->q(ILpud;Ljava/lang/Object;)V
 
-    invoke-virtual {v5}, Lpmz;->c()Lcom/google/android/libraries/inputmethod/metadata/ActionDef;
+    invoke-virtual {v5}, Lptj;->c()Lcom/google/android/libraries/inputmethod/metadata/ActionDef;
 
     move-result-object v5
 
     if-eqz v5, :cond_return_original_safe
 
-    invoke-virtual {v4, v5}, Lppo;->t(Lcom/google/android/libraries/inputmethod/metadata/ActionDef;)V
+    invoke-virtual {v4, v5}, Lpvz;->u(Lcom/google/android/libraries/inputmethod/metadata/ActionDef;)V
 
-    invoke-virtual {v4}, Lppo;->d()Ljava/lang/Object;
+    invoke-virtual {v4}, Lpvz;->d()Ljava/lang/Object;
 
     move-result-object v0
 

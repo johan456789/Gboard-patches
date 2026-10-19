@@ -9,12 +9,12 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 final class GboardZhuyinBottomRowWeightRuntimeSupport {
-    private static final String ACTION_TYPE_CLASS = "pmy";
+    private static final String ACTION_TYPE_CLASS = "pti";
     private static final String ACTION_SET_CLASS =
             "com.google.android.libraries.inputmethod.metadata.SoftKeyDef";
     private static final String ACTION_DEF_CLASS =
             "com.google.android.libraries.inputmethod.metadata.ActionDef";
-    private static final String ACTION_DATA_CLASS = "pnu";
+    private static final String ACTION_DATA_CLASS = "pue";
     private static final String ACTION_NAME_PRESS = "PRESS";
     private static final String ACTION_NAME_LONG_PRESS = "LONG_PRESS";
     private static final String ACTION_NAME_SLIDE_UP = "SLIDE_UP";
@@ -136,7 +136,7 @@ final class GboardZhuyinBottomRowWeightRuntimeSupport {
             keyLabelTextsField = actionSetClass.getDeclaredField("g");
             keyLabelTextsField.setAccessible(true);
 
-            exactActionLookupMethod = actionSetClass.getDeclaredMethod("h", actionTypeClass);
+            exactActionLookupMethod = actionSetClass.getDeclaredMethod("g", actionTypeClass);
             exactActionLookupMethod.setAccessible(true);
 
             actionEntriesField = actionDefClass.getDeclaredField("d");

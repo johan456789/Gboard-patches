@@ -4,39 +4,40 @@ import dev.jason.gboardpatches.patches.gboard.shared.GboardFieldTarget
 import dev.jason.gboardpatches.patches.gboard.shared.GboardMethodTarget
 
 internal object GboardSplitKeyboard1803Targets {
-    const val ORDER_RETURN_TYPE = "Lvvw;"
+    const val ORDER_RETURN_TYPE = "Lwfr;"
 
+    // 18.4.1 merges the access point class into Lsyb;, so the name field is typed Object.
     val accessPointName = GboardFieldTarget(
-        classType = "Lmig;",
-        name = "b",
-        type = "Ljava/lang/String;",
+        classType = "Lsyb;",
+        name = "d",
+        type = "Ljava/lang/Object;",
     )
     val accessPointState = GboardMethodTarget(
-        classType = "Lmig;",
-        name = "b",
+        classType = "Lsyb;",
+        name = "e",
         parameterTypes = listOf("I"),
         returnType = "V",
     )
     val accessPointOrder = GboardMethodTarget(
-        classType = "Lmku;",
+        classType = "Lmpw;",
         name = "c",
         parameterTypes = emptyList(),
         returnType = ORDER_RETURN_TYPE,
     )
     val modeAttach = GboardMethodTarget(
-        classType = "Lpdy;",
+        classType = "Lpki;",
         name = "E",
-        parameterTypes = listOf("Lpcv;", "Loru;", "Loww;", "Z"),
+        parameterTypes = listOf("Lpjf;", "Loyg;", "Lpdi;", "Z"),
         returnType = "V",
     )
     val modeEnvironmentReload = GboardMethodTarget(
-        classType = "Lpdy;",
+        classType = "Lpki;",
         name = "Q",
         parameterTypes = emptyList(),
         returnType = "V",
     )
     val splitAction = GboardMethodTarget(
-        classType = "Lpdy;",
+        classType = "Lpki;",
         name = "W",
         parameterTypes = emptyList(),
         returnType = "V",

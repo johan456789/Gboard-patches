@@ -21,7 +21,7 @@ import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallId
 import dev.jason.gboardpatches.patches.shared.Constants.COMPATIBILITY_GBOARD
 
 private const val FLOW_MODE_DETECTOR_CLASS = "Liof;"
-private const val KEY_EVENT_TYPE = "Lpnu;"
+private const val KEY_EVENT_TYPE = "Lpue;"
 private const val KEY_CODE_FIELD = "$KEY_EVENT_TYPE->c:I"
 private const val TARGET_METHOD_NAME = "j"
 private const val TARGET_REFERENCE = "$FLOW_MODE_DETECTOR_CLASS->j($KEY_EVENT_TYPE)Z"

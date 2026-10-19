@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public final class GboardSettingsHomepageRuntime {
     private static final String TAG = "GboardPatches";
-    private static final String POLICY_CLASS_NAME = "dog";
+    private static final String POLICY_CLASS_NAME = "dpl";
     private static final String POLICY_FIELD_NAME = "a";
     private static final int POLICY_STATE_AUTO = 1;
     private static final int POLICY_STATE_NEW = 2;
@@ -145,7 +145,7 @@ public final class GboardSettingsHomepageRuntime {
         try {
             Log.i(
                     TAG,
-                    "[gboard-settings-homepage-18.0.3] policy state=" + state
+                    "[gboard-settings-homepage-18.4.1] policy state=" + state
                             + " changed=" + changed);
         } catch (Throwable ignored) {
             // Logging must never affect the settings Activity entry contract.
@@ -156,7 +156,7 @@ public final class GboardSettingsHomepageRuntime {
         if (FAILURE_LOG_COUNT.getAndIncrement() >= LOG_LIMIT) {
             return;
         }
-        String tagged = "[gboard-settings-homepage-18.0.3] " + message;
+        String tagged = "[gboard-settings-homepage-18.4.1] " + message;
         try {
             if (throwable != null) {
                 Log.w(TAG, tagged, throwable);

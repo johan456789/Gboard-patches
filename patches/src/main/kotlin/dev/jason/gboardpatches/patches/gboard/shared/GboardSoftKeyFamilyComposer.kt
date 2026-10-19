@@ -245,7 +245,7 @@ private fun MutableMethod.requireSoftKeyTargetShape() {
 }
 
 private fun MutableMethod.requireSupportedSoftKeyStock() {
-    check(GboardVersionBindings.targetVersion == "18.0.3") {
+    check(GboardVersionBindings.targetVersion == "18.4.1") {
         "Unsupported Gboard SoftKey stock contract for ${GboardVersionBindings.targetVersion}"
     }
     requireExact1803SoftKeyStockShape()
@@ -253,9 +253,9 @@ private fun MutableMethod.requireSupportedSoftKeyStock() {
 
 private fun MutableMethod.requireExact1803SoftKeyStockShape() {
     val instructions = implementation?.instructions
-        ?: error("No instructions in formal 18.0.3 SoftKey bind target")
+        ?: error("No instructions in formal 18.4.1 SoftKey bind target")
     check(accessFlags == (AccessFlags.PUBLIC.value or AccessFlags.FINAL.value)) {
-        "18.0.3 SoftKey bind access drift in $definingClass->$name"
+        "18.4.1 SoftKey bind access drift in $definingClass->$name"
     }
     val traceMarkers = instructions.count { instruction ->
         (instruction as? ReferenceInstruction)?.reference?.toString()
@@ -278,7 +278,7 @@ private fun MutableMethod.requireExact1803SoftKeyStockShape() {
         traceMarkers == 1 && bindTokenWrites == 1 && metadataReads >= 1 &&
             returnInstructionIndices().isNotEmpty()
     ) {
-        "18.0.3 SoftKey bind semantic shape drift in $definingClass->$name: " +
+        "18.4.1 SoftKey bind semantic shape drift in $definingClass->$name: " +
             "trace=$traceMarkers tokenWrites=$bindTokenWrites metadataReads=$metadataReads"
     }
 }

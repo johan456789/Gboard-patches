@@ -28,7 +28,7 @@ public final class GboardZhuyinSlideTargetFixture {
             "com.google.android.libraries.inputmethod.metadata.SoftKeyDef";
     private static final String METADATA_INTERNAL_NAME =
             "com/google/android/libraries/inputmethod/metadata/SoftKeyDef";
-    private static final String POINTER_TRACKER_NAME = "pvi";
+    private static final String POINTER_TRACKER_NAME = "qbp";
     private static final Map<String, String> TARGET_CLASS_NAMES = targetClassNames();
     private static final FixtureClassLoader CLASS_LOADER = new FixtureClassLoader(
             GboardZhuyinSlideTargetFixture.class.getClassLoader(),
@@ -90,18 +90,18 @@ public final class GboardZhuyinSlideTargetFixture {
     }
 
     static Object newDispatcher(Context context) throws Exception {
-        Class<?> preferencesClass = loadClass("qhy");
+        Class<?> preferencesClass = loadClass("qou");
         Object preferences = preferencesClass.getMethod("instance").invoke(null);
-        return loadClass("pvf").getConstructor(Context.class, preferencesClass)
+        return loadClass("qbn").getConstructor(Context.class, preferencesClass)
                 .newInstance(context, preferences);
     }
 
     static void resetPreferences() throws Exception {
-        loadClass("qhy").getMethod("reset").invoke(null);
+        loadClass("qou").getMethod("reset").invoke(null);
     }
 
     static Object action(String actionName) {
-        return enumValue(loadClass("pmy"), actionName);
+        return enumValue(loadClass("pti"), actionName);
     }
 
     public static void setCurrentOwner(Object tracker, Object view) throws Exception {
@@ -110,7 +110,7 @@ public final class GboardZhuyinSlideTargetFixture {
 
     public static void setActions(Object tracker, String currentAction, String resolvedAction)
             throws Exception {
-        Class<?> actionType = loadClass("pmy");
+        Class<?> actionType = loadClass("pti");
         pointerField("currentAction").set(tracker, enumValue(actionType, currentAction));
         pointerField("resolvedAction").set(tracker, enumValue(actionType, resolvedAction));
     }
@@ -120,8 +120,8 @@ public final class GboardZhuyinSlideTargetFixture {
     }
 
     static Object exactAction(Object metadata, String actionName) throws Exception {
-        Class<?> actionType = loadClass("pmy");
-        Method lookup = METADATA_CLASS.getMethod("h", actionType);
+        Class<?> actionType = loadClass("pti");
+        Method lookup = METADATA_CLASS.getMethod("g", actionType);
         return lookup.invoke(metadata, enumValue(actionType, actionName));
     }
 
@@ -250,8 +250,8 @@ public final class GboardZhuyinSlideTargetFixture {
                 POINTER_TRACKER_NAME, null, "java/lang/Object", null);
         writer.visitField(Opcodes.ACC_PUBLIC, "m", "L" + SOFT_KEY_VIEW_INTERNAL_NAME + ";",
                 null, null).visitEnd();
-        writer.visitField(Opcodes.ACC_PUBLIC, "currentAction", "Lpmy;", null, null).visitEnd();
-        writer.visitField(Opcodes.ACC_PUBLIC, "resolvedAction", "Lpmy;", null, null).visitEnd();
+        writer.visitField(Opcodes.ACC_PUBLIC, "currentAction", "Lpti;", null, null).visitEnd();
+        writer.visitField(Opcodes.ACC_PUBLIC, "resolvedAction", "Lpti;", null, null).visitEnd();
         writer.visitField(Opcodes.ACC_PUBLIC, "throwOnResolve", "Z", null, null).visitEnd();
 
         MethodVisitor constructor = writer.visitMethod(
@@ -287,16 +287,16 @@ public final class GboardZhuyinSlideTargetFixture {
         reset.visitEnd();
 
         MethodVisitor current = writer.visitMethod(
-                Opcodes.ACC_PUBLIC | Opcodes.ACC_FINAL, "i", "()Lpmy;", null, null);
+                Opcodes.ACC_PUBLIC | Opcodes.ACC_FINAL, "i", "()Lpti;", null, null);
         current.visitCode();
         current.visitVarInsn(Opcodes.ALOAD, 0);
-        current.visitFieldInsn(Opcodes.GETFIELD, POINTER_TRACKER_NAME, "currentAction", "Lpmy;");
+        current.visitFieldInsn(Opcodes.GETFIELD, POINTER_TRACKER_NAME, "currentAction", "Lpti;");
         current.visitInsn(Opcodes.ARETURN);
         current.visitMaxs(0, 0);
         current.visitEnd();
 
         MethodVisitor resolve = writer.visitMethod(
-                Opcodes.ACC_PUBLIC | Opcodes.ACC_FINAL, "h", "(FFLpmy;)Lpmy;", null, null);
+                Opcodes.ACC_PUBLIC | Opcodes.ACC_FINAL, "h", "(FFLpti;)Lpti;", null, null);
         resolve.visitCode();
         Label returnConfigured = new Label();
         resolve.visitVarInsn(Opcodes.ALOAD, 0);
@@ -310,7 +310,7 @@ public final class GboardZhuyinSlideTargetFixture {
         resolve.visitInsn(Opcodes.ATHROW);
         resolve.visitLabel(returnConfigured);
         resolve.visitVarInsn(Opcodes.ALOAD, 0);
-        resolve.visitFieldInsn(Opcodes.GETFIELD, POINTER_TRACKER_NAME, "resolvedAction", "Lpmy;");
+        resolve.visitFieldInsn(Opcodes.GETFIELD, POINTER_TRACKER_NAME, "resolvedAction", "Lpti;");
         Label returnResolved = new Label();
         resolve.visitInsn(Opcodes.DUP);
         resolve.visitJumpInsn(Opcodes.IFNONNULL, returnResolved);
@@ -336,15 +336,15 @@ public final class GboardZhuyinSlideTargetFixture {
     private static Map<String, String> targetClassNames() {
         Map<String, String> names = new LinkedHashMap<String, String>();
         names.put(METADATA_NAME, "owd");
-        names.put("pmy", "oth");
+        names.put("pti", "oth");
         names.put("com.google.android.libraries.inputmethod.metadata.ActionDef", "otk");
-        names.put("pnu", "oud");
-        names.put("pmz", "oti");
-        names.put("ppo", "ovv");
-        names.put("pnt", "ouc");
-        names.put("pvf", "pbj");
-        names.put("qhy", "pnp");
-        names.put("cdl", "cdm");
+        names.put("pue", "oud");
+        names.put("ptj", "oti");
+        names.put("pvz", "ovv");
+        names.put("pud", "ouc");
+        names.put("qbn", "pbj");
+        names.put("qou", "pnp");
+        names.put("cdx", "cdm");
         return names;
     }
 
@@ -440,6 +440,21 @@ public final class GboardZhuyinSlideTargetFixture {
     }
 
     private static String mapMethodName(String owner, String name, String descriptor) {
+        if ("owd".equals(owner)) {
+            if ("h".equals(name)) {
+                return "g";
+            }
+            return "i".equals(name) ? "h" : name;
+        }
+        if ("ovv".equals(owner)) {
+            if ("j".equals(name)) {
+                return "k";
+            }
+            if ("t".equals(name)) {
+                return "u";
+            }
+            return "v".equals(name) ? "w" : name;
+        }
         return name;
     }
 

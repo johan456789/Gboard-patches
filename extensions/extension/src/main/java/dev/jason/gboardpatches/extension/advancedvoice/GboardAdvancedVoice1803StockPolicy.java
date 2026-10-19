@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Typed stock capability policy for the formal Gboard 18.0.3 release. */
+/** Typed stock capability policy for the formal Gboard 18.4.1 release. */
 public final class GboardAdvancedVoice1803StockPolicy {
     public static final String ENABLE_NGA_FLAG = "enable_nga";
     public static final String ENABLE_ADVANCED_FEATURES_FLAG =

@@ -251,7 +251,7 @@ private data class GboardFlagFamilyTransformationPlan(
                 method.implementation!!.registerCount == FORMAL_18_0_3_REGISTER_COUNT &&
                     receiverRegister == FORMAL_18_0_3_RECEIVER_REGISTER
             ) {
-                "Unexpected 18.0.3 flag getter register layout: " +
+                "Unexpected 18.4.1 flag getter register layout: " +
                     "count=${method.implementation!!.registerCount} receiver=v$receiverRegister"
             }
 
@@ -259,7 +259,7 @@ private data class GboardFlagFamilyTransformationPlan(
                 instructions[index].opcode.name.normalized() == "RETURN_OBJECT"
             }
             check(returnIndices.size == 1) {
-                "18.0.3 flag getter must expose exactly one RETURN_OBJECT"
+                "18.4.1 flag getter must expose exactly one RETURN_OBJECT"
             }
             val resultRegistersByReturn = returnIndices.associateWith { returnIndex ->
                 val resultRegister = (instructions[returnIndex] as? OneRegisterInstruction)?.registerA
@@ -270,7 +270,7 @@ private data class GboardFlagFamilyTransformationPlan(
                 resultRegister
             }
             check(resultRegistersByReturn.values.single() == receiverRegister) {
-                "18.0.3 flag getter must materialize its result in p0"
+                "18.4.1 flag getter must materialize its result in p0"
             }
             val needsFlagName = selected.any {
                 it.argumentShape == GboardFlagFamilyArgumentShape.FLAG_NAME_AND_RESULT
@@ -282,9 +282,9 @@ private data class GboardFlagFamilyTransformationPlan(
 
             val resultMaterializationIndex = instructions.indices.singleOrNull { index ->
                 instructions[index].isFormal1803ResultMaterialization(receiverRegister)
-            } ?: error("Could not resolve exact 18.0.3 nxw#g result materialization")
+            } ?: error("Could not resolve exact 18.4.1 nxw#g result materialization")
             check(resultMaterializationIndex < returnIndices.single()) {
-                "18.0.3 flag result materialization must precede RETURN_OBJECT"
+                "18.4.1 flag result materialization must precede RETURN_OBJECT"
             }
 
             // Materialize every instruction string before the first method mutation. In
@@ -470,7 +470,7 @@ private fun com.android.tools.smali.dexlib2.iface.instruction.Instruction
     return opcode.name.normalized() == "IGET_OBJECT" &&
         load.registerA == receiverRegister &&
         load.registerB == FLAG_NAME_SCRATCH_REGISTER &&
-        field.definingClass == "Lnyf;" && field.name == "c" &&
+        field.definingClass == "Loeg;" && field.name == "a" &&
         field.type == "Ljava/lang/Object;"
 }
 
@@ -493,7 +493,7 @@ private fun List<com.android.tools.smali.dexlib2.iface.instruction.Instruction>
         (get(index) as? OneRegisterInstruction)?.registerA == RECEIVER_SCRATCH_REGISTER
     }
     check(receiverWrites == listOfNotNull(preservationIndex)) {
-        "18.0.3 receiver scratch v$RECEIVER_SCRATCH_REGISTER liveness drift: $receiverWrites"
+        "18.4.1 receiver scratch v$RECEIVER_SCRATCH_REGISTER liveness drift: $receiverWrites"
     }
 }
 

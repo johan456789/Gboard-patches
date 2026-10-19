@@ -54,11 +54,11 @@ class GboardSignatureBypassPatchContractTest {
     @Test
     fun `production source uses only exact rpv normal return patch`() {
         val source = readSource(SIGNATURE_PATCH_PATH)
-        assertTrue(source.contains("Lrpv;"))
-        assertTrue(source.contains("Lrox;->b:Z"))
+        assertTrue(source.contains("Lryi;"))
+        assertTrue(source.contains("Lrxk;->b:Z"))
         assertTrue(source.contains("findGboardSignatureBypassTargetOrThrow"))
         assertTrue(source.contains("applyGboardSignatureBypass"))
-        assertFalse(source.contains("Lqvi;"))
+        assertFalse(source.contains("Lrcp;"))
         assertFalse(source.contains("Lpuo;"))
         assertFalse(source.contains("17.0.10"))
         assertFalse(source.contains("addInstructions(0, SIGNATURE_BYPASS_DELEGATE)"))
@@ -70,7 +70,7 @@ class GboardSignatureBypassPatchContractTest {
     @Test
     fun `signature bypass does not add bindings or flag factory`() {
         val profile = JsonParser.parseString(readSource(BINDINGS_PROFILE_PATH)).asJsonObject
-        assertEquals("18.0.3", profile.get("target_version").asString)
+        assertEquals("18.4.1", profile.get("target_version").asString)
         val bindings = profile.getAsJsonObject("bindings")
         assertFalse(bindings.has("flag_factory"))
     }
@@ -90,7 +90,7 @@ class GboardSignatureBypassPatchContractTest {
 
     private companion object {
         const val GBOARD_PACKAGE = "com.google.android.inputmethod.latin"
-        const val TARGET_VERSION = "18.0.3.954559732-release-arm64-v8a"
+        const val TARGET_VERSION = "18.4.1.985164140-release-arm64-v8a"
         const val SIGNATURE_BYPASS_DESCRIPTION =
             "攔截 Gboard 的簽章白名單檢查並強制通過\n" +
                 "Bypass Gboard signature whitelist checks and force them to pass."

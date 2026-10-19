@@ -49,11 +49,11 @@ public final class GboardAiWritingToolsRuntime {
             "202504090000_writing_tools_config";
 
     private static final String TAG = "GboardPatches";
-    private static final String LOG_PREFIX = "[gboard-writing-tools-18.0.3] ";
+    private static final String LOG_PREFIX = "[gboard-writing-tools-18.4.1] ";
     private static final String[] FORCED_SIGNAL_TARGET_SPECS = new String[]{
-            "gvu#a",
+            "gyh#a",
             "lvi#b",
-            "gqd#a"
+            "gsq#b"
     };
     private static final ConcurrentHashMap<Class<?>, Field> FLAG_NAME_FIELDS =
             new ConcurrentHashMap<Class<?>, Field>();

@@ -19,7 +19,7 @@ import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallId
 import dev.jason.gboardpatches.patches.shared.Constants.COMPATIBILITY_GBOARD
 
 internal val gboardManualIncognitoPolicyPatch = bytecodePatch(
-    description = "在 18.0.3 clipboard 與 voice incognito gate 加入 scoped value delegate。",
+    description = "在 18.4.1 clipboard 與 voice incognito gate 加入 scoped value delegate。",
 ) {
     compatibleWith(COMPATIBILITY_GBOARD)
     dependsOn(gboardPatchesExtensionCarrierPatch)
@@ -27,7 +27,7 @@ internal val gboardManualIncognitoPolicyPatch = bytecodePatch(
     execute {
         findMutableMethodOrThrow(GboardManualIncognitoTargets.clipboardListener)
             .applyManualIncognitoAfterBooleanCall(
-                owner = "Lowq;",
+                owner = "Lpdc;",
                 name = "f",
                 call = RuntimeCallId.MANUAL_INCOGNITO_RUNTIME_APPLY_CLIPBOARD_POLICY,
             )
@@ -38,7 +38,7 @@ internal val gboardManualIncognitoPolicyPatch = bytecodePatch(
             )
         findMutableMethodOrThrow(GboardManualIncognitoTargets.dictationEligibility)
             .applyManualIncognitoAfterBooleanFieldRead(
-                fieldReference = "Lenf;->v:Z",
+                fieldReference = "Leon;->v:Z",
                 call = RuntimeCallId.MANUAL_INCOGNITO_RUNTIME_APPLY_DICTATION_FLAG,
             )
     }

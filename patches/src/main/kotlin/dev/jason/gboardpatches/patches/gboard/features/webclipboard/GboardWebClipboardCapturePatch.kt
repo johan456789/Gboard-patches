@@ -26,7 +26,7 @@ import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeAbiCatalo
 import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallEmitter
 import dev.jason.gboardpatches.patches.gboard.shared.runtimeabi.RuntimeCallId
 
-private const val LATIN_IME_SERVICE_CLASS = "Loup;"
+private const val LATIN_IME_SERVICE_CLASS = "Lpbb;"
 private const val INPUT_METHOD_SERVICE_CLASS =
     "Landroid/inputmethodservice/InputMethodService;"
 private const val TARGET_METHOD_NAME = "onCreate"

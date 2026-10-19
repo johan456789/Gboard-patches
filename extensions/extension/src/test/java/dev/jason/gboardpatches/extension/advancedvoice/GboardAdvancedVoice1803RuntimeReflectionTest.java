@@ -131,8 +131,8 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Object initialState = new Object();
         FakeContext context = new FakeContext();
         FakePreferences preferences = new FakePreferences();
-        preferences.values.put(0x7f140971, Boolean.TRUE);
-        preferences.values.put(0x7f140972, Boolean.FALSE);
+        preferences.values.put(0x7f1408b0, Boolean.TRUE);
+        preferences.values.put(0x7f1408b1, Boolean.FALSE);
         FakePreferenceFactory.preferences = preferences;
         FakePreferenceController controller = new FakePreferenceController();
 
@@ -148,10 +148,10 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
                 preferenceRead,
                 setAvailable,
                 setChecked));
-        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f140971));
-        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f140972));
-        Assert.assertEquals(Boolean.TRUE, controller.checked.get(0x7f140971));
-        Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f140972));
+        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f1408b0));
+        Assert.assertEquals(Boolean.TRUE, controller.available.get(0x7f1408b1));
+        Assert.assertEquals(Boolean.TRUE, controller.checked.get(0x7f1408b0));
+        Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f1408b1));
 
         assertInitialVoiceSettingsUnchanged(
                 maybeRestore,
@@ -219,8 +219,8 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Object initialState = new Object();
         FakeContext context = new FakeContext();
         FakePreferences preferences = new FakePreferences();
-        preferences.values.put(0x7f140971, Boolean.TRUE);
-        preferences.values.put(0x7f140972, Boolean.TRUE);
+        preferences.values.put(0x7f1408b0, Boolean.TRUE);
+        preferences.values.put(0x7f1408b1, Boolean.TRUE);
         FakePreferenceFactory.preferences = preferences;
 
         for (int failingCall = 1; failingCall <= 4; failingCall++) {
@@ -239,10 +239,10 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
                     preferenceRead,
                     setAvailable,
                     setChecked));
-            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f140971));
-            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f140972));
-            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f140971));
-            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f140972));
+            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f1408b0));
+            Assert.assertEquals(Boolean.FALSE, controller.available.get(0x7f1408b1));
+            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f1408b0));
+            Assert.assertEquals(Boolean.FALSE, controller.checked.get(0x7f1408b1));
         }
     }
 
@@ -276,8 +276,8 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Object initialState = new Object();
         FakeContext context = new FakeContext();
         FakePreferences preferences = new FakePreferences();
-        preferences.values.put(0x7f140971, Boolean.TRUE);
-        preferences.values.put(0x7f140972, Boolean.TRUE);
+        preferences.values.put(0x7f1408b0, Boolean.TRUE);
+        preferences.values.put(0x7f1408b1, Boolean.TRUE);
         FakePreferenceFactory.preferences = preferences;
         FakePreferenceController controller = new FakePreferenceController(1, 2);
 
@@ -343,7 +343,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Method launchMethod = FakeCoroutineLauncher.class.getDeclaredMethod(
                 "aq",
                 FakeMddScope.class,
-                FakeCoroutineContext.class,
+                int.class,
                 FakeMddRequest.class,
                 int.class);
         launchMethod.setAccessible(true);
@@ -371,7 +371,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
 
         Assert.assertEquals(1, FakeCoroutineLauncher.launchCount.get());
         Assert.assertSame(provider.d, FakeCoroutineLauncher.scope);
-        Assert.assertNull(FakeCoroutineLauncher.context);
+        Assert.assertEquals(0, FakeCoroutineLauncher.startMode);
         Assert.assertEquals(3, FakeCoroutineLauncher.mode);
         Assert.assertSame(provider, FakeCoroutineLauncher.request.provider);
         Assert.assertEquals("zh-TW",
@@ -425,7 +425,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Method failingLaunchMethod = FakeFailingCoroutineLauncher.class.getDeclaredMethod(
                 "aq",
                 FakeMddScope.class,
-                FakeCoroutineContext.class,
+                int.class,
                 FakeMddRequest.class,
                 int.class);
         failingLaunchMethod.setAccessible(true);
@@ -452,7 +452,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         Method workingLaunchMethod = FakeCoroutineLauncher.class.getDeclaredMethod(
                 "aq",
                 FakeMddScope.class,
-                FakeCoroutineContext.class,
+                int.class,
                 FakeMddRequest.class,
                 int.class);
         workingLaunchMethod.setAccessible(true);
@@ -617,9 +617,6 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
     private static final class FakeMddScope {
     }
 
-    private static final class FakeCoroutineContext {
-    }
-
     private static final class FakeContinuation {
     }
 
@@ -641,18 +638,18 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
     private static final class FakeCoroutineLauncher {
         private static final AtomicInteger launchCount = new AtomicInteger();
         private static FakeMddScope scope;
-        private static FakeCoroutineContext context;
         private static FakeMddRequest request;
+        private static int startMode;
         private static int mode;
 
         private static Object aq(
                 FakeMddScope launchScope,
-                FakeCoroutineContext launchContext,
+                int launchStartMode,
                 FakeMddRequest launchRequest,
                 int launchMode) {
             launchCount.incrementAndGet();
             scope = launchScope;
-            context = launchContext;
+            startMode = launchStartMode;
             request = launchRequest;
             mode = launchMode;
             return new Object();
@@ -661,7 +658,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
         private static void reset() {
             launchCount.set(0);
             scope = null;
-            context = null;
+            startMode = 0;
             request = null;
             mode = 0;
         }
@@ -670,7 +667,7 @@ public final class GboardAdvancedVoice1803RuntimeReflectionTest {
     private static final class FakeFailingCoroutineLauncher {
         private static Object aq(
                 FakeMddScope launchScope,
-                FakeCoroutineContext launchContext,
+                int launchStartMode,
                 FakeMddRequest launchRequest,
                 int launchMode) {
             throw new IllegalStateException("launch failed");

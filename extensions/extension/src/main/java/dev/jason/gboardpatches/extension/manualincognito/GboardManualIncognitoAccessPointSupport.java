@@ -19,14 +19,14 @@ import java.util.WeakHashMap;
 final class GboardManualIncognitoAccessPointSupport {
     static final String TOKEN = "manual_incognito";
     private static final String LABEL = "Incognito";
-    private static final int OFFICIAL_INCOGNITO_ICON_RESOURCE_ID = 0x7f080715;
+    private static final int OFFICIAL_INCOGNITO_ICON_RESOURCE_ID = 0x7f0806a1;
     private static final float OFFICIAL_INCOGNITO_ICON_SCALE = 1.2f;
 
-    private static final String DESCRIPTOR_CLASS = "mic";
-    private static final String BUILDER_CLASS = "mhx";
-    private static final String ORDER_HELPER_CLASS = "mku";
-    private static final String IMMUTABLE_COLLECTION_CLASS = "vxe";
-    private static final String CONTROLLER_CLASS = "mlh";
+    private static final String DESCRIPTOR_CLASS = "mng";
+    private static final String BUILDER_CLASS = "mnb";
+    private static final String ORDER_HELPER_CLASS = "mpw";
+    private static final String IMMUTABLE_COLLECTION_CLASS = "wgz";
+    private static final String CONTROLLER_CLASS = "mqk";
 
     private static final Map<Object, WeakReference<Context>> CONTROLLERS =
             Collections.synchronizedMap(new WeakHashMap<>());
@@ -72,7 +72,9 @@ final class GboardManualIncognitoAccessPointSupport {
                     builder, OFFICIAL_INCOGNITO_ICON_RESOURCE_ID);
         }
         activeHandles.builderLabelTextField.set(builder, LABEL);
-        activeHandles.builderContentDescriptionTextField.set(builder, LABEL);
+        if (activeHandles.builderContentDescriptionTextField != null) {
+            activeHandles.builderContentDescriptionTextField.set(builder, LABEL);
+        }
         activeHandles.builderRunnableMethod.invoke(
                 builder, new ToggleAction(controller, safeContext));
         Object descriptor = activeHandles.builderBuildMethod.invoke(builder);
@@ -268,7 +270,8 @@ final class GboardManualIncognitoAccessPointSupport {
             Field builderIconField = builderClass.getDeclaredField("c");
             Method builderIconResourceMethod = builderClass.getDeclaredMethod("i", int.class);
             Field builderLabelTextField = builderClass.getDeclaredField("d");
-            Field builderContentDescriptionTextField = builderClass.getDeclaredField("e");
+            // 18.4.1 access point descriptors no longer carry a content description.
+            Field builderContentDescriptionTextField = null;
             Field controllerOrderHelperField = controllerClass.getDeclaredField("g");
             Field orderMasterCatalogField = orderHelperClass.getDeclaredField("c");
             Method immutableCollectionCopyMethod = immutableCollectionClass.getDeclaredMethod(
@@ -283,7 +286,6 @@ final class GboardManualIncognitoAccessPointSupport {
             builderIconField.setAccessible(true);
             builderIconResourceMethod.setAccessible(true);
             builderLabelTextField.setAccessible(true);
-            builderContentDescriptionTextField.setAccessible(true);
             controllerOrderHelperField.setAccessible(true);
             orderMasterCatalogField.setAccessible(true);
             immutableCollectionCopyMethod.setAccessible(true);

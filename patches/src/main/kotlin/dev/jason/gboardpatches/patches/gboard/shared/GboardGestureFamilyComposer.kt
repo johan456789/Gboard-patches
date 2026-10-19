@@ -325,7 +325,7 @@ private fun Set<GboardGestureFamilyFeature>.selectedGestureStages():
         .sortedBy(GboardGestureFamilyStage::order)
 
 private fun MutableMethod.requireSupportedGestureStock() {
-    check(GboardVersionBindings.targetVersion == "18.0.3") {
+    check(GboardVersionBindings.targetVersion == "18.4.1") {
         "Unsupported Gboard gesture stock contract for ${GboardVersionBindings.targetVersion}"
     }
     requireExact1803GestureStockShape()
@@ -333,7 +333,7 @@ private fun MutableMethod.requireSupportedGestureStock() {
 
 private fun MutableMethod.requireExact1803GestureStockShape() {
     val implementation = implementation
-        ?: error("No instructions in formal 18.0.3 gesture dispatch target")
+        ?: error("No instructions in formal 18.4.1 gesture dispatch target")
     val instructions = implementation.instructions
     val layout = GestureRegisterLayout.from(GboardVersionBindings.gestureDispatch)
     val fieldRead = instructions.getOrNull(0) as? TwoRegisterInstruction
@@ -356,7 +356,7 @@ private fun MutableMethod.requireExact1803GestureStockShape() {
             GboardVersionBindings.gestureStockDispatch.matches(dispatchReference) &&
             instructions[2].opcode == Opcode.RETURN_VOID
     ) {
-        "18.0.3 gesture stock forwarding boundary drift in $definingClass->$name"
+        "18.4.1 gesture stock forwarding boundary drift in $definingClass->$name"
     }
 }
 

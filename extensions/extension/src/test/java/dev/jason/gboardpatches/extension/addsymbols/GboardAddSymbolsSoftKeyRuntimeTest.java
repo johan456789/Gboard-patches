@@ -16,13 +16,13 @@ public final class GboardAddSymbolsSoftKeyRuntimeTest {
         String source = runtimeSource();
         List<String> targetMappings = List.of(
                 "\"com.google.android.libraries.inputmethod.metadata.SoftKeyDef\";",
-                "private static final String ACTION_TYPE_CLASS = \"pmy\";",
+                "private static final String ACTION_TYPE_CLASS = \"pti\";",
                 "\"com.google.android.libraries.inputmethod.metadata.ActionDef\";",
-                "private static final String ACTION_ENTRY_CLASS = \"pnu\";",
-                "private static final String ACTION_BUILDER_CLASS = \"pmz\";",
-                "private static final String METADATA_BUILDER_CLASS = \"ppo\";",
-                "private static final String INTENTION_CLASS = \"pnt\";",
-                "private static final String KEYBOARD_TYPE_CLASS = \"ppa\";");
+                "private static final String ACTION_ENTRY_CLASS = \"pue\";",
+                "private static final String ACTION_BUILDER_CLASS = \"ptj\";",
+                "private static final String METADATA_BUILDER_CLASS = \"pvz\";",
+                "private static final String INTENTION_CLASS = \"pud\";",
+                "private static final String KEYBOARD_TYPE_CLASS = \"pvl\";");
         for (String mapping : targetMappings) {
             Assert.assertTrue("Missing Gboard 18.0.3 soft-key mapping: " + mapping,
                     source.contains(mapping));
@@ -37,7 +37,7 @@ public final class GboardAddSymbolsSoftKeyRuntimeTest {
 
         Assert.assertTrue(source.contains("field(actionSetClass, \"f\")"));
         Assert.assertTrue(source.contains("field(actionSetClass, \"g\")"));
-        Assert.assertTrue(source.contains("method(actionSetClass, \"h\", actionTypeClass)"));
+        Assert.assertTrue(source.contains("method(actionSetClass, \"g\", actionTypeClass)"));
         Assert.assertTrue(source.contains("field(actionDefClass, \"n\")"));
         Assert.assertTrue(source.contains("field(actionDefClass, \"o\")"));
         Assert.assertTrue(source.contains("method(keyboardTypeClass, \"a\", Object.class)"));
@@ -50,7 +50,7 @@ public final class GboardAddSymbolsSoftKeyRuntimeTest {
 
         Assert.assertFalse(source.contains("0x7f0e05fd"));
         Assert.assertFalse(source.contains("0x7f080576"));
-        Assert.assertTrue(source.contains("POPUP_LAYOUT_ATTRIBUTE_RES_ID = 0x7f040296"));
+        Assert.assertTrue(source.contains("POPUP_LAYOUT_ATTRIBUTE_RES_ID = 0x7f04027f"));
         Assert.assertTrue(source.contains("handles.popupLayout(action) == 0"));
     }
 

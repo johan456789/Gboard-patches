@@ -39,7 +39,7 @@ internal val gboardCustomThemeOfficialImportPatch = bytecodePatch(
 
 context(context: app.morphe.patcher.patch.BytecodePatchContext)
 private fun validateCustomThemeTargetContract(): Pair<MutableMethod, MutableMethod> = with(context) {
-    check(GboardVersionBindings.targetVersion == "18.0.3") {
+    check(GboardVersionBindings.targetVersion == "18.4.1") {
         "Unsupported Custom Theme stock contract for ${GboardVersionBindings.targetVersion}"
     }
     val publicFinal = AccessFlags.PUBLIC.value or AccessFlags.FINAL.value
@@ -92,15 +92,15 @@ internal fun MutableMethod.requireStockFingerprintUnlessPatched(
     if (implementation!!.instructions.any { it.isMethodReference(runtimeReference) }) return
     val actual = gboardStructuralFingerprint()
     check(actual == expected) {
-        "Unexpected 18.0.3 Custom Theme fingerprint for $definingClass->$name: " +
+        "Unexpected 18.4.1 Custom Theme fingerprint for $definingClass->$name: " +
             "$actual != $expected"
     }
 }
 
 internal const val CUSTOM_THEME_PLUS_1803_FINGERPRINT =
-    "c93fe4d484e830e3d10dc1fda0aaf3d9467152757907723ba141bf9ae77d47aa"
+    "e1f336fae8f07c58dcd5b7c1a4442bc1d62bac08634d04fe70010787ff37abda"
 internal const val CUSTOM_THEME_RESULT_1803_FINGERPRINT =
-    "9e1594b994de881acd8e2f42ec66db00a08bcd73a397c32f849d46b2625c8d6e"
+    "d084452f5b3f0a863f8728c4c9b0e8676959da44c53a785a3093c31d9bdca5fc"
 
 private fun MutableMethod.applyCustomThemeGuard(
     call: RuntimeCallId,

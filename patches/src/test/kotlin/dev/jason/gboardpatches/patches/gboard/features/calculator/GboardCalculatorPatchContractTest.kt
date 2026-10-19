@@ -17,8 +17,8 @@ class GboardCalculatorPatchContractTest {
         val target = source("GboardCalculator1803Targets.kt")
         val lifecycle = source("GboardCalculatorLifecyclePatch.kt")
 
-        assertTrue(target.contains("classType = \"Loup;\""))
-        assertTrue(target.contains("name = \"j\""))
+        assertTrue(target.contains("classType = \"Lpbb;\""))
+        assertTrue(target.contains("name = \"i\""))
         assertTrue(target.contains("name = \"onStartInputView\""))
         assertTrue(target.contains("name = \"onUpdateSelection\""))
         assertTrue(target.contains("name = \"onWindowHidden\""))
@@ -31,7 +31,7 @@ class GboardCalculatorPatchContractTest {
         Files.list(portableRoot).use { files ->
             files.filter { Files.isRegularFile(it) }.forEach { file ->
                 val contents = Files.readString(file, StandardCharsets.UTF_8)
-                assertFalse(file.toString(), contents.contains("Loup;"))
+                assertFalse(file.toString(), contents.contains("Lpbb;"))
                 assertFalse(file.toString(), contents.contains("onUpdateSelection"))
             }
         }
