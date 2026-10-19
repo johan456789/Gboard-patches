@@ -15,14 +15,16 @@ public final class GboardSpaceBarSwipeFixPolicyTest {
 
     @Test
     public void serverLikeValueStaysUntouched() {
-        Assert.assertSame(Double.valueOf(0.2d), GboardSpaceBarSwipeFixPolicy.resolve(
-                "key_edge_distance_threshold", Double.valueOf(0.2d)));
+        Double stock = Double.valueOf(0.2d);
+        Assert.assertSame(stock, GboardSpaceBarSwipeFixPolicy.resolve(
+                "key_edge_distance_threshold", stock));
     }
 
     @Test
     public void otherFlagNameStaysUntouched() {
-        Assert.assertSame(Double.valueOf(0.0d), GboardSpaceBarSwipeFixPolicy.resolve(
-                "free_cursor", Double.valueOf(0.0d)));
+        Double stock = Double.valueOf(0.0d);
+        Assert.assertSame(stock, GboardSpaceBarSwipeFixPolicy.resolve(
+                "free_cursor", stock));
     }
 
     @Test

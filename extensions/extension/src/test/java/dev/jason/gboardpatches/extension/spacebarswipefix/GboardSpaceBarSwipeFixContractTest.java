@@ -38,30 +38,34 @@ public final class GboardSpaceBarSwipeFixContractTest {
         preferences.edit().putBoolean(
                 GboardSpaceBarSwipeFixSettings.PREF_KEY_ENABLED,
                 false).commit();
-        Assert.assertSame(Double.valueOf(0.0d),
+        Double disabledStock = Double.valueOf(0.0d);
+        Assert.assertSame(disabledStock,
                 GboardSpaceBarSwipeFixRuntime.applyFlagValue(
                         GboardSpaceBarSwipeFixPolicy.FLAG_NAME,
-                        Double.valueOf(0.0d),
+                        disabledStock,
                         preferences));
-        Assert.assertSame(Double.valueOf(0.2d),
+        Double serverLikeStock = Double.valueOf(0.2d);
+        Assert.assertSame(serverLikeStock,
                 GboardSpaceBarSwipeFixRuntime.applyFlagValue(
                         GboardSpaceBarSwipeFixPolicy.FLAG_NAME,
-                        Double.valueOf(0.2d),
+                        serverLikeStock,
                         preferences));
-        Assert.assertSame(Double.valueOf(0.0d),
+        Double unrelatedStock = Double.valueOf(0.0d);
+        Assert.assertSame(unrelatedStock,
                 GboardSpaceBarSwipeFixRuntime.applyFlagValue(
                         "unrelated",
-                        Double.valueOf(0.0d),
+                        unrelatedStock,
                         preferences));
         Assert.assertSame(Boolean.FALSE,
                 GboardSpaceBarSwipeFixRuntime.applyFlagValue(
                         GboardSpaceBarSwipeFixPolicy.FLAG_NAME,
                         Boolean.FALSE,
                         preferences));
-        Assert.assertSame(Double.valueOf(0.0d),
+        Double throwingStock = Double.valueOf(0.0d);
+        Assert.assertSame(throwingStock,
                 GboardSpaceBarSwipeFixRuntime.applyFlagValue(
                         GboardSpaceBarSwipeFixPolicy.FLAG_NAME,
-                        Double.valueOf(0.0d),
+                        throwingStock,
                         throwingPreferences()));
     }
 
