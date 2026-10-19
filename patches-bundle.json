@@ -1,7 +1,7 @@
 {
-    "created_at":  "2026-10-19T21:54:18",
-    "description":  "### 🐛 Bug Fixes\n\n* **Gboard:** retarget all patches to Gboard `18.4.1.985164140-release-arm64-v8a` (versionCode `176027078`).\n* **Gboard:** add the `Space Bar Swipe Fix` patch, which restores Google's `key_edge_distance_threshold` so swipes on the space bar move the cursor instead of triggering glide typing, notably after voice typing in 繁拼.\n\n### 🚀 Updated App Support\n\n* **Gboard:** support the official Gboard `18.4.1.985164140-release-arm64-v8a`. Support for Gboard `18.0.3` is dropped.\n* **Gboard:** the `Hyperspeed Typing Animation` patch is unavailable on Gboard 18.4.1 because Google compiled out its `FlowModeDetector`.\n\n### 🐛 修復\n\n* **Gboard:** 將所有 Patch 重新對應至 Gboard `18.4.1.985164140-release-arm64-v8a`（versionCode `176027078`）。\n* **Gboard:** 新增 `Space Bar Swipe Fix` Patch，還原 Google 的 `key_edge_distance_threshold`，讓空白鍵滑動移動游標而非觸發滑動輸入，尤其在繁拼語音輸入後。\n\n### 🚀 支援版本更新\n\n* **Gboard:** 支援官方 Gboard `18.4.1.985164140-release-arm64-v8a`，不再支援 Gboard `18.0.3`。\n* **Gboard:** `Hyperspeed Typing Animation` Patch 在 Gboard 18.4.1 上無法使用，因為 Google 已從該版本移除 `FlowModeDetector`。",
-    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0.3/patches-3.12.0.3.mpp",
+    "created_at":  "2026-10-19T22:33:54",
+    "description":  "### 🐛 Bug Fixes\n\n* **Gboard:** `Advanced Voice Typing`: the in-app download link now points to the Gboard 18.4.1 `release-arm64-v8a-4` bundle, which includes the dictation payload Rambler needs, instead of the standalone APK that doesn't.\n* **Gboard:** the patches now declare the bundle (`APKM`) as the preferred Gboard download type, so Morphe suggests a build that includes the dictation payload.\n\n### 🐛 修復\n\n* **Gboard:** `Advanced Voice Typing`：App 內下載連結改指向包含 Rambler 所需 dictation payload 的 Gboard 18.4.1 `release-arm64-v8a-4` 套件組合，不再指向沒有 payload 的獨立 APK。\n* **Gboard:** Patch 現在將套件組合（`APKM`）宣告為建議的 Gboard 下載類型，讓 Morphe 推薦包含 dictation payload 的版本。",
+    "download_url":  "https://github.com/johan456789/Gboard-patches/releases/download/v3.12.0.4/patches-3.12.0.4.mpp",
     "signature_download_url":  "",
-    "version":  "3.12.0.3"
+    "version":  "3.12.0.4"
 }
