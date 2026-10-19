@@ -2422,6 +2422,22 @@
         <translation locale="en">The feature settings could not be loaded.</translation>
         <translation locale="zh-Hant">目前無法載入這項功能的設定。</translation>
     </string>
+    <string name="gboard_patches_space_bar_swipe_fix_title">
+        <translation locale="en">Space Bar Swipe Fix</translation>
+        <translation locale="zh-Hant">空白鍵滑動修復</translation>
+    </string>
+    <string name="gboard_patches_space_bar_swipe_fix_error_title">
+        <translation locale="en">Space bar swipe fix unavailable</translation>
+        <translation locale="zh-Hant">空白鍵滑動修復設定無法使用</translation>
+    </string>
+    <string name="gboard_patches_space_bar_swipe_fix_error_summary">
+        <translation locale="en">The space bar swipe fix settings screen failed to load. Reopen Gboard settings and try again.</translation>
+        <translation locale="zh-Hant">空白鍵滑動修復設定畫面載入失敗。請重新開啟 Gboard 設定再試一次。</translation>
+    </string>
+    <string name="gboard_patches_space_bar_swipe_fix_section_feature">
+        <translation locale="en">Feature</translation>
+        <translation locale="zh-Hant">功能</translation>
+    </string>
     <string name="gboard_patches_floating_web_search_title">
         <translation locale="en">Floating Web Search</translation>
         <translation locale="zh-Hant">懸浮網頁搜尋</translation>

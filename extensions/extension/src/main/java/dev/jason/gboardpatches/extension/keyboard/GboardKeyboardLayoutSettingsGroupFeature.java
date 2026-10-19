@@ -19,6 +19,7 @@ import dev.jason.gboardpatches.extension.settings.GboardFeatureGroup;
 import dev.jason.gboardpatches.extension.settings.GboardPatchesSettingsContract;
 import dev.jason.gboardpatches.extension.settings.GboardSettingsText;
 import dev.jason.gboardpatches.extension.spacebarlogo.GboardSpacebarLogoSettingsFeature;
+import dev.jason.gboardpatches.extension.spacebarswipefix.GboardSpaceBarSwipeFixSettingsFeature;
 import dev.jason.gboardpatches.extension.symbolfooter.GboardSymbolFooterOrderSettingsFeature;
 import dev.jason.gboardpatches.extension.splitkeyboard.GboardSplitKeyboardSettingsFeature;
 import dev.jason.gboardpatches.extension.zhuyinbottomrow.GboardZhuyinBottomRowWeightSettingsFeature;
@@ -44,6 +45,7 @@ public final class GboardKeyboardLayoutSettingsGroupFeature
                         new GboardSpacebarLogoSettingsFeature(context),
                         new GboardFlowModeSettingsFeature(context),
                         new GboardCloseProactiveSuggestionsSettingsFeature(context),
+                        new GboardSpaceBarSwipeFixSettingsFeature(context),
                         new GboardLatinGlobeKeyIgnoreIntervalSettingsFeature(context),
                         new GboardEnglishUppercaseToggleSettingsFeature(context),
                         new GboardZhuyinBottomRowWeightSettingsFeature(context),

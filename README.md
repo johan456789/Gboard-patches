@@ -132,6 +132,12 @@ Import custom ZIP themes and beautiful themes from the official Rboard repositor
 </details>
 
 <details>
+  <summary><code>Space Bar Swipe Fix</code></summary>
+
+  Restore Google's `key_edge_distance_threshold` so swipes on the space bar move the cursor instead of triggering glide typing, notably after voice typing in 繁拼.
+</details>
+
+<details>
   <summary><code>Rounded Keyboard Panel</code></summary>
 
   Customize which corners of the keyboard panel are rounded, and set the top and bottom radii separately.

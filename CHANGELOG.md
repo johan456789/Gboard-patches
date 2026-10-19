@@ -2,7 +2,8 @@
 
 ### 🐛 Bug Fixes
 
-* **Gboard:** retarget all patches to Gboard `18.4.1.985164140-release-arm64-v8a` (versionCode `176027078`), fixing the space-bar cursor swipe glitch introduced in `18.0.3`.
+* **Gboard:** retarget all patches to Gboard `18.4.1.985164140-release-arm64-v8a` (versionCode `176027078`).
+* **Gboard:** add the `Space Bar Swipe Fix` patch, which restores Google's `key_edge_distance_threshold` so swipes on the space bar move the cursor instead of triggering glide typing, notably after voice typing in 繁拼.
 
 ### 🚀 Updated App Support
 
@@ -11,7 +12,8 @@
 
 ### 🐛 修復
 
-* **Gboard:** 將所有 Patch 重新對應至 Gboard `18.4.1.985164140-release-arm64-v8a`（versionCode `176027078`），修復 `18.0.3` 引入的空格鍵游標滑動手勢問題。
+* **Gboard:** 將所有 Patch 重新對應至 Gboard `18.4.1.985164140-release-arm64-v8a`（versionCode `176027078`）。
+* **Gboard:** 新增 `Space Bar Swipe Fix` Patch，還原 Google 的 `key_edge_distance_threshold`，讓空白鍵滑動移動游標而非觸發滑動輸入，尤其在繁拼語音輸入後。
 
 ### 🚀 支援版本更新
 

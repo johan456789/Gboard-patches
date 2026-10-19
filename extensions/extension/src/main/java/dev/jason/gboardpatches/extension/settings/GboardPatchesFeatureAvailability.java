@@ -77,6 +77,8 @@ public final class GboardPatchesFeatureAvailability {
             "dev.jason.gboardpatches.feature.quick_insert";
     public static final String FEATURE_ACCESS_POINT_COUNT =
             "dev.jason.gboardpatches.feature.access_point_count";
+    public static final String FEATURE_SPACE_BAR_SWIPE_FIX =
+            "dev.jason.gboardpatches.feature.space_bar_swipe_fix";
     public static final String FEATURE_FLOATING_WEB_SEARCH =
             "dev.jason.gboardpatches.feature.floating_web_search";
     public static final String FEATURE_SIMPLE_CALCULATOR =
