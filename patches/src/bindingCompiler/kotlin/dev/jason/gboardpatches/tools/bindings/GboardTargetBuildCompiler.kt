@@ -429,7 +429,7 @@ object GboardTargetBuildCompiler {
 
     private val DEFAULT_ARTIFACT_IDENTITY = GboardArtifactIdentity(
         packageName = GBOARD_PACKAGE_NAME,
-        apkFileType = "APK",
+        apkFileType = "APKM",
         signatures = sortedSetOf(
             "7ce83c1b71f3d572fed04c8d40c5cb10ff75e6d87d9df6fbd53f0468c2905053",
             "f0fd6c5b410f25cb25c3b53346c8972fae30f8ee7411df910480ad6b2d60db83",

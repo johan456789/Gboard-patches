@@ -22,7 +22,7 @@ public final class GboardAdvancedVoiceSettingsFeature
         implements GboardPatchesSettingsContract.Feature {
     private static final String TAG = "GboardPatches";
     private static final String APKMIRROR_DOWNLOAD_URL =
-            "https://www.apkmirror.com/apk/google-inc/gboard/gboard-the-google-keyboard-18-4-1-985164140-release/gboard-the-google-keyboard-18-4-1-985164140-release-arm64-v8a-3-android-apk-download/";
+            "https://www.apkmirror.com/apk/google-inc/gboard/gboard-the-google-keyboard-18-4-1-985164140-release/gboard-the-google-keyboard-18-4-1-985164140-release-arm64-v8a-4-android-apk-download/";
     private static final String ADVANCED_VOICE_GITHUB_URL =
             "https://github.com/jasonwu1994/Gboard-patches";
 

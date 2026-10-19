@@ -1,3 +1,15 @@
+## [3.12.0.4](https://github.com/johan456789/Gboard-patches/compare/v3.12.0.3...v3.12.0.4) (2026-10-19)
+
+### 🐛 Bug Fixes
+
+* **Gboard:** `Advanced Voice Typing`: the in-app download link now points to the Gboard 18.4.1 `release-arm64-v8a-4` bundle, which includes the dictation payload Rambler needs, instead of the standalone APK that doesn't.
+* **Gboard:** the patches now declare the bundle (`APKM`) as the preferred Gboard download type, so Morphe suggests a build that includes the dictation payload.
+
+### 🐛 修復
+
+* **Gboard:** `Advanced Voice Typing`：App 內下載連結改指向包含 Rambler 所需 dictation payload 的 Gboard 18.4.1 `release-arm64-v8a-4` 套件組合，不再指向沒有 payload 的獨立 APK。
+* **Gboard:** Patch 現在將套件組合（`APKM`）宣告為建議的 Gboard 下載類型，讓 Morphe 推薦包含 dictation payload 的版本。
+
 ## [3.12.0.3](https://github.com/johan456789/Gboard-patches/compare/v3.12.0.2...v3.12.0.3) (2026-10-19)
 
 ### 🐛 Bug Fixes
